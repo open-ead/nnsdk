@@ -77,7 +77,7 @@ enum class CaCertificateId {
 };
 
 Result Initialize();
-Result Initialize(u32 numSessions);
+Result Initialize(u32 concurrencyLimit);
 Result Finalize();
 Result GetSslResultFromValue(Result*, const char*, u32);
 
