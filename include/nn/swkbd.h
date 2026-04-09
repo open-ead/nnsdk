@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <cstdlib>
 
+#include <nn/util.h>
+
 namespace nn::swkbd {
 
 enum class Preset {
@@ -91,6 +93,8 @@ enum class DictionaryLang {
 
 enum class CloseResult { Enter, Cancel };
 
+enum class Trigger : u8 { Default };
+
 struct DictionaryInfo {
     uint32_t offset;
     uint16_t size;
@@ -115,13 +119,27 @@ struct KeyboardConfig {
     bool isUseNewLine;
     bool isUseUtf8;
     bool isUseBlurBackground;
-    int _initialStringOffset;
-    int _initialStringLength;
-    int _userDictionaryOffset;
-    int _userDictionaryNum;
-    bool _isUseTextCheck;
-    void* _textCheckCallback;
+    int initialStringOffset;
+    int initialStringLength;
+    int userDictionaryOffset;
+    int userDictionaryNum;
+    bool isUseTextCheck;
+    void* textCheckCallback;
+
+#if NN_SDK_VER >= NN_MAKE_VER(3, 0, 0)
     int separateTextPos[0x8];
+#endif
+
+#if NN_SDK_VER >= NN_MAKE_VER(6, 0, 0)
+    u64 customDictionaryEntries[0x18];
+    u8 customDictionaryNum;
+#endif
+
+#if NN_SDK_VER >= NN_MAKE_VER(8, 0, 0)
+    u8 _3c1;
+    u8 filler[0xd];
+    u8 trigger;
+#endif
 };
 
 struct ShowKeyboardArg {
@@ -156,13 +174,61 @@ private:
     int bufsize;
 };
 
-struct UserWord;  // TODO contents missing
+struct UserWord;   // TODO contents missing
+struct KbdConfig;  // TODO contents missing
 
-size_t GetRequiredWorkBufferSize(bool);
-size_t GetRequiredStringBufferSize();
+struct CustomizedDictionarySet {
+    void* buffer;    // 0x1000-byte aligned buffer.
+    int bufferSize;  // 0x1000-byte aligned buffer size.
+    u64 entries[0x18];
+    u16 totalEntries;
+};
+
+typedef TextCheckResult (*TextCheckCb)(void*, ulong*, String*);
+
+int ConvertUtf8ToUtf16(void*, int, const char*, int);
+int ConvertUtf8ToUtf16(void*, int, const char*);
+int GetLengthOfConvertedStringUtf8ToUtf16(const char*);
+void MakePresetDefault(KeyboardConfig*);
+void MakePresetPassword(KeyboardConfig*);
+void MakePresetUsername(KeyboardConfig*);
+void MakePresetDownloadCode(KeyboardConfig*);
+Result GetInteractiveOutStorageCallback(nn::applet::LibraryAppletHandle, String*,
+                                        const ShowKeyboardArg&);
+ulong GetRequiredTextCheckWorkBufferSize();
+void ReadCloseResultAndString(nn::applet::LibraryAppletHandle, CloseResult*, String*);
+void CopyInitialStringInfo(ShowKeyboardArg*, int);
+void CopyUserDictionaryInfo(ShowKeyboardArg*, int);
+
+#if NN_SDK_VER >= NN_MAKE_VER(3, 0, 0)
+ulong GetRequiredWorkBufferSize(int);
+#endif
+
+#if NN_SDK_VER >= NN_MAKE_VER(6, 0, 0)
+void keyboardConfig2kbdConfig(const KeyboardConfig&, KbdConfig*);
+#endif
+
+Result ShowKeyboard(String*, const ShowKeyboardArg&);
+
+#if NN_SDK_VER >= NN_MAKE_VER(8, 0, 0)
+Result ShowKeyboard(String*, const ShowKeyboardArg&, Trigger);
+#endif
+
+void InitializeKeyboardConfig(KeyboardConfig*);
 void MakePreset(KeyboardConfig*, Preset);
-void SetHeaderText(KeyboardConfig*, const char16_t*);
-void SetSubText(KeyboardConfig*, const char16_t*);
+
+ulong GetRequiredWorkBufferSize(bool);
+
+#if NN_SDK_VER >= NN_MAKE_VER(1, 0, 0) && NN_SDK_VER < NN_MAKE_VER(2, 0, 0)
+ulong GetRequiredWorkBufferSize(int);
+#endif
+
+#if NN_SDK_VER >= NN_MAKE_VER(3, 0, 0)
+ulong GetRequiredWorkBufferSize();
+#endif
+
+ulong GetRequiredStringBufferSize();
+
 void SetOkText(KeyboardConfig*, const char16_t*);
 void SetOkTextUtf8(KeyboardConfig*, const char*);
 void SetLeftOptionalSymbolKey(KeyboardConfig*, char16_t);
@@ -176,6 +242,11 @@ void SetGuideTextUtf8(KeyboardConfig*, const char*);
 void SetInitialText(ShowKeyboardArg*, const char16_t*);
 void SetInitialTextUtf8(ShowKeyboardArg*, const char*);
 void SetUserWordList(ShowKeyboardArg*, const UserWord*, int);
-int ShowKeyboard(String*, const ShowKeyboardArg&);
+
+#if NN_SDK_VER >= NN_MAKE_VER(6, 0, 0)
+void SetCustomizedDictionaries(ShowKeyboardArg*, const CustomizedDictionarySet&);
+#endif
+
+void SetTextCheckCallback(ShowKeyboardArg*, TextCheckCb);
 
 }  // namespace nn::swkbd
