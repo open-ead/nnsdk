@@ -237,7 +237,7 @@ struct CreateProcessParameter {
 }  // namespace lp
 
 
-#ifdef aarch
+namespace aarch {
 #if NN_SDK_VER >= NN_MAKE_VER(1, 0, 0)  // TODO: find when lp namespace was introduced
 namespace aarch::lp {
 #endif
@@ -380,12 +380,10 @@ Result GetProcessInfo(s64* outProcessInfo, Handle handle, ProcessInfoType proces
 Result CreateResourceLimit(Handle* outHandle);
 Result SetResourceLimitLimitValue(Handle handle, LimitableResource resource, s64 value);
 void CallSecureMonitor();
-
 #if NN_SDK_VER >= NN_MAKE_VER(1, 0, 0)
 } // namespace aarch::lp
 #endif
-#endif
 
-
+}
 
 }  // namespace nn::svc
