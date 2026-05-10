@@ -175,7 +175,7 @@ public:
 
 private:
     char* strBuf;
-    s32 bufsize;
+    size_t bufsize;
 };
 
 struct UserWord;   // TODO contents missing
