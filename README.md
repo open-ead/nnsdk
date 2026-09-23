@@ -1,9 +1,12 @@
-# nnheaders
-Repository of user created nnsdk headers.
+# nnsdk
 
-The header files contained herewithin are entirely user created via Reverse Engineering or publicly available sources (non stripped binaries containing symbols and/or debug info), such as *Splatoon 2* and *Pokémon Sword and Shield*.
+This repository includes:
+- User-created nnsdk headers for matching decompilation of some Nintendo games.
+  - The header files contained herewithin are entirely user created via Reverse Engineering or publicly available sources (non stripped binaries containing symbols and/or debug info), such as *Splatoon 2* and *Pokémon Sword and Shield*.
+- Decompilation of sdk modules that are linked statically in some Nintendo games.
 
 Do not ask for or PR any copyrighted material to this repo. You will be ignored.
+Usage of the materials here outside of matching decompilation is not supported.
 
 # Credits
  - [Shadow](https://github.com/shadowninja108/) - For [Skyline](https://github.com/shadowninja108/Skyline), which was the primary inspiration and use case for this repo.
