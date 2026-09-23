@@ -13,12 +13,14 @@ void nnMain();
 
 void _init();
 void _fini();
+// NOLINTNEXTLINE(bugprone-reserved-identifier)
 void __nnDetailNintendoSdkRuntimeObjectFileRefer();
+// NOLINTNEXTLINE(bugprone-reserved-identifier)
 void __nnDetailNintendoSdkRuntimeObjectFile();
+// NOLINTNEXTLINE(bugprone-reserved-identifier)
 void __nnDetailNintendoSdkNsoFileRefer();
 
-void __nnmusl_init_dso_0();
-void __nnmusl_fini_dso_0();
+// NOLINTNEXTLINE(bugprone-reserved-identifier)
 void __nnDetailNintendoSdkNsoFile_0();
 
 #ifdef __cplusplus

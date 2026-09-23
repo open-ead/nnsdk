@@ -1,8 +1,8 @@
 #pragma once
 
 #include <nn/account.h>
-#include <nn/fs/fs_types.h>
-#include <nn/nn.h>
+#include <nn/fs/fs_Types.h>
+#include <nn/nn_ApplicationId.h>
 
 namespace nn::fs {
 

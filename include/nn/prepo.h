@@ -1,10 +1,6 @@
 #pragma once
 
-#include <nn/types.h>
-
-namespace nn::account {
-class Uid;
-}
+#include <nn/account.h>
 
 namespace nn::prepo {
 
@@ -39,7 +35,7 @@ public:
 
     int32_t GetCount() const;
 
-    static uint32_t CalcBufferSize(int32_t num_entries) { return size_t(0x82) * num_entries + 3; }
+    static uint32_t CalcBufferSize(int32_t num_entries) { return (size_t(0x82) * num_entries) + 3; }
 
 private:
     char m_EventId[32];

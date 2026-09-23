@@ -1,16 +1,13 @@
 /**
- * @file xcd.h
  * @brief Utility classes for controller devices
  */
 
 #pragma once
 
-#include <nn/types.h>
+#include <cstdint>
 
-namespace nn {
-namespace xcd {
+namespace nn::xcd {
 
-typedef uint64_t DeviceHandle;
+using DeviceHandle = uint64_t;
 
-}  // namespace xcd
-}  // namespace nn
+}  // namespace nn::xcd

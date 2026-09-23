@@ -8,7 +8,6 @@
 #include <type_traits>
 
 #include <nn/time.h>
-#include <nn/types.h>
 
 #include <nn/os/detail/os_InternalCriticalSection.h>
 #include <nn/os/os_Event.h>
@@ -16,8 +15,7 @@
 #include <nn/os/os_Mutex.h>
 #include <nn/os/os_ThreadTypes.h>
 
-namespace nn {
-namespace os {
+namespace nn::os {
 
 namespace detail {
 
@@ -96,10 +94,10 @@ void WaitConditionVariable(ConditionVariableType*);
 uint8_t TimedWaitConditionVariable(ConditionVariableType*, nn::os::MutexType*, nn::TimeSpan);
 
 // THREAD
-Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack, uint64_t stackSize,
-                    int32_t priority, int32_t coreNum);
-Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack, uint64_t stackSize,
-                    int32_t priority);
+Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack,
+                    uint64_t stackSize, int32_t priority, int32_t coreNum);
+Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack,
+                    uint64_t stackSize, int32_t priority);
 void DestroyThread(nn::os::ThreadType*);
 void StartThread(nn::os::ThreadType*);
 void SetThreadName(nn::os::ThreadType*, char const* threadName);
@@ -143,9 +141,9 @@ typedef union {
 /// Armv8 NEON register.
 
 typedef union {
-    u128 v;    ///< 128-bit vector view.
-    double d;  ///< 64-bit double-precision view.
-    float s;   ///< 32-bit single-precision view.
+    __uint128_t v;  ///< 128-bit vector view.
+    double d;       ///< 64-bit double-precision view.
+    float s;        ///< 32-bit single-precision view.
 } FpuRegister;
 
 struct UserExceptionInfo {
@@ -176,7 +174,6 @@ void GenerateRandomBytes(void*, uint64_t);
 nn::os::Tick GetSystemTick();
 nn::os::Tick GetSystemTickFrequency();
 uint64_t GetThreadAvailableCoreMask();
-void SetMemoryHeapSize(uint64_t size);
 
 // Thread-local storage
 struct TlsSlot {
@@ -192,5 +189,4 @@ namespace detail {
 extern int32_t g_CommandLineParameter;
 extern char** g_CommandLineParameterArgv;
 }  // namespace detail
-}  // namespace os
-}  // namespace nn
+}  // namespace nn::os

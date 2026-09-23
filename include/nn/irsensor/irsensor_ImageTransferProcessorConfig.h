@@ -1,7 +1,8 @@
 #pragma once
 
-#include <nn/irs/ImageTransferProcessorFormat.h>
-#include <nn/types.h>
+#include <cstdint>
+
+#include <nn/irsensor/irsensor_ImageTransferProcessorFormat.h>
 
 namespace nn::irsensor {
 struct __attribute__((packed)) ImageTransferProcessorConfig {

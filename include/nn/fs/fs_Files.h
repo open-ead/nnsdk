@@ -1,6 +1,9 @@
 #pragma once
 
-#include <nn/fs/fs_types.h>
+#include <cstddef>
+
+#include <nn/fs/fs_Types.h>
+#include <nn/nn_Result.h>
 
 namespace nn::fs {
 
@@ -69,9 +72,10 @@ Result ReadFile(size_t* bytesRead, FileHandle handle, long position, void* buffe
 Result ReadFile(size_t* bytesRead, FileHandle handle, long position, void* buffer,
                 const ReadOption& option);
 
-Result ReadFile(uint64_t* outSize, FileHandle handle, int64_t offset, void* buffer, uint64_t bufferSize,
-                const ReadOption& option);
-Result ReadFile(uint64_t* outSize, FileHandle handle, int64_t offset, void* buffer, uint64_t bufferSize);
+Result ReadFile(uint64_t* outSize, FileHandle handle, int64_t offset, void* buffer,
+                uint64_t bufferSize, const ReadOption& option);
+Result ReadFile(uint64_t* outSize, FileHandle handle, int64_t offset, void* buffer,
+                uint64_t bufferSize);
 Result ReadFile(FileHandle handle, int64_t offset, void* buffer, uint64_t bufferSize,
                 const ReadOption& option);
 

@@ -1,15 +1,12 @@
 /**
- * @file audio.h
  * @brief Audio implementation.
  */
 
 #pragma once
 
 #include <nn/os.h>
-#include <nn/types.h>
 
-namespace nn {
-namespace audio {
+namespace nn::audio {
 // Common audio
 struct AudioDeviceName {
     char raw_name[0x100];
@@ -38,7 +35,7 @@ struct AudioRendererConfig {
 
 enum AudioRendererRenderingDevice : uint32_t {
     AudioRendererRenderingDevice_Cpu,
-    AudioRendererRenderingDevice_Dsp
+    AudioRendererRenderingDevice_Dsp,
 };
 
 enum AudioRendererExecutionMode : uint32_t {
@@ -180,7 +177,8 @@ size_t GetMemoryPoolSize(nn::audio::MemoryPoolType const* pool);
 MemoryPoolState GetMemoryPoolState(nn::audio::MemoryPoolType const* pool);
 
 // Audio Renderer Effect APIs
-void SetDelayInputOutput(nn::audio::DelayType* delay, int8_t const* input, int8_t const* output, int32_t count);
+void SetDelayInputOutput(nn::audio::DelayType* delay, int8_t const* input, int8_t const* output,
+                         int32_t count);
 void* RemoveDelay(nn::audio::AudioRendererConfig* config, nn::audio::DelayType* delay,
                   nn::audio::FinalMixType* mix);
 void* RemoveDelay(nn::audio::AudioRendererConfig* config, nn::audio::DelayType* delay,
@@ -188,7 +186,8 @@ void* RemoveDelay(nn::audio::AudioRendererConfig* config, nn::audio::DelayType* 
 bool IsDelayRemovable(nn::audio::DelayType* delay);
 
 size_t GetRequiredBufferSizeForAuxSendReturnBuffer(nn::audio::AudioRendererParameter const* config,
-                                                   int32_t mixBufferFrameCount, int32_t channelCount);
+                                                   int32_t mixBufferFrameCount,
+                                                   int32_t channelCount);
 Result AddAux(nn::audio::AudioRendererConfig* config, nn::audio::AuxType* aux,
               nn::audio::FinalMixType* mix, void* sendBuffer, void* returnBuffer,
               size_t bufferSize);
@@ -199,7 +198,8 @@ void RemoveAux(nn::audio::AudioRendererConfig* config, nn::audio::AuxType* aux,
 void RemoveAux(nn::audio::AudioRendererConfig* config, nn::audio::AuxType* aux,
                nn::audio::SubMixType* mix);
 void SetAuxEnabled(nn::audio::AuxType* aux, bool enable);
-void SetAuxInputOutput(nn::audio::AuxType* aux, int8_t const* input, int8_t const* output, int32_t count);
+void SetAuxInputOutput(nn::audio::AuxType* aux, int8_t const* input, int8_t const* output,
+                       int32_t count);
 bool IsAuxRemovable(nn::audio::AuxType* aux);
 int32_t GetAuxSampleCount(nn::audio::AuxType const* aux);
 int32_t GetAuxSampleRate(nn::audio::AuxType const* aux);
@@ -217,7 +217,7 @@ enum PerformanceEntryType : uint8_t {
     PerformanceEntryType_Voice,
     PerformanceEntryType_SubMix,
     PerformanceEntryType_FinalMix,
-    PerformanceEntryType_Sink
+    PerformanceEntryType_Sink,
 };
 
 struct PerformanceEntry {
@@ -240,7 +240,7 @@ enum PerformanceDetailType : uint8_t {
     PerformanceDetailType_Aux,
     PerformanceDetailType_Reverb,
     PerformanceDetailType_Reverb3d,
-    PerformanceDetailType_PcmFloat
+    PerformanceDetailType_PcmFloat,
 };
 
 struct PerformanceDetail {
@@ -284,8 +284,8 @@ uint32_t GetSinkNodeId(nn::audio::DeviceSinkType const* sink);
 
 Result AddCircularBufferSink(nn::audio::AudioRendererConfig* config,
                              nn::audio::CircularBufferSinkType* sink, nn::audio::FinalMixType* mix,
-                             int8_t const* input, int32_t inputCount, void* buffer, size_t bufferSize,
-                             nn::audio::SampleFormat sampleFormat);
+                             int8_t const* input, int32_t inputCount, void* buffer,
+                             size_t bufferSize, nn::audio::SampleFormat sampleFormat);
 void RemoveCircularBufferSink(nn::audio::AudioRendererConfig* config,
                               nn::audio::CircularBufferSinkType* sink,
                               nn::audio::FinalMixType* mix);
@@ -315,8 +315,9 @@ uint32_t GetSubMixNodeId(nn::audio::SubMixType const* mix);
 
 // Audio Renderer Voice APIs
 Result AcquireVoiceSlot(nn::audio::AudioRendererConfig* config, nn::audio::VoiceType* voice,
-                        int32_t sampleRate, int32_t channelCount, nn::audio::SampleFormat sampleFormat,
-                        int32_t priority, void const* buffer, size_t bufferSize);
+                        int32_t sampleRate, int32_t channelCount,
+                        nn::audio::SampleFormat sampleFormat, int32_t priority, void const* buffer,
+                        size_t bufferSize);
 void ReleaseVoiceSlot(nn::audio::AudioRendererConfig* config, nn::audio::VoiceType* voice);
 bool IsVoiceValid(nn::audio::VoiceType const* voice);
 bool IsVoiceDroppedFlagOn(nn::audio::VoiceType const* voice);
@@ -341,5 +342,4 @@ uint64_t GetVoicePlayedSampleCount(nn::audio::VoiceType const* voice);
 uint32_t GetVoiceNodeId(nn::audio::VoiceType const* voice);
 bool AppendWaveBuffer(nn::audio::VoiceType* voice, nn::audio::WaveBuffer const* waveBuffer);
 nn::audio::WaveBuffer* GetReleasedWaveBuffer(nn::audio::VoiceType* voice);
-}  // namespace audio
-}  // namespace nn
+}  // namespace nn::audio

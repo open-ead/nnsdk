@@ -1,19 +1,16 @@
 /**
- * @file hid.h
  * @brief Functions that help process gamepad inputs.
  */
 
 #pragma once
 
 #include <nn/os/os_MutexTypes.h>
-#include <nn/types.h>
 #include <nn/util.h>
-#include <nn/util/MathTypes.h>
 #include <nn/util/util_BitFlagSet.h>
+#include <nn/util/util_MathTypes.h>
 #include <nn/xcd.h>
 
-namespace nn {
-namespace hid {
+namespace nn::hid {
 
 // todo: does something like this exist in nn?
 typedef util::Color4u8Type Color4u8;
@@ -257,7 +254,7 @@ enum class KeyboardModifier {
     ScrollLock,
     NumLock,
     Katakana,
-    Hiragana
+    Hiragana,
 };
 
 enum class DebugPadButton { A, B, X, Y, L, R, ZL, ZR, Start, Select, Left, Up, Right, Down };
@@ -540,7 +537,7 @@ enum class UniquePadType : uint64_t {
     FullKeyController,
     RightController,
     LeftController,
-    DebugPadController
+    DebugPadController,
 };
 
 enum class UniquePadInterface { Embedded, Rail, Bluetooth, Usb };
@@ -560,31 +557,31 @@ enum class AnalogStickManualCalibrationStage : uint64_t {
     Update,
     Completed,
     Clear,
-    ClearCompleted
+    ClearCompleted,
 };
 
 enum class SixAxisSensorUserCalibrationStage : uint64_t { Measuring, Update, Completed };
 
 enum class DeviceType {
-    FullKey,
-    DebugPad,
-    HandheldLeft,
-    HandheldRight,
-    JoyLeft,
-    JoyRight,
-    Palma,
-    LarkHvcLeft,
-    LarkHvcRight,
-    LarkNesLeft,
-    LarkNesRight,
-    HandheldLarkHvcLeft,
-    HandheldLarkHvcRight,
-    HandheldLarkNesLeft,
-    HandheldLarkNesRight,
-    Lucia,
-    Lagon,  // [12.0.0+]
-    Lager,  // [13.0.0+]
-    System = 31
+    FullKey = 0,
+    DebugPad = 1,
+    HandheldLeft = 2,
+    HandheldRight = 3,
+    JoyLeft = 4,
+    JoyRight = 5,
+    Palma = 6,
+    LarkHvcLeft = 7,
+    LarkHvcRight = 8,
+    LarkNesLeft = 9,
+    LarkNesRight = 10,
+    HandheldLarkHvcLeft = 11,
+    HandheldLarkHvcRight = 12,
+    HandheldLarkNesLeft = 13,
+    HandheldLarkNesRight = 14,
+    Lucia = 15,
+    Lagon = 16,  // [12.0.0+]
+    Lager = 17,  // [13.0.0+]
+    System = 31,
 };
 
 enum class AppletFooterUiType : uint8_t {
@@ -690,7 +687,7 @@ struct NpadGcTriggerState {
 
 enum class SixAxisSensorProperties {
     IsSixAxisSensorDeviceNewlyAssigned,
-    IsFirmwareUpdateAvailableForSixAxisSensor
+    IsFirmwareUpdateAvailableForSixAxisSensor,
 };
 
 }  // namespace server
@@ -968,5 +965,4 @@ struct SharedMemoryHolder {
 };
 
 }  // namespace detail
-}  // namespace hid
-}  // namespace nn
+}  // namespace nn::hid

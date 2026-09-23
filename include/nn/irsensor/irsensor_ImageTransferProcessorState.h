@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nn/types.h>
+#include <cstdint>
 
 namespace nn::irsensor {
 struct ImageTransferProcessorState {

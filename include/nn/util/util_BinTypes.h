@@ -2,7 +2,6 @@
 
 #include <nn/util/util_BytePtr.h>
 #include <nn/util/util_StringView.h>
-#include "nn/types.h"
 
 namespace nn::util {
 

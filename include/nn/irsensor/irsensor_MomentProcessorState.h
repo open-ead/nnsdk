@@ -1,7 +1,8 @@
 #pragma once
 
-#include <nn/irs/MomentStatistic.h>
-#include <nn/types.h>
+#include <cstdint>
+
+#include <nn/irsensor/irsensor_MomentStatistic.h>
 
 namespace nn::irsensor {
 struct MomentProcessorState {

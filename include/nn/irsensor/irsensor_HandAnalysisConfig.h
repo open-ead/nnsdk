@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nn/irs/HandAnalysisMode.h>
+#include <nn/irsensor/irsensor_HandAnalysisMode.h>
 
 namespace nn::irsensor {
 struct HandAnalysisConfig {

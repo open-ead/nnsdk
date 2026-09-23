@@ -1,14 +1,12 @@
 /**
- * @file image.h
  * @brief JPEG decoding library.
  */
 
 #pragma once
 
-#include <nn/types.h>
+#include <cstdint>
 
-namespace nn {
-namespace image {
+namespace nn::image {
 // there's probably more
 enum JpegStatus {
     OK = 0,
@@ -39,12 +37,11 @@ public:
 
     nn::image::ProcessStage mProcessStage;  // _8
     void* mData;                            // _C
-    int64_t mSize;                              // _14
+    int64_t mSize;                          // _14
     int32_t _18;
     nn::image::PixelFormat mFormat;  // _1C
     Dimension mImgDimensions;        // _20
     int64_t _28;
     // rest is related to EXIF processing
 };
-}  // namespace image
-}  // namespace nn
+}  // namespace nn::image

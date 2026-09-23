@@ -1,9 +1,9 @@
 #pragma once
 
-#include <nn/fs/fs_bcat.h>
-#include <nn/fs/fs_directories.h>
-#include <nn/fs/fs_files.h>
-#include <nn/fs/fs_mount.h>
-#include <nn/fs/fs_rom.h>
-#include <nn/fs/fs_save.h>
-#include <nn/fs/fs_types.h>
+#include <nn/fs/fs_Bcat.h>
+#include <nn/fs/fs_Directories.h>
+#include <nn/fs/fs_Files.h>
+#include <nn/fs/fs_Mount.h>
+#include <nn/fs/fs_Rom.h>
+#include <nn/fs/fs_Save.h>
+#include <nn/fs/fs_Types.h>

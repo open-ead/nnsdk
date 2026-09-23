@@ -1,7 +1,6 @@
 #pragma once
 
-#include <nn/types.h>
-#include <type_traits>
+#include <cstddef>
 
 namespace nn::util {
 

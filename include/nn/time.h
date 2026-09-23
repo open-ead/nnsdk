@@ -1,11 +1,7 @@
-/**
- * @file time.h
- * @brief Time implementation.
- */
-
 #pragma once
 
-#include <nn/types.h>
+#include <cstdint>
+#include <nn/nn_Result.h>
 
 namespace nn {
 class TimeSpan {
@@ -52,7 +48,7 @@ enum DayOfTheWeek { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturd
 
 struct TimeZone {
     char standardTimeName[0x8];
-    bool _9;        // daylight savings or something?
+    bool _9;            // daylight savings or something?
     int32_t utcOffset;  // in seconds
 };
 

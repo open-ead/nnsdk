@@ -1,10 +1,11 @@
 #pragma once
 
+#include <cstddef>
+
 #include <nn/sf/hipc.h>
 #include <nn/svc.h>
 
-namespace nn {
-namespace sf {
+namespace nn::sf {
 namespace detail {
 class PointerAndSize {
 public:
@@ -27,7 +28,7 @@ public:
 
 class OutBuffer {
 public:
-    constexpr OutBuffer() : buffer() {}
+    constexpr OutBuffer() {}
     constexpr OutBuffer(const detail::PointerAndSize& buf) : buffer(buf) {}
     constexpr OutBuffer(void* ptr, size_t sz) : buffer(ptr, sz) {}
 
@@ -36,11 +37,10 @@ public:
 
 class InBuffer {
 public:
-    constexpr InBuffer() : buffer() {}
+    constexpr InBuffer() {}
     constexpr InBuffer(const detail::PointerAndSize& buf) : buffer(buf) {}
     constexpr InBuffer(void* ptr, size_t sz) : buffer(ptr, sz) {}
 
     detail::PointerAndSize buffer;
 };
-}  // namespace sf
-}  // namespace nn
+}  // namespace nn::sf

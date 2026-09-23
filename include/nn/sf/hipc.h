@@ -1,5 +1,6 @@
 #pragma once
 
+#include <nn/nn_Result.h>
 #include <nn/svc.h>
 
 namespace nn::sf::hipc {

@@ -18,7 +18,6 @@ target_sources(nnSdk PUBLIC
     include/nn/am.h
     include/nn/aoc.h
     include/nn/applet.h
-    include/nn/atk.h
     include/nn/audio.h
     include/nn/bcat.h
     include/nn/bcat/bcat_DeliveryCache.h
@@ -71,14 +70,15 @@ target_sources(nnSdk PUBLIC
     include/nn/nfp/nfp.h
     include/nn/nfp/nfp_Types.h
     include/nn/nifm.h
-    include/nn/nlibsdk/heap/nlibsdk_CentralHeap.h
-    include/nn/nlibsdk/heap/nlibsdk_HeapError.h
+    include/nn/nlibsdk.h
+    include/nn/nlibsdk/nlibsdk_CentralHeap.h
+    include/nn/nlibsdk/nlibsdk_HeapError.h
     include/nn/nlibsdk/nlibsdk_LockFreePlaceHolderPool.h
     include/nn/nn.h
     include/nn/nn_ApplicationId.h
     include/nn/nn_BitTypes.h
     include/nn/nn_Result.h
-    include/nn/nnmusl.hpp
+    include/nn/nnmusl.h
     include/nn/oe.h
     include/nn/os.h
     include/nn/os/detail/os_InternalConditionVariable-os.horizon.h
@@ -110,10 +110,9 @@ target_sources(nnSdk PUBLIC
     include/nn/swkbd.h
     include/nn/time.h
     include/nn/util.h
-    include/nn/util/AccessorBase.h
-    include/nn/util/MathTypes.h
     include/nn/util/detail/util_ArithmeticImpl.h
     include/nn/util/detail/util_TypeTraits.h
+    include/nn/util/util_AccessorBase.h
     include/nn/util/util_Arithmetic.h
     include/nn/util/util_BinTypes.h
     include/nn/util/util_BinaryFormat.h
@@ -123,6 +122,7 @@ target_sources(nnSdk PUBLIC
     include/nn/util/util_BitUtil.h
     include/nn/util/util_BytePtr.h
     include/nn/util/util_IntrusiveList.h
+    include/nn/util/util_MathTypes.h
     include/nn/util/util_ResDic.h
     include/nn/util/util_StringUtil.h
     include/nn/util/util_StringView.h

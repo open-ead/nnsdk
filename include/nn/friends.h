@@ -1,5 +1,4 @@
 /**
- * @file friends.h
  * @brief Friend implementation.
  */
 
@@ -8,8 +7,7 @@
 #include <nn/account.h>
 #include <nn/os.h>
 
-namespace nn {
-namespace friends {
+namespace nn::friends {
 struct Url {
     char m_Buffer[0xA0];
 };
@@ -43,5 +41,4 @@ public:
     Result GetSystemEvent(nn::os::SystemEvent*);
     Result GetResult() const;
 };
-}  // namespace friends
-}  // namespace nn
+}  // namespace nn::friends

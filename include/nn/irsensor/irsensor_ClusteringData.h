@@ -1,7 +1,9 @@
 #pragma once
 
-#include <nn/irs/MomentStatistic.h>
-#include <nn/irs/Rect.h>
+#include <cstdint>
+
+#include <nn/irsensor/irsensor_MomentStatistic.h>
+#include <nn/irsensor/irsensor_Rect.h>
 
 namespace nn::irsensor {
 struct ClusteringData {

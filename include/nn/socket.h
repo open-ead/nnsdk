@@ -1,7 +1,7 @@
 #pragma once
 
 #include <netdb.h>
-#include <nn/types.h>
+#include <nn/nn_Result.h>
 #include <nn/util.h>
 #include <poll.h>
 #include <sys/select.h>
@@ -20,13 +20,15 @@ struct InAddr {
 
 // taken from https://switchbrew.org/wiki/Sockets_services#BsdBufferConfig
 struct BsdBufferConfig {
-    size_t tcp_tx_buf_size = 0x8000;  ///< Size of the TCP transfer (send) buffer (initial or fixed).
+    size_t tcp_tx_buf_size =
+        0x8000;  ///< Size of the TCP transfer (send) buffer (initial or fixed).
     size_t tcp_rx_buf_size = 0x10000;  ///< Size of the TCP recieve buffer (initial or fixed).
     size_t tcp_tx_buf_max_size =
         0x30000;  ///< Maximum size of the TCP transfer (send) buffer. If it is 0, the size of the
                   ///< buffer is fixed to its initial value.
-    size_t tcp_rx_buf_max_size = 0x30000;  ///< Maximum size of the TCP receive buffer. If it is 0,
-                                          ///< the size of the buffer is fixed to its initial value.
+    size_t tcp_rx_buf_max_size =
+        0x30000;  ///< Maximum size of the TCP receive buffer. If it is 0,
+                  ///< the size of the buffer is fixed to its initial value.
     size_t udp_tx_buf_size =
         0x2400;  ///< Size of the UDP transfer (send) buffer (typically 0x2400 bytes).
     size_t udp_rx_buf_size = 0xA500;  ///< Size of the UDP receive buffer (typically 0xA500 bytes).
@@ -39,8 +41,8 @@ struct Config {
     bool unkBool1 = false;         // 0x4
     bool isUseBsdS = false;        // 0x5
     void* pool;                    // 0x8
-    size_t poolSize;                // 0x10
-    size_t allocPoolSize;           // 0x18
+    size_t poolSize;               // 0x10
+    size_t allocPoolSize;          // 0x18
     BsdBufferConfig bufferConfig;  // 0x20-0x50
     int concurLimit;               // 0x54
     int padding;
@@ -165,10 +167,11 @@ int32_t nnsocketGetAddrInfo(const char*, const char*, const addrinfo*, addrinfo*
 int32_t nnsocketGetAddrInfoCancel(const char*, const char*, const addrinfo*, addrinfo**, int);
 int32_t nnsocketGetAddrInfoWithoutNsdResolve(const char*, const char*, const addrinfo*, addrinfo**);
 int32_t nnsocketGetAddrInfoWithoutNsdResolveCancel(const char*, const char*, const addrinfo*,
-                                               addrinfo**, int);
+                                                   addrinfo**, int);
 int32_t nnsocketFreeAddrInfo(addrinfo*);
 int32_t nnsocketGetNameInfo(const sockaddr*, uint32_t, char*, uint32_t, char*, uint32_t, int);
-int32_t nnsocketGetNameInfoCancel(const sockaddr*, uint32_t, char*, uint32_t, char*, uint32_t, int, int);
+int32_t nnsocketGetNameInfoCancel(const sockaddr*, uint32_t, char*, uint32_t, char*, uint32_t, int,
+                                  int);
 hostent* nnsocketGetHostByName(const char* name);
 hostent* nnsocketGetHostByNameCancel(const char*, int);
 hostent* nnsocketGetHostByNameWithoutNsdResolve(const char*);

@@ -1,9 +1,10 @@
 #pragma once
 
-#include "types.h"
+#include <cstdint>
 
-namespace nn {
-namespace settings {
+#include <nn/nn_Result.h>
+
+namespace nn::settings {
 enum Language {
     Language_Japanese,
     Language_English,
@@ -19,7 +20,7 @@ enum Language {
     Language_Taiwanese,
     Language_BritishEnglish,
     Language_CanadianFrench,
-    Language_LatinAmericanSpanish
+    Language_LatinAmericanSpanish,
 };
 
 struct LanguageCode {
@@ -46,7 +47,7 @@ struct FirmwareVersion {
     char display_version[0x18];
     char display_title[0x80];
 
-    constexpr inline uint32_t getVersion() const {
+    constexpr uint32_t getVersion() const {
         return (static_cast<uint32_t>(major) << 16) | (static_cast<uint32_t>(minor) << 8) |
                (static_cast<uint32_t>(micro) << 0);
     }
@@ -55,5 +56,4 @@ struct FirmwareVersion {
 Result GetFirmwareVersion(FirmwareVersion*);
 }  // namespace system
 
-}  // namespace settings
-}  // namespace nn
+}  // namespace nn::settings

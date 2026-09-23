@@ -1,9 +1,9 @@
 #pragma once
 
-#include <nn/types.h>
+#include <cstdint>
 
 namespace nn::os::detail {
 
-typedef uint32_t InternalThreadHandle;
+using InternalThreadHandle = uint32_t;
 
 }  // namespace nn::os::detail

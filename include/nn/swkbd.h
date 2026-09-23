@@ -1,8 +1,7 @@
 #pragma once
 
+#include <cstdint>
 #include <cstdlib>
-#include <nn/applet.h>
-#include <nn/types.h>
 
 namespace nn::swkbd {
 
@@ -161,7 +160,6 @@ struct UserWord;  // TODO contents missing
 
 size_t GetRequiredWorkBufferSize(bool);
 size_t GetRequiredStringBufferSize();
-nn::applet::ExitReason GetExitReason();
 void MakePreset(KeyboardConfig*, Preset);
 void SetHeaderText(KeyboardConfig*, const char16_t*);
 void SetSubText(KeyboardConfig*, const char16_t*);
@@ -171,9 +169,7 @@ void SetLeftOptionalSymbolKey(KeyboardConfig*, char16_t);
 void SetLeftOptionalSymbolKeyUtf8(KeyboardConfig*, const char*);
 void SetRightOptionalSymbolKey(KeyboardConfig*, char16_t);
 void SetRightOptionalSymbolKeyUtf8(KeyboardConfig*, const char*);
-void SetHeaderText(KeyboardConfig*, const char16_t*);
 void SetHeaderTextUtf8(KeyboardConfig*, const char*);
-void SetSubText(KeyboardConfig*, const char16_t*);
 void SetSubTextUtf8(KeyboardConfig*, const char*);
 void SetGuideText(KeyboardConfig*, const char16_t*);
 void SetGuideTextUtf8(KeyboardConfig*, const char*);
@@ -182,5 +178,4 @@ void SetInitialTextUtf8(ShowKeyboardArg*, const char*);
 void SetUserWordList(ShowKeyboardArg*, const UserWord*, int);
 int ShowKeyboard(String*, const ShowKeyboardArg&);
 
-extern nn::applet::ExitReason g_ExitReason;
 }  // namespace nn::swkbd

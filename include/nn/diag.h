@@ -1,14 +1,15 @@
 /**
- * @file diag.h
  * @brief Module, logging, and symbol operations.
  */
 
 #pragma once
 
-#include <nn/types.h>
+#include <cstddef>
+#include <cstdint>
 
-namespace nn {
-namespace diag {
+#include <nn/nn_Result.h>
+
+namespace nn::diag {
 struct LogMetaData;
 
 struct ModuleInfo {
@@ -33,5 +34,4 @@ size_t GetSymbolName(char* name, size_t nameSize, uintptr_t addr);
 uint64_t GetRequiredBufferSizeForGetAllModuleInfo();
 int32_t GetAllModuleInfo(nn::diag::ModuleInfo** out, void* buffer, uint64_t bufferSize);
 uint64_t GetSymbolSize(uint64_t addr);
-}  // namespace diag
-}  // namespace nn
+}  // namespace nn::diag

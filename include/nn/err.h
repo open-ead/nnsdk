@@ -2,8 +2,7 @@
 
 #include <nn/settings.h>
 
-namespace nn {
-namespace err {
+namespace nn::err {
 enum ErrorCodeCategoryType : uint32_t {
     unk1,
     unk2,
@@ -12,7 +11,8 @@ enum ErrorCodeCategoryType : uint32_t {
 class ApplicationErrorArg {
 public:
     ApplicationErrorArg();
-    ApplicationErrorArg(uint32_t error_code, const char* dialog_message, const char* fullscreen_message,
+    ApplicationErrorArg(uint32_t error_code, const char* dialog_message,
+                        const char* fullscreen_message,
                         const nn::settings::LanguageCode& languageCode);
     void SetApplicationErrorCodeNumber(uint32_t error_code);
     void SetDialogMessage(const char* message);
@@ -27,5 +27,4 @@ public:
 
 uint32_t MakeErrorCode(ErrorCodeCategoryType err_category_type, uint32_t errorCodeNumber);
 void ShowApplicationError(const ApplicationErrorArg& arg);
-}  // namespace err
-}  // namespace nn
+}  // namespace nn::err

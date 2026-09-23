@@ -1,15 +1,12 @@
 /**
- * @file account.h
  * @brief Account service implementation.
  */
 
 #pragma once
 
 #include <nn/os.h>
-#include <nn/types.h>
 
-namespace nn {
-namespace account {
+namespace nn::account {
 struct Nickname {
     char m_Buffer[0x21];
 };
@@ -59,5 +56,4 @@ public:
     Result Cancel();
     Result GetSystemEvent(nn::os::SystemEvent*);
 };
-}  // namespace account
-}  // namespace nn
+}  // namespace nn::account

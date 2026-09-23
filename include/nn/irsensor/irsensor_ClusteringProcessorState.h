@@ -1,7 +1,6 @@
 #pragma once
 
-#include <nn/irs/ClusteringData.h>
-#include <nn/types.h>
+#include <nn/irsensor/irsensor_ClusteringData.h>
 
 namespace nn::irsensor {
 struct ClusteringProcessorState {

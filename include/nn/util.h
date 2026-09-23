@@ -6,10 +6,10 @@
 #pragma once
 
 #include <cstdarg>
-#include <nn/types.h>
+#include <cstddef>
+#include <cstdint>
 
-namespace nn {
-namespace util {
+namespace nn::util {
 
 enum CharacterEncodingResult { Success, BadLength, InvalidFormat };
 
@@ -22,8 +22,7 @@ int32_t SNPrintf(char* s, size_t n, const char* format, ...);
 int32_t VSNPrintf(char* s, size_t n, const char* format, va_list arg);
 
 void ReferSymbol(const void*);
-}  // namespace util
-}  // namespace nn
+}  // namespace nn::util
 
 #define NN_MAKE_VER(major, minor, patch) (((major) << 16) | ((minor) << 8) | (patch))
 

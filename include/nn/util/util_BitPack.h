@@ -1,7 +1,6 @@
 #pragma once
 
-#include <nn/types.h>
-
+#include <cstdint>
 namespace nn::util {
 
 template <class StorageT, class Tag = void>

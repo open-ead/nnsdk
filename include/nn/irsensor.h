@@ -1,25 +1,24 @@
 #pragma once
 
-#include <nn/irs/MomentStatistic.h>
-#include <nn/irs/Rect.h>
-#include <nn/types.h>
+#include <nn/irsensor/irsensor_ClusteringData.h>
+#include <nn/irsensor/irsensor_ClusteringProcessorConfig.h>
+#include <nn/irsensor/irsensor_ClusteringProcessorState.h>
+#include <nn/irsensor/irsensor_DpdProcessorConfig.h>
+#include <nn/irsensor/irsensor_DpdProcessorPointingState.h>
+#include <nn/irsensor/irsensor_DpdProcessorState.h>
+#include <nn/irsensor/irsensor_HandAnalysisConfig.h>
+#include <nn/irsensor/irsensor_ImageTransferProcessorConfig.h>
+#include <nn/irsensor/irsensor_ImageTransferProcessorFormat.h>
+#include <nn/irsensor/irsensor_ImageTransferProcessorState.h>
+#include <nn/irsensor/irsensor_MomentProcessorConfig.h>
+#include <nn/irsensor/irsensor_MomentProcessorState.h>
+#include <nn/irsensor/irsensor_MomentStatistic.h>
+#include <nn/irsensor/irsensor_Rect.h>
+#include <nn/nn_Result.h>
 #include <nn/util.h>
 
 namespace nn::irsensor {
-struct ClusteringProcessorConfig;
-struct ClusteringProcessorState;
 
-#if NN_SDK_VER <= NN_MAKE_VER(4, 0, 0)
-struct DpdProcessorConfig;
-struct DpdProcessorPointingState;
-struct DpdProcessorState;
-#endif
-
-struct HandAnalysisConfig;
-struct ImageTransferProcessorConfig;
-struct ImageTransferProcessorState;
-struct MomentProcessorConfig;
-struct MomentProcessorState;
 struct TeraPluginProcessorConfig;
 struct TeraPluginProcessorState;
 
@@ -46,8 +45,8 @@ void RunMomentProcessor(const IrCameraHandle& handle, const MomentProcessorConfi
 Result GetMomentProcessorState(MomentProcessorState* outState, const IrCameraHandle& handle);
 Result GetMomentProcessorStates(MomentProcessorState* outStates, int32_t* outCount, int32_t,
                                 const IrCameraHandle& handle);
-MomentStatistic CalculateMomentRegionStatistic(const MomentProcessorState* state, const Rect&, int32_t,
-                                               int32_t, int32_t, int32_t);
+MomentStatistic CalculateMomentRegionStatistic(const MomentProcessorState* state, const Rect&,
+                                               int32_t, int32_t, int32_t, int32_t);
 
 void GetClusteringProcessorDefaultConfig(ClusteringProcessorConfig* outConfig);
 void RunClusteringProcessor(const IrCameraHandle& handle, const ClusteringProcessorConfig& config);
@@ -77,8 +76,7 @@ Result GetDpdProcessorStates(DpdProcessorState* outStates, int32_t* outCount, in
                              const IrCameraHandle& handle);
 #endif
 
-Result GetTeraPluginProcessorStates(TeraPluginProcessorState* outStates, int32_t* outCount, int32_t, long,
-                                    uint32_t, int32_t, const IrCameraHandle& handle);
+Result GetTeraPluginProcessorStates(TeraPluginProcessorState* outStates, int32_t* outCount, int32_t,
+                                    long, uint32_t, int32_t, const IrCameraHandle& handle);
 
-Rect MakeRect(int32_t x, int32_t y, int32_t width, int32_t height);
 }  // namespace nn::irsensor

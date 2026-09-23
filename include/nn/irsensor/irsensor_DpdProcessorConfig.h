@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nn/irs/Rect.h>
+#include <nn/irsensor/irsensor_Rect.h>
 
 namespace nn::irsensor {
 struct DpdProcessorConfig {

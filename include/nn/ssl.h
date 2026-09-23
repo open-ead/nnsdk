@@ -1,14 +1,13 @@
 /**
- * @file ssl.h
  * @brief SSL implementation.
  */
 
 #pragma once
 
-#include <nn/types.h>
+#include <nn/nn_Result.h>
 
-namespace nn {
-namespace ssl {
+namespace nn::ssl {
+
 enum CertificateFormat { PEM = 0x01, DER = 0x02 };
 
 class Context {
@@ -22,5 +21,5 @@ public:
 
 Result Initialize();
 Result Finalize();
-}  // namespace ssl
-}  // namespace nn
+
+}  // namespace nn::ssl

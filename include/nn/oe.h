@@ -1,13 +1,13 @@
 /**
- * @file oe.h
  * @brief Extenstions to OS functions.
  */
 
 #pragma once
 
-#include <nn/album/album_types.h>
+#include <cstddef>
+
+#include <nn/album/album_Types.h>
 #include <nn/settings.h>
-#include <nn/types.h>
 
 namespace nn::oe {
 
@@ -26,7 +26,7 @@ enum FocusHandlingMode {
     FocusHandlingMode_SuspendHomeSleep,
     FocusHandlingMode_NoSuspend,
     FocusHandlingMode_SuspendHomeSleepNotify,
-    FocusHandlingMode_AlwaysSuspend
+    FocusHandlingMode_AlwaysSuspend,
 };
 
 enum FocusState {

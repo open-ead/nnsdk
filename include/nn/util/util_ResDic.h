@@ -1,7 +1,7 @@
 #pragma once
 
 #include <nn/util.h>
-#include <nn/util/AccessorBase.h>
+#include <nn/util/util_AccessorBase.h>
 #include <nn/util/util_BinTypes.h>
 
 namespace nn::util {

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <nn/util/detail/util_TypeTraits.h>
 
 namespace nn::util {

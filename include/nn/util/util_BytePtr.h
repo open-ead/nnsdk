@@ -1,7 +1,7 @@
 #pragma once
 
+#include <cstddef>
 #include <nn/util/util_BitUtil.h>
-#include "nn/types.h"
 
 namespace nn::util {
 

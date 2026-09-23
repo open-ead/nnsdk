@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 #include <nn/os/detail/os_InternalConditionVariable.h>
 #include <nn/os/detail/os_InternalCriticalSection.h>
 #include <nn/util/util_TypedStorage.h>

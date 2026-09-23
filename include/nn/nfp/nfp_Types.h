@@ -1,7 +1,6 @@
 #pragma once
 
-#include <nn/types.h>
-
+#include <cstdint>
 namespace nn::nfp {
 
 struct DeviceHandle {
@@ -96,7 +95,7 @@ struct ModelInfo {
 struct RegisterInfo {
     char miiStoreData[0x44];  // nn::mii::StoreData
     AmiiboDate registerDate;
-    char nickname[AmiiboNameLength * 4 + 1];  // utf-8, null-terminated
+    char nickname[(AmiiboNameLength * 4) + 1];  // utf-8, null-terminated
     uint8_t fontRegion;
     char reserved[0x7a];
 };

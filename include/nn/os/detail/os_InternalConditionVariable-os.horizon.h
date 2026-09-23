@@ -2,7 +2,6 @@
 
 #include <nn/os/detail/os_InternalCriticalSection.h>
 #include <nn/os/os_ConditionVariableCommon.h>
-#include <nn/types.h>
 
 namespace nn::os::detail {
 

@@ -1,9 +1,10 @@
 #pragma once
 
-#include <nn/nn.h>
-#include <nn/types.h>
+#include <cstdint>
+#include <vapours/results/fs_results.hpp>
 
 namespace nn::fs {
+
 using namespace ams::fs;  // for errors
 
 typedef uint64_t UserId;
@@ -51,14 +52,14 @@ enum OpenMode {
     OpenMode_Write = 1 << 1,
     OpenMode_Append = 1 << 2,
 
-    OpenMode_ReadWrite = OpenMode_Read | OpenMode_Write
+    OpenMode_ReadWrite = OpenMode_Read | OpenMode_Write,
 };
 
 /* Options for reading. */
 struct ReadOption {
     uint32_t value;
 
-    static inline ReadOption MakeOption(uint32_t value) { return {value}; }
+    static ReadOption MakeOption(uint32_t value) { return {value}; }
     static const ReadOption None;
 };
 inline constexpr const ReadOption ReadOption::None = {0};

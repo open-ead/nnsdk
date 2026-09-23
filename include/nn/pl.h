@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nn/types.h>
+#include <cstdint>
 
 namespace nn::pl {
 
@@ -10,7 +10,7 @@ enum SharedFontType {
     EXT_CHINESE_SIMPLIFIED = 0x02,  //	Extended Chinese Simplified
     CHINESE_TRAD = 0x03,            //	Chinese Traditional
     KOREAN = 0x04,                  //	Korean (Hangul)
-    NN_EXT = 0x05                   //	Nintendo Extended
+    NN_EXT = 0x05,                  //	Nintendo Extended
 };
 
 enum LoadState { LOADING, LOADED };

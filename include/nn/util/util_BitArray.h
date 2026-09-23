@@ -4,6 +4,15 @@
 
 #include <iterator>
 
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wignored-qualifiers"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wignored-qualifiers"
+#pragma GCC diagnostic ignored "-Wchanges-meaning"
+#endif
+
 namespace nn::util {
 class BitArray {
     NN_NO_COPY(BitArray);
@@ -189,3 +198,9 @@ private:
     size_type m_Len;
 };
 }  // namespace nn::util
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif

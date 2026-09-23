@@ -1,15 +1,12 @@
 /**
- * @file vi.h
  * @brief Visual interface implementation.
  */
 
 #pragma once
 
 #include <nn/os.h>
-#include <nn/types.h>
 
-namespace nn {
-namespace vi {
+namespace nn::vi {
 
 enum LayerStack {
     Default = 0,
@@ -49,16 +46,16 @@ class Layer;
 class NativeWindow;
 
 struct LayerCreationSettings {
-    LayerCreationSettings(void);
+    LayerCreationSettings();
     LayerCreationSettings(int32_t width, int32_t height);
-    int32_t GetWidth(void) const;
+    int32_t GetWidth() const;
     void SetWidth(int32_t width);
-    int32_t GetHeight(void) const;
+    int32_t GetHeight() const;
     void SetHeight(int32_t height);
     void SetFullscreen(bool isFullscreen);
-    bool IsFullscreen(void) const;
+    bool IsFullscreen() const;
     void SetVisibility(bool isVisible);
-    bool IsVisible(void) const;
+    bool IsVisible() const;
 
 private:
     int32_t width;
@@ -92,7 +89,8 @@ Result CloseDisplay(nn::vi::Display* inDisplay);
 Result GetDisplayVsyncEvent(nn::os::SystemEventType* outEvent, nn::vi::Display* inDisplay);
 int32_t GetZOrderCountMin(const nn::vi::Display* inDisplay);
 int32_t GetZOrderCountMax(const nn::vi::Display* inDisplay);
-Result GetDisplayLogicalResolution(int32_t* width, int32_t* height, const nn::vi::Display* inDisplay);
+Result GetDisplayLogicalResolution(int32_t* width, int32_t* height,
+                                   const nn::vi::Display* inDisplay);
 Result GetDisplayResolution(int32_t* width, int32_t* height, const nn::vi::Display* inDisplay);
 uint64_t GetDisplayIdWithValidation(const nn::vi::Display* inDisplay);
 Result GetLatestFrameNumber(uint64_t* pOutFrameNumber, const Layer* pLayer);
@@ -100,7 +98,8 @@ Result GetLatestFrameNumber(uint64_t* pOutFrameNumber, const Layer* pLayer);
 Result CreateLayer(nn::vi::Layer** outLayer, nn::vi::Display* inDisplay);
 Result CreateLayer(nn::vi::Layer** outLayer, nn::vi::Display* inDisplay,
                    const nn::vi::LayerCreationSettings* inSettings);
-Result CreateLayer(nn::vi::Layer** outLayer, nn::vi::Display* inDisplay, int32_t width, int32_t height);
+Result CreateLayer(nn::vi::Layer** outLayer, nn::vi::Display* inDisplay, int32_t width,
+                   int32_t height);
 void DestroyLayer(nn::vi::Layer* inLayer);
 Result GetNativeWindow(void** outWindow, nn::vi::Layer* inLayer);
 
@@ -115,5 +114,4 @@ Result SetLayerAlpha(nn::vi::Layer* inLayer, float alpha);
 Result AddToLayerStack(nn::vi::Layer* inLayer, nn::vi::LayerStack layerStackType);
 Result RemoveFromLayerStack(nn::vi::Layer* inLayer, nn::vi::LayerStack layerStackType);
 uint64_t GetLayerIdWithValidation(const nn::vi::Layer* inLayer);
-}  // namespace vi
-}  // namespace nn
+}  // namespace nn::vi
