@@ -233,6 +233,7 @@ int OnlineCompiledShader::GetInterfaceSlot(ShaderStage stage, ShaderInterfaceTyp
             m_pReflectionHeader->numSsbo, pStringPool, pName, nvnStage);
         break;
 
+    // NOLINTNEXTLINE(bugprone-branch-clone)
     case ShaderInterfaceType_Sampler:
         ret = SearchInterfaceSlot(
             nn::util::ConstBytePtr(pReflectionData, m_pReflectionHeader->uniformOffset)
@@ -399,6 +400,7 @@ ShaderInitializeResult InitializeSourceShader(ShaderImpl<ApiVariationNvn8>* pThi
     }
 
     if (static_cast<OnlineCompiledShader*>(pThis->ToData()->pOnlineCompiledShader)
+            // NOLINTNEXTLINE(readability-simplify-boolean-expr)
             ->SetShader(pThis->ToData()->pNvnProgram) != true) {
         return ShaderInitializeResult_SetupFailed;
     }
@@ -411,7 +413,7 @@ void ReassembleControlSection(void* pDestination,
     struct ReassembleControlSectionInfo {
         int offsetDataOffset;
         int offsetDataSize;
-        nn::util::BinTPtr<const void> NvnDecomposedControlSection::*pSrcData;
+        nn::util::BinTPtr<const void> NvnDecomposedControlSection::* pSrcData;
     };
 
     const ReassembleControlSectionInfo ReassembleControlSectionInfoArray[5] = {
@@ -513,7 +515,7 @@ ShaderImpl<ApiVariationNvn8>::Initialize(DeviceImpl<ApiVariationNvn8>* pDevice,
 
     if (result == ShaderInitializeResult_Success) {
         if (!info.IsSeparationEnabled()) {
-            nvnShaderStageBits = (info.GetShaderCodePtr(ShaderStage_Compute)) ?
+            nvnShaderStageBits = info.GetShaderCodePtr(ShaderStage_Compute) ?
                                      NVN_SHADER_STAGE_COMPUTE_BIT :
                                      NVN_SHADER_STAGE_ALL_GRAPHICS_BITS;
         }
@@ -567,7 +569,7 @@ int ShaderImpl<ApiVariationNvn8>::GetInterfaceSlot(ShaderStage stage,
             &ResShaderReflectionStageData::pImageDic,
         };
 
-    static int32_t const ResShaderReflectionStageData::*s_pOffsets[6] = {
+    static int32_t const ResShaderReflectionStageData::* s_pOffsets[6] = {
         nullptr,
         &ResShaderReflectionStageData::offsetShaderOutput,
         &ResShaderReflectionStageData::offsetSampler,
@@ -582,7 +584,7 @@ int ShaderImpl<ApiVariationNvn8>::GetInterfaceSlot(ShaderStage stage,
             &ResShaderReflectionStageData2::pSeparateSamplerDic,
         };
 
-    static int32_t const ResShaderReflectionStageData2::*s_pOffsets2[2] = {
+    static int32_t const ResShaderReflectionStageData2::* s_pOffsets2[2] = {
         &ResShaderReflectionStageData2::offsetSeparateTexture,
         &ResShaderReflectionStageData2::offsetSeparateSampler,
     };

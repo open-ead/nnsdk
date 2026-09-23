@@ -3,7 +3,6 @@
 #include <nn/gfx/detail/gfx_DataContainer.h>
 #include <nn/gfx/gfx_BufferData-api.nvn.8.h>
 #include <nn/gfx/gfx_Common.h>
-#include <nn/types.h>
 
 namespace nn::gfx {
 

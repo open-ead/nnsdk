@@ -714,7 +714,10 @@ void CommandBufferImpl<ApiVariationNvn8>::ClearColorTarget(
 
     if (pNvnTextureView) {
         int levelCount;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused"
         NVNboolean result;
+#pragma clang diagnostic pop
 
         result = nvnTextureViewGetLevels(pNvnTextureView, &level, &levelCount);
         result = nvnTextureViewGetTarget(pNvnTextureView, &target);
@@ -802,7 +805,7 @@ void CommandBufferImpl<ApiVariationNvn8>::InvalidateMemory(int gpuAccessFlags) {
     int barrier = 0;
 
     barrier |=
-        (gpuAccessFlags & (GpuAccess_IndirectBuffer)) ? NVN_BARRIER_ORDER_INDIRECT_DATA_BIT : 0;
+        (gpuAccessFlags & GpuAccess_IndirectBuffer) ? NVN_BARRIER_ORDER_INDIRECT_DATA_BIT : 0;
 
     barrier |= (gpuAccessFlags & (GpuAccess_Image | GpuAccess_Texture)) ?
                    NVN_BARRIER_INVALIDATE_TEXTURE_BIT :
@@ -813,9 +816,8 @@ void CommandBufferImpl<ApiVariationNvn8>::InvalidateMemory(int gpuAccessFlags) {
                    NVN_BARRIER_INVALIDATE_SHADER_BIT :
                    0;
 
-    barrier |= (gpuAccessFlags & (GpuAccess_Descriptor)) ?
-                   NVN_BARRIER_INVALIDATE_TEXTURE_DESCRIPTOR_BIT :
-                   0;
+    barrier |=
+        (gpuAccessFlags & GpuAccess_Descriptor) ? NVN_BARRIER_INVALIDATE_TEXTURE_DESCRIPTOR_BIT : 0;
 
     if (barrier) {
         nvnCommandBufferBarrier(pNvnCommandBuffer, barrier);
@@ -890,7 +892,7 @@ void CommandBufferImpl<ApiVariationNvn8>::SetTextureStateTransition(
                        0;
     }
 
-    barrier |= (newState & (TextureState_ShaderRead)) ? NVN_BARRIER_INVALIDATE_TEXTURE_BIT : 0;
+    barrier |= (newState & TextureState_ShaderRead) ? NVN_BARRIER_INVALIDATE_TEXTURE_BIT : 0;
 
     nvnCommandBufferBarrier(pNvnCommandBuffer, barrier);
 }

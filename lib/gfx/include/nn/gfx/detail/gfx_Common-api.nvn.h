@@ -1,9 +1,9 @@
 #pragma once
 
-#include <nn/types.h>
+#include <cstdint>
 
 namespace nn::gfx::detail {
 
-typedef uint64_t NvnHandle;
+using NvnHandle = uint64_t;
 
 };

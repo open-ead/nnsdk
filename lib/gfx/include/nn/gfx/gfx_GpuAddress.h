@@ -1,7 +1,9 @@
 #pragma once
 
+#include <cstddef>
+#include <cstdint>
+
 #include <nn/gfx/detail/gfx_DataContainer.h>
-#include <nn/types.h>
 
 namespace nn::gfx {
 struct GpuAddressData {

@@ -13,7 +13,7 @@ namespace detail {
 template <>
 size_t ResShaderProgramImpl::NvnGetRecommendedScrachMemorySize<ApiVariationNvn8>(
     const ResShaderProgram* pThis, DeviceImpl<ApiVariationNvn8>* pDevice) {
-    static detail::Ptr<const void> ShaderInfoData::*s_pStageCodes[] = {
+    static detail::Ptr<const void> ShaderInfoData::* s_pStageCodes[] = {
         &ShaderInfoData::pVertexShaderCode, &ShaderInfoData::pHullShaderCode,
         &ShaderInfoData::pDomainShaderCode, &ShaderInfoData::pGeometryShaderCode,
         &ShaderInfoData::pPixelShaderCode,  &ShaderInfoData::pComputeShaderCode,
@@ -119,7 +119,7 @@ template <>
 size_t NvnGetMaxRecommendedScratchMemorySize<ApiVariationNvn8>(
     TDevice<ApiVariationNvn8>* pDevice, const ResShaderFile* const* ppResShaderFileArray,
     int shaderFileCount) {
-    static detail::Ptr<const void> ShaderInfoData::*s_pStageCodes[] = {
+    static detail::Ptr<const void> ShaderInfoData::* s_pStageCodes[] = {
         &ShaderInfoData::pVertexShaderCode, &ShaderInfoData::pHullShaderCode,
         &ShaderInfoData::pDomainShaderCode, &ShaderInfoData::pGeometryShaderCode,
         &ShaderInfoData::pPixelShaderCode,  &ShaderInfoData::pComputeShaderCode,

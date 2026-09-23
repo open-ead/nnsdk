@@ -4,8 +4,7 @@ version: '3'
 
 vars:
   # Sources to check with clang-format/clang-tidy
-  # SOURCES: lib include/nn
-  SOURCES: include/nn
+  SOURCES: lib include/nn
 
 tasks:
   pr:

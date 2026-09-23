@@ -4,7 +4,7 @@ namespace nn::gfx {
 
 namespace {
 
-static detail::Ptr<const void> ShaderInfoData::*const g_pShaderCodes[] = {
+static detail::Ptr<const void> ShaderInfoData::* const g_pShaderCodes[] = {
     &ShaderInfoData::pVertexShaderCode, &ShaderInfoData::pHullShaderCode,
     &ShaderInfoData::pDomainShaderCode, &ShaderInfoData::pGeometryShaderCode,
     &ShaderInfoData::pPixelShaderCode,  &ShaderInfoData::pComputeShaderCode,

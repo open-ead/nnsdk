@@ -32,7 +32,7 @@ void RasterizerStateImpl<ApiVariationNvn8>::Initialize(
 
     bool polyEnables =
         (nvnDepthBias != 0.0f || nvnDepthBiasClamp != 0.0f || nvnSlopeScaledDepthBias != 0);
-    nvnPolygonStateSetPolygonOffsetEnables(pPolygonState, (polyEnables) ?
+    nvnPolygonStateSetPolygonOffsetEnables(pPolygonState, polyEnables ?
                                                               (NVN_POLYGON_OFFSET_ENABLE_POINT |
                                                                NVN_POLYGON_OFFSET_ENABLE_LINE |
                                                                NVN_POLYGON_OFFSET_ENABLE_FILL) :
@@ -104,7 +104,7 @@ void BlendStateImpl<ApiVariationNvn8>::Initialize(
     targetCount = info.GetBlendTargetCount();
 
     for (int index = 0; index < info.GetBlendTargetCount(); ++index) {
-        int infoIndex = (info.IsIndependentBlendEnabled()) ? index : 0;
+        int infoIndex = info.IsIndependentBlendEnabled() ? index : 0;
 
 #if NN_SDK_VER > NN_MAKE_VER(3, 5, 1)
         nvnColorStateSetBlendEnable(pColorState, index, pBlendInfo[infoIndex].IsBlendEnabled());

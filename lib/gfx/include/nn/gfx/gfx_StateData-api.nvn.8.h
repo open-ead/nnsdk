@@ -13,7 +13,7 @@ struct RasterizerStateImplData<ApiVariationNvn8> {
         Flag_MultisampleEnabled,
         Flag_DepthClipEnabled,
         Flag_RasterEnabled,
-        Flag_ConservativeRasterEnabled
+        Flag_ConservativeRasterEnabled,
     };
 
     enum State { State_NotInitialized, State_Initialized };

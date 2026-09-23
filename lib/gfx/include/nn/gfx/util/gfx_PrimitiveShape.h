@@ -9,7 +9,7 @@ enum PrimitiveShapeFormat {
     PrimitiveShapeFormat_Pos = 0x1,
     PrimitiveShapeFormat_Normal = 0x2,
     PrimitiveShapeFormat_Uv = 0x4,
-    PrimitiveShapeFormat_Default = 0x7
+    PrimitiveShapeFormat_Default = 0x7,
 };
 
 class PrimitiveShape {

@@ -4,7 +4,7 @@
 #include <nn/gfx/gfx_ResTextureData.h>
 #include <nn/gfx/gfx_TextureInfo.h>
 #include <nn/util.h>
-#include <nn/util/AccessorBase.h>
+#include <nn/util/util_AccessorBase.h>
 
 namespace nn::gfx {
 

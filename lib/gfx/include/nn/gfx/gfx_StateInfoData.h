@@ -21,7 +21,7 @@ struct RasterizerStateInfoData {
         Flag_RasterDisable,
         Flag_MultisampleEnable,
         Flag_DepthClipDisable,
-        Flag_ScissorEnable
+        Flag_ScissorEnable,
     };
 
     Bit8 fillMode;
@@ -58,7 +58,7 @@ struct BlendStateInfoData {
         Flag_AlphaToCoverageEnable,
         Flag_DualSourceBlendEnable,
         Flag_IndependentBlendEnable,
-        Flag_LogicOperationEnable
+        Flag_LogicOperationEnable,
     };
 
     uint8_t blendTargetCount;
@@ -84,7 +84,7 @@ struct DepthStencilStateInfoData {
         Flag_DepthTestEnable,
         Flag_DepthWriteEnable,
         Flag_StencilTestEnable,
-        Flag_DepthBoundsTestEnable
+        Flag_DepthBoundsTestEnable,
     };
 
     Bit8 depthComparisonFunction;

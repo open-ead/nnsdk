@@ -3,7 +3,7 @@
 #include <nn/gfx/detail/gfx_DataContainer.h>
 #include <nn/gfx/gfx_Common.h>
 #include <nn/gfx/gfx_ResShaderData.h>
-#include <nn/util/AccessorBase.h>
+#include <nn/util/util_AccessorBase.h>
 #include <nn/util/util_BinaryFormat.h>
 
 namespace nn::gfx {

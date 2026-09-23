@@ -2,7 +2,7 @@
 
 #include <nn/gfx/gfx_Common.h>
 #include <nn/gfx/gfx_ResUserDataData.h>
-#include <nn/util/AccessorBase.h>
+#include <nn/util/util_AccessorBase.h>
 
 namespace nn::gfx {
 

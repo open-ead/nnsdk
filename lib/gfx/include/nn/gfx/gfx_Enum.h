@@ -22,7 +22,7 @@ enum FilterModeBit {
     FilterModeBit_Anisotropic = 0x40,
     FilterModeBit_Comparison = 0x80,
     FilterModeBit_Minimum = 0x100,
-    FilterModeBit_Maximum = 0x200
+    FilterModeBit_Maximum = 0x200,
 };
 
 }  // namespace detail
@@ -44,7 +44,7 @@ enum LogicOperation {
     LogicOperation_OrInverted,
     LogicOperation_Nand,
     LogicOperation_Set,
-    LogicOperation_End
+    LogicOperation_End,
 };
 
 enum BlendFunction {
@@ -53,7 +53,7 @@ enum BlendFunction {
     BlendFunction_ReverseSubtract,
     BlendFunction_Min,
     BlendFunction_Max,
-    BlendFunction_End
+    BlendFunction_End,
 };
 
 enum BlendFactor {
@@ -76,7 +76,7 @@ enum BlendFactor {
     BlendFactor_OneMinusSource1Color,
     BlendFactor_Source1Alpha,
     BlendFactor_OneMinusSource1Alpha,
-    BlendFactor_End
+    BlendFactor_End,
 };
 
 enum StencilOperation {
@@ -88,7 +88,7 @@ enum StencilOperation {
     StencilOperation_Invert,
     StencilOperation_IncrementWrap,
     StencilOperation_DecrementWrap,
-    StencilOperation_End
+    StencilOperation_End,
 };
 
 enum ChannelMask {
@@ -96,7 +96,7 @@ enum ChannelMask {
     ChannelMask_Green = 2,
     ChannelMask_Blue = 4,
     ChannelMask_Alpha = 8,
-    ChannelMask_All = 15
+    ChannelMask_All = 15,
 };
 
 enum PrimitiveTopology {
@@ -110,7 +110,7 @@ enum PrimitiveTopology {
     PrimitiveTopology_TriangleListAdjacency,
     PrimitiveTopology_TriangleStripAdjacency,
     PrimitiveTopology_PatchList,
-    PrimitiveTopology_End
+    PrimitiveTopology_End,
 };
 
 enum PrimitiveTopologyType {
@@ -119,13 +119,13 @@ enum PrimitiveTopologyType {
     PrimitiveTopologyType_Line,
     PrimitiveTopologyType_Triangle,
     PrimitiveTopologyType_Patch,
-    PrimitiveTopologyType_End
+    PrimitiveTopologyType_End,
 };
 
 enum ConservativeRasterizationMode {
     ConservativeRasterizationMode_Disable,
     ConservativeRasterizationMode_Enable,
-    ConservativeRasterizationMode_End
+    ConservativeRasterizationMode_End,
 };
 
 enum IndexFormat { IndexFormat_Uint8, IndexFormat_Uint16, IndexFormat_Uint32, IndexFormat_End };
@@ -142,47 +142,47 @@ enum TextureAddressMode {
     TextureAddressMode_ClampToEdge,
     TextureAddressMode_ClampToBorder,
     TextureAddressMode_MirrorClampToEdge,
-    TextureAddressMode_End
+    TextureAddressMode_End,
 };
 
 // todo: is this using detail::FilterModeBit?
 enum FilterMode {
     FilterMode_MinPoint_MagPoint_MipPoint = 21,
-    FilterMode_MinPoint_MagPoint_MipLinear,
+    FilterMode_MinPoint_MagPoint_MipLinear = 22,
     FilterMode_MinPoint_MagLinear_MipPoint = 25,
-    FilterMode_MinPoint_MagLinear_MipLinear,
+    FilterMode_MinPoint_MagLinear_MipLinear = 26,
     FilterMode_MinLinear_MagPoint_MipPoint = 37,
-    FilterMode_MinLinear_MagPoint_MipLinear,
+    FilterMode_MinLinear_MagPoint_MipLinear = 38,
     FilterMode_MinLinear_MagLinear_MipPoint = 41,
-    FilterMode_MinLinear_MagLinear_MipLinear,
+    FilterMode_MinLinear_MagLinear_MipLinear = 42,
     FilterMode_Anisotropic = 106,
     FilterMode_Comparison_MinPoint_MagPoint_MipPoint = 149,
-    FilterMode_Comparison_MinPoint_MagPoint_MipLinear,
+    FilterMode_Comparison_MinPoint_MagPoint_MipLinear = 150,
     FilterMode_Comparison_MinPoint_MagLinear_MipPoint = 153,
-    FilterMode_Comparison_MinPoint_MagLinear_MipLinear,
+    FilterMode_Comparison_MinPoint_MagLinear_MipLinear = 154,
     FilterMode_Comparison_MinLinear_MagPoint_MipPoint = 165,
-    FilterMode_Comparison_MinLinear_MagPoint_MipLinear,
+    FilterMode_Comparison_MinLinear_MagPoint_MipLinear = 166,
     FilterMode_Comparison_MinLinear_MagLinear_MipPoint = 169,
-    FilterMode_Comparison_MinLinear_MagLinear_MipLinear,
+    FilterMode_Comparison_MinLinear_MagLinear_MipLinear = 170,
     FilterMode_Comparison_Anisotropic = 234,
     FilterMode_Minimum_MinPoint_MagPoint_MipPoint = 277,
-    FilterMode_Minimum_MinPoint_MagPoint_MipLinear,
+    FilterMode_Minimum_MinPoint_MagPoint_MipLinear = 278,
     FilterMode_Minimum_MinPoint_MagLinear_MipPoint = 281,
-    FilterMode_Minimum_MinPoint_MagLinear_MipLinear,
+    FilterMode_Minimum_MinPoint_MagLinear_MipLinear = 282,
     FilterMode_Minimum_MinLinear_MagPoint_MipPoint = 293,
-    FilterMode_Minimum_MinLinear_MagPoint_MipLinear,
+    FilterMode_Minimum_MinLinear_MagPoint_MipLinear = 294,
     FilterMode_Minimum_MinLinear_MagLinear_MipPoint = 297,
-    FilterMode_Minimum_MinLinear_MagLinear_MipLinear,
+    FilterMode_Minimum_MinLinear_MagLinear_MipLinear = 298,
     FilterMode_Minimum_Anisotropic = 362,
     FilterMode_Maximum_MinPoint_MagPoint_MipPoint = 533,
-    FilterMode_Maximum_MinPoint_MagPoint_MipLinear,
+    FilterMode_Maximum_MinPoint_MagPoint_MipLinear = 534,
     FilterMode_Maximum_MinPoint_MagLinear_MipPoint = 537,
-    FilterMode_Maximum_MinPoint_MagLinear_MipLinear,
+    FilterMode_Maximum_MinPoint_MagLinear_MipLinear = 538,
     FilterMode_Maximum_MinLinear_MagPoint_MipPoint = 549,
-    FilterMode_Maximum_MinLinear_MagPoint_MipLinear,
+    FilterMode_Maximum_MinLinear_MagPoint_MipLinear = 550,
     FilterMode_Maximum_MinLinear_MagLinear_MipPoint = 553,
-    FilterMode_Maximum_MinLinear_MagLinear_MipLinear,
-    FilterMode_Maximum_Anisotropic = 618
+    FilterMode_Maximum_MinLinear_MagLinear_MipLinear = 554,
+    FilterMode_Maximum_Anisotropic = 618,
 };
 
 enum ComparisonFunction {
@@ -194,21 +194,21 @@ enum ComparisonFunction {
     ComparisonFunction_NotEqual,
     ComparisonFunction_GreaterEqual,
     ComparisonFunction_Always,
-    ComparisonFunction_End
+    ComparisonFunction_End,
 };
 
 enum TextureBorderColorType {
     TextureBorderColorType_White,
     TextureBorderColorType_TransparentBlack,
     TextureBorderColorType_OpaqueBlack,
-    TextureBorderColorType_End
+    TextureBorderColorType_End,
 };
 
 enum ImageStorageDimension {
     ImageStorageDimension_Undefined,
     ImageStorageDimension_1d,
     ImageStorageDimension_2d,
-    ImageStorageDimension_3d
+    ImageStorageDimension_3d,
 };
 
 enum ImageDimension {
@@ -221,7 +221,7 @@ enum ImageDimension {
     ImageDimension_2dMultisample,
     ImageDimension_2dMultisampleArray,
     ImageDimension_CubeMapArray,
-    ImageDimension_End
+    ImageDimension_End,
 };
 
 enum ChannelFormat {
@@ -285,31 +285,31 @@ enum ChannelFormat {
     ChannelFormat_Astc_12x10,
     ChannelFormat_Astc_12x12,
     ChannelFormat_B5_G5_R5_A1,
-    ChannelFormat_End
+    ChannelFormat_End,
 };
 
 enum TypeFormat {
-    TypeFormat_Undefined,
-    TypeFormat_Unorm,
-    TypeFormat_Snorm,
-    TypeFormat_Uint,
-    TypeFormat_Sint,
-    TypeFormat_Float,
-    TypeFormat_UnormSrgb,
-    TypeFormat_DepthStencil,
-    TypeFormat_UintToFloat,
-    TypeFormat_SintToFloat,
-    TypeFormat_Ufloat,
-    TypeFormat_End,
-    TypeFormat_Bits = 8
+    TypeFormat_Undefined = 0,
+    TypeFormat_Unorm = 1,
+    TypeFormat_Snorm = 2,
+    TypeFormat_Uint = 3,
+    TypeFormat_Sint = 4,
+    TypeFormat_Float = 5,
+    TypeFormat_UnormSrgb = 6,
+    TypeFormat_DepthStencil = 7,
+    TypeFormat_UintToFloat = 8,
+    TypeFormat_SintToFloat = 9,
+    TypeFormat_Ufloat = 10,
+    TypeFormat_End = 11,
+    TypeFormat_Bits = 8,
 };
 
 enum ImageFormat {
-    ImageFormat_Undefined,
+    ImageFormat_Undefined = 0,
     ImageFormat_R8_Unorm = 513,
-    ImageFormat_R8_Snorm,
-    ImageFormat_R8_Uint,
-    ImageFormat_R8_Sint,
+    ImageFormat_R8_Snorm = 514,
+    ImageFormat_R8_Uint = 515,
+    ImageFormat_R8_Sint = 516,
     ImageFormat_R4_G4_B4_A4_Unorm = 769,
     ImageFormat_A4_B4_G4_R4_Unorm = 1025,
     ImageFormat_R5_G5_B5_A1_Unorm = 1281,
@@ -317,24 +317,24 @@ enum ImageFormat {
     ImageFormat_R5_G6_B5_Unorm = 1793,
     ImageFormat_B5_G6_R5_Unorm = 2049,
     ImageFormat_R8_G8_Unorm = 2305,
-    ImageFormat_R8_G8_Snorm,
-    ImageFormat_R8_G8_Uint,
-    ImageFormat_R8_G8_Sint,
+    ImageFormat_R8_G8_Snorm = 2306,
+    ImageFormat_R8_G8_Uint = 2307,
+    ImageFormat_R8_G8_Sint = 2308,
     ImageFormat_R16_Unorm = 2561,
-    ImageFormat_R16_Snorm,
-    ImageFormat_R16_Uint,
-    ImageFormat_R16_Sint,
-    ImageFormat_R16_Float,
+    ImageFormat_R16_Snorm = 2562,
+    ImageFormat_R16_Uint = 2563,
+    ImageFormat_R16_Sint = 2564,
+    ImageFormat_R16_Float = 2565,
     ImageFormat_D16_Unorm = 2567,
     ImageFormat_R8_G8_B8_A8_Unorm = 2817,
-    ImageFormat_R8_G8_B8_A8_Snorm,
-    ImageFormat_R8_G8_B8_A8_Uint,
-    ImageFormat_R8_G8_B8_A8_Sint,
+    ImageFormat_R8_G8_B8_A8_Snorm = 2818,
+    ImageFormat_R8_G8_B8_A8_Uint = 2819,
+    ImageFormat_R8_G8_B8_A8_Sint = 2820,
     ImageFormat_R8_G8_B8_A8_UnormSrgb = 2822,
     ImageFormat_B8_G8_R8_A8_Unorm = 3073,
-    ImageFormat_B8_G8_R8_A8_Snorm,
-    ImageFormat_B8_G8_R8_A8_Uint,
-    ImageFormat_B8_G8_R8_A8_Sint,
+    ImageFormat_B8_G8_R8_A8_Snorm = 3074,
+    ImageFormat_B8_G8_R8_A8_Uint = 3075,
+    ImageFormat_B8_G8_R8_A8_Sint = 3076,
     ImageFormat_B8_G8_R8_A8_UnormSrgb = 3078,
     ImageFormat_R9_G9_B9_E5_SharedExp = 3333,
     ImageFormat_R10_G10_B10_A2_Unorm = 3585,
@@ -342,30 +342,30 @@ enum ImageFormat {
     ImageFormat_R11_G11_B10_Float = 3845,
     ImageFormat_B10_G11_R11_Float = 4101,
     ImageFormat_R16_G16_Unorm = 4609,
-    ImageFormat_R16_G16_Snorm,
-    ImageFormat_R16_G16_Uint,
-    ImageFormat_R16_G16_Sint,
-    ImageFormat_R16_G16_Float,
+    ImageFormat_R16_G16_Snorm = 4610,
+    ImageFormat_R16_G16_Uint = 4611,
+    ImageFormat_R16_G16_Sint = 4612,
+    ImageFormat_R16_G16_Float = 4613,
     ImageFormat_D24_Unorm_S8_Uint = 4871,
     ImageFormat_R32_Uint = 5123,
-    ImageFormat_R32_Sint,
-    ImageFormat_R32_Float,
+    ImageFormat_R32_Sint = 5124,
+    ImageFormat_R32_Float = 5125,
     ImageFormat_D32_Float = 5127,
     ImageFormat_R16_G16_B16_A16_Unorm = 5377,
-    ImageFormat_R16_G16_B16_A16_Snorm,
-    ImageFormat_R16_G16_B16_A16_Uint,
-    ImageFormat_R16_G16_B16_A16_Sint,
-    ImageFormat_R16_G16_B16_A16_Float,
+    ImageFormat_R16_G16_B16_A16_Snorm = 5378,
+    ImageFormat_R16_G16_B16_A16_Uint = 5379,
+    ImageFormat_R16_G16_B16_A16_Sint = 5380,
+    ImageFormat_R16_G16_B16_A16_Float = 5381,
     ImageFormat_D32_Float_S8_Uint_X24 = 5639,
     ImageFormat_R32_G32_Uint = 5891,
-    ImageFormat_R32_G32_Sint,
-    ImageFormat_R32_G32_Float,
+    ImageFormat_R32_G32_Sint = 5892,
+    ImageFormat_R32_G32_Float = 5893,
     ImageFormat_R32_G32_B32_Uint = 6147,
-    ImageFormat_R32_G32_B32_Sint,
-    ImageFormat_R32_G32_B32_Float,
+    ImageFormat_R32_G32_B32_Sint = 6148,
+    ImageFormat_R32_G32_B32_Float = 6149,
     ImageFormat_R32_G32_B32_A32_Uint = 6403,
-    ImageFormat_R32_G32_B32_A32_Sint,
-    ImageFormat_R32_G32_B32_A32_Float,
+    ImageFormat_R32_G32_B32_A32_Sint = 6404,
+    ImageFormat_R32_G32_B32_A32_Float = 6405,
     ImageFormat_Bc1_Unorm = 6657,
     ImageFormat_Bc1_UnormSrgb = 6662,
     ImageFormat_Bc2_Unorm = 6913,
@@ -373,17 +373,17 @@ enum ImageFormat {
     ImageFormat_Bc3_Unorm = 7169,
     ImageFormat_Bc3_UnormSrgb = 7174,
     ImageFormat_Bc4_Unorm = 7425,
-    ImageFormat_Bc4_Snorm,
+    ImageFormat_Bc4_Snorm = 7426,
     ImageFormat_Bc5_Unorm = 7681,
-    ImageFormat_Bc5_Snorm,
+    ImageFormat_Bc5_Snorm = 7682,
     ImageFormat_Bc6_Float = 7941,
     ImageFormat_Bc6_Ufloat = 7946,
     ImageFormat_Bc7_Unorm = 8193,
     ImageFormat_Bc7_UnormSrgb = 8198,
     ImageFormat_Eac_R11_Unorm = 8449,
-    ImageFormat_Eac_R11_Snorm,
+    ImageFormat_Eac_R11_Snorm = 8450,
     ImageFormat_Eac_R11_G11_Unorm = 8705,
-    ImageFormat_Eac_R11_G11_Snorm,
+    ImageFormat_Eac_R11_G11_Snorm = 8706,
     ImageFormat_Etc1_Unorm = 8961,
     ImageFormat_Etc2_Unorm = 9217,
     ImageFormat_Etc2_UnormSrgb = 9222,
@@ -431,67 +431,67 @@ enum ImageFormat {
     ImageFormat_Astc_12x10_UnormSrgb = 14598,
     ImageFormat_Astc_12x12_Unorm = 14849,
     ImageFormat_Astc_12x12_UnormSrgb = 14854,
-    ImageFormat_B5_G5_R5_A1_Unorm = 15105
+    ImageFormat_B5_G5_R5_A1_Unorm = 15105,
 };
 
 enum AttributeFormat {
-    AttributeFormat_Undefined,
+    AttributeFormat_Undefined = 0,
     AttributeFormat_4_4_Unorm = 257,
     AttributeFormat_8_Unorm = 513,
-    AttributeFormat_8_Snorm,
-    AttributeFormat_8_Uint,
-    AttributeFormat_8_Sint,
+    AttributeFormat_8_Snorm = 514,
+    AttributeFormat_8_Uint = 515,
+    AttributeFormat_8_Sint = 516,
     AttributeFormat_8_UintToFloat = 520,
-    AttributeFormat_8_SintToFloat,
+    AttributeFormat_8_SintToFloat = 521,
     AttributeFormat_8_8_Unorm = 2305,
-    AttributeFormat_8_8_Snorm,
-    AttributeFormat_8_8_Uint,
-    AttributeFormat_8_8_Sint,
+    AttributeFormat_8_8_Snorm = 2306,
+    AttributeFormat_8_8_Uint = 2307,
+    AttributeFormat_8_8_Sint = 2308,
     AttributeFormat_8_8_UintToFloat = 2312,
-    AttributeFormat_8_8_SintToFloat,
+    AttributeFormat_8_8_SintToFloat = 2313,
     AttributeFormat_16_Unorm = 2561,
-    AttributeFormat_16_Snorm,
-    AttributeFormat_16_Uint,
-    AttributeFormat_16_Sint,
-    AttributeFormat_16_Float,
+    AttributeFormat_16_Snorm = 2562,
+    AttributeFormat_16_Uint = 2563,
+    AttributeFormat_16_Sint = 2564,
+    AttributeFormat_16_Float = 2565,
     AttributeFormat_16_UintToFloat = 2568,
-    AttributeFormat_16_SintToFloat,
+    AttributeFormat_16_SintToFloat = 2569,
     AttributeFormat_8_8_8_8_Unorm = 2817,
-    AttributeFormat_8_8_8_8_Snorm,
-    AttributeFormat_8_8_8_8_Uint,
-    AttributeFormat_8_8_8_8_Sint,
+    AttributeFormat_8_8_8_8_Snorm = 2818,
+    AttributeFormat_8_8_8_8_Uint = 2819,
+    AttributeFormat_8_8_8_8_Sint = 2820,
     AttributeFormat_8_8_8_8_UintToFloat = 2824,
-    AttributeFormat_8_8_8_8_SintToFloat,
+    AttributeFormat_8_8_8_8_SintToFloat = 2825,
     AttributeFormat_10_10_10_2_Unorm = 3585,
-    AttributeFormat_10_10_10_2_Snorm,
-    AttributeFormat_10_10_10_2_Uint,
-    AttributeFormat_10_10_10_2_Sint,
+    AttributeFormat_10_10_10_2_Snorm = 3586,
+    AttributeFormat_10_10_10_2_Uint = 3587,
+    AttributeFormat_10_10_10_2_Sint = 3588,
     AttributeFormat_16_16_Unorm = 4609,
-    AttributeFormat_16_16_Snorm,
-    AttributeFormat_16_16_Uint,
-    AttributeFormat_16_16_Sint,
-    AttributeFormat_16_16_Float,
+    AttributeFormat_16_16_Snorm = 4610,
+    AttributeFormat_16_16_Uint = 4611,
+    AttributeFormat_16_16_Sint = 4612,
+    AttributeFormat_16_16_Float = 4613,
     AttributeFormat_16_16_UintToFloat = 4616,
-    AttributeFormat_16_16_SintToFloat,
+    AttributeFormat_16_16_SintToFloat = 4617,
     AttributeFormat_32_Uint = 5123,
-    AttributeFormat_32_Sint,
-    AttributeFormat_32_Float,
+    AttributeFormat_32_Sint = 5124,
+    AttributeFormat_32_Float = 5125,
     AttributeFormat_16_16_16_16_Unorm = 5377,
-    AttributeFormat_16_16_16_16_Snorm,
-    AttributeFormat_16_16_16_16_Uint,
-    AttributeFormat_16_16_16_16_Sint,
-    AttributeFormat_16_16_16_16_Float,
+    AttributeFormat_16_16_16_16_Snorm = 5378,
+    AttributeFormat_16_16_16_16_Uint = 5379,
+    AttributeFormat_16_16_16_16_Sint = 5380,
+    AttributeFormat_16_16_16_16_Float = 5381,
     AttributeFormat_16_16_16_16_UintToFloat = 5384,
-    AttributeFormat_16_16_16_16_SintToFloat,
+    AttributeFormat_16_16_16_16_SintToFloat = 5385,
     AttributeFormat_32_32_Uint = 5891,
-    AttributeFormat_32_32_Sint,
-    AttributeFormat_32_32_Float,
+    AttributeFormat_32_32_Sint = 5892,
+    AttributeFormat_32_32_Float = 5893,
     AttributeFormat_32_32_32_Uint = 6147,
-    AttributeFormat_32_32_32_Sint,
-    AttributeFormat_32_32_32_Float,
+    AttributeFormat_32_32_32_Sint = 6148,
+    AttributeFormat_32_32_32_Float = 6149,
     AttributeFormat_32_32_32_32_Uint = 6403,
-    AttributeFormat_32_32_32_32_Sint,
-    AttributeFormat_32_32_32_32_Float
+    AttributeFormat_32_32_32_32_Sint = 6404,
+    AttributeFormat_32_32_32_32_Float = 6405,
 };
 
 enum GpuAccess {
@@ -509,7 +509,7 @@ enum GpuAccess {
     GpuAccess_QueryBuffer = 0x800,
     GpuAccess_Descriptor = 0x1000,
     GpuAccess_ShaderCode = 0x2000,
-    GpuAccess_Image = 0x4000
+    GpuAccess_Image = 0x4000,
 };
 
 enum TileMode { TileMode_Optimal, TileMode_Linear, TileMode_End };
@@ -521,7 +521,7 @@ enum ShaderStage {
     ShaderStage_Geometry,
     ShaderStage_Pixel,
     ShaderStage_Compute,
-    ShaderStage_End
+    ShaderStage_End,
 };
 
 enum ShaderCodeType {
@@ -529,13 +529,13 @@ enum ShaderCodeType {
     ShaderCodeType_Ir,
     ShaderCodeType_Source,
     ShaderCodeType_SourceArray,
-    ShaderCodeType_End
+    ShaderCodeType_End,
 };
 
 enum ShaderSourceFormat {
     ShaderSourceFormat_Glsl,
     ShaderSourceFormat_Hlsl,
-    ShaderSourceFormat_End
+    ShaderSourceFormat_End,
 };
 
 enum ChannelMapping {
@@ -545,19 +545,19 @@ enum ChannelMapping {
     ChannelMapping_Green,
     ChannelMapping_Blue,
     ChannelMapping_Alpha,
-    ChannelMapping_End
+    ChannelMapping_End,
 };
 
 enum DepthStencilFetchMode {
     DepthStencilFetchMode_DepthComponent,
     DepthStencilFetchMode_StencilIndex,
-    DepthStencilFetchMode_End
+    DepthStencilFetchMode_End,
 };
 
 enum DepthStencilClearMode {
     DepthStencilClearMode_Depth = 1,
     DepthStencilClearMode_Stencil,
-    DepthStencilClearMode_DepthStencil
+    DepthStencilClearMode_DepthStencil,
 };
 
 enum ShaderInterfaceType {
@@ -569,7 +569,7 @@ enum ShaderInterfaceType {
     ShaderInterfaceType_Image,
     ShaderInterfaceType_SeparateTexture,
     ShaderInterfaceType_SeparateSampler,
-    ShaderInterfaceType_End
+    ShaderInterfaceType_End,
 };
 
 enum ColorChannel {
@@ -577,21 +577,21 @@ enum ColorChannel {
     ColorChannel_Green,
     ColorChannel_Blue,
     ColorChannel_Alpha,
-    ColorChannel_End
+    ColorChannel_End,
 };
 
 enum DescriptorPoolType {
     DescriptorPoolType_BufferView,
     DescriptorPoolType_TextureView,
     DescriptorPoolType_Sampler,
-    DescriptorPoolType_End
+    DescriptorPoolType_End,
 };
 
 enum DescriptorSlotType {
     DescriptorSlotType_ConstantBuffer,
     DescriptorSlotType_UnorderedAccessBuffer,
     DescriptorSlotType_TextureSampler,
-    DescriptorSlotType_End
+    DescriptorSlotType_End,
 };
 
 enum PipelineType { PipelineType_Graphics, PipelineType_Compute, PipelineType_End };
@@ -604,13 +604,13 @@ enum MemoryPoolProperty {
     MemoryPoolProperty_GpuUncached = 0x10,
     MemoryPoolProperty_GpuCached = 0x20,
     MemoryPoolProperty_ShaderCode = 0x40,
-    MemoryPoolProperty_Compressible = 0x80
+    MemoryPoolProperty_Compressible = 0x80,
 };
 
 enum CommandBufferType {
     CommandBufferType_Direct,
     CommandBufferType_Nested,
-    CommandBufferType_End
+    CommandBufferType_End,
 };
 
 enum BufferState {
@@ -623,7 +623,7 @@ enum BufferState {
     BufferState_ConstantBuffer = 0x20,
     BufferState_UnorderedAccessBuffer = 0x40,
     BufferState_IndirectArgument = 0x80,
-    BufferState_QueryBuffer = 0x100
+    BufferState_QueryBuffer = 0x100,
 };
 
 enum TextureState {
@@ -639,7 +639,7 @@ enum TextureState {
     TextureState_Clear = 0x100,
     TextureState_ResolveSource = 0x200,
     TextureState_ResolveDestination = 0x400,
-    TextureState_Present = 0x800
+    TextureState_Present = 0x800,
 };
 
 enum ShaderStageBit {
@@ -650,7 +650,7 @@ enum ShaderStageBit {
     ShaderStageBit_Pixel = 0x10,
     ShaderStageBit_Compute = 0x20,
     ShaderStageBit_All = ShaderStageBit_Vertex | ShaderStageBit_Hull | ShaderStageBit_Domain |
-                         ShaderStageBit_Geometry | ShaderStageBit_Pixel | ShaderStageBit_Compute
+                         ShaderStageBit_Geometry | ShaderStageBit_Pixel | ShaderStageBit_Compute,
 };
 
 enum PipelineStageBit {
@@ -661,7 +661,7 @@ enum PipelineStageBit {
     PipelineStageBit_GeometryShader = 0x10,
     PipelineStageBit_PixelShader = 0x20,
     PipelineStageBit_RenderTarget = 0x40,
-    PipelineStageBit_ComputeShader = 0x80
+    PipelineStageBit_ComputeShader = 0x80,
 };
 
 enum DebugMode { DebugMode_Disable, DebugMode_Enable, DebugMode_Full, DebugMode_End };
@@ -680,14 +680,14 @@ enum QueryTarget {
     QueryTarget_HullShaderInvocations,
     QueryTarget_DomainShaderInvocations,
     QueryTarget_ComputeShaderInvocations,
-    QueryTarget_End
+    QueryTarget_End,
 };
 
 enum ShaderInitializeResult {
     ShaderInitializeResult_Success,
     ShaderInitializeResult_InvalidType,
     ShaderInitializeResult_InvalidFormat,
-    ShaderInitializeResult_SetupFailed
+    ShaderInitializeResult_SetupFailed,
 };
 
 enum SyncResult { SyncResult_Success, SyncResult_TimeoutExpired };

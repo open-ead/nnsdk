@@ -1,7 +1,5 @@
 #pragma once
 
-#include <nn/types.h>
-
 #include <nn/gfx/detail/gfx_Fwd.h>
 #include <nn/gfx/gfx_VariationBase.h>
 #include <nn/util.h>

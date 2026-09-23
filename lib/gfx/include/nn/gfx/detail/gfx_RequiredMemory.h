@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nn/types.h>
+#include <cstddef>
 
 namespace nn::gfx::detail {
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstddef>
+
 #include <nn/gfx/detail/gfx_DataContainer.h>
 #include <nn/gfx/gfx_MemoryPoolInfoData.h>
 
