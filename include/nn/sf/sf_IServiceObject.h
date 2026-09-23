@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nn/sf/ISharedObject.h>
+#include <nn/sf/sf_ISharedObject.h>
 
 namespace nn::sf {
 class IServiceObject : public ISharedObject {

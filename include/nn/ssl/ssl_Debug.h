@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nn/types.h>
+#include <nn/nn_Result.h>
 
 namespace nn::ssl::Debug {
 struct Output;            // TODO
