@@ -5,10 +5,10 @@
 
 namespace nn::irsensor {
 struct MomentProcessorState {
-    s64 samplingNumber;
-    s64 timeStamp;
-    s32 ambientNoiseLevel;
-    u8 reserved[4];
+    int64_t samplingNumber;
+    int64_t timeStamp;
+    int32_t ambientNoiseLevel;
+    uint8_t reserved[4];
     MomentStatistic statistics[48];
 };
 }  // namespace nn::irsensor

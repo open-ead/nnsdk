@@ -30,18 +30,18 @@ struct InterProcessEventType {
     nn::os::detail::InterProcessEventType* _x0;
     nn::os::detail::InterProcessEventType* _x8;
     bool shouldAutoClear;
-    u8 state;
+    uint8_t state;
     bool isReadableHandleManaged;
     bool isWritableHandleManaged;
-    u32 readableHandle;
-    u32 writableHandle;
+    uint32_t readableHandle;
+    uint32_t writableHandle;
 };
 }  // namespace detail
 
 struct Tick {
-    Tick(u64 val) : value(val) {}
+    Tick(uint64_t val) : value(val) {}
 
-    u64 value;
+    uint64_t value;
 };
 
 struct LightEventType {
@@ -65,26 +65,26 @@ struct SystemEventType {
         nn::os::EventType event;
         nn::os::detail::InterProcessEventType interProcessEvent;
     };
-    u8 state;
+    uint8_t state;
 };
 struct SystemEvent {
     SystemEventType m_SystemEventType;
 };
 
 // ARG
-void SetHostArgc(s32);
-s32 GetHostArgc();
+void SetHostArgc(int32_t);
+int32_t GetHostArgc();
 void SetHostArgv(char**);
 char** GetHostArgv();
 
 // MEMORY
 void InitializeVirtualAddressMemory();
-Result AllocateAddressRegion(u64*, u64);
-Result AllocateMemory(u64*, u64);
-Result AllocateMemoryPages(u64, u64);
-void AllocateMemoryBlock(u64*, u64);
-void FreeMemoryBlock(u64, u64);
-void SetMemoryHeapSize(u64);
+Result AllocateAddressRegion(uint64_t*, uint64_t);
+Result AllocateMemory(uint64_t*, uint64_t);
+Result AllocateMemoryPages(uint64_t, uint64_t);
+void AllocateMemoryBlock(uint64_t*, uint64_t);
+void FreeMemoryBlock(uint64_t, uint64_t);
+void SetMemoryHeapSize(uint64_t);
 
 // CONDITION VARIABLE
 void InitializeConditionVariable(ConditionVariableType*);
@@ -93,13 +93,13 @@ void FinalizeConditionVariable(ConditionVariableType*);
 void SignalConditionVariable(ConditionVariableType*);
 void BroadcastConditionVariable(ConditionVariableType*);
 void WaitConditionVariable(ConditionVariableType*);
-u8 TimedWaitConditionVariable(ConditionVariableType*, nn::os::MutexType*, nn::TimeSpan);
+uint8_t TimedWaitConditionVariable(ConditionVariableType*, nn::os::MutexType*, nn::TimeSpan);
 
 // THREAD
-Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack, u64 stackSize,
-                    s32 priority, s32 coreNum);
-Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack, u64 stackSize,
-                    s32 priority);
+Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack, uint64_t stackSize,
+                    int32_t priority, int32_t coreNum);
+Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack, uint64_t stackSize,
+                    int32_t priority);
 void DestroyThread(nn::os::ThreadType*);
 void StartThread(nn::os::ThreadType*);
 void SetThreadName(nn::os::ThreadType*, char const* threadName);
@@ -107,15 +107,15 @@ void SetThreadNamePointer(nn::os::ThreadType*, char const*);
 char* GetThreadNamePointer(nn::os::ThreadType const*);
 nn::os::ThreadType* GetCurrentThread();
 void GetCurrentStackInfo(uintptr_t* stack_addr, size_t* stack_size);
-s32 ChangeThreadPriority(nn::os::ThreadType* thread, s32 priority);
-s32 GetThreadPriority(nn::os::ThreadType const* thread);
-u64 GetThreadId(const nn::os::ThreadType* thread);
+int32_t ChangeThreadPriority(nn::os::ThreadType* thread, int32_t priority);
+int32_t GetThreadPriority(nn::os::ThreadType const* thread);
+uint64_t GetThreadId(const nn::os::ThreadType* thread);
 void YieldThread();
 void SuspendThread(nn::os::ThreadType*);
 void ResumeThread(nn::os::ThreadType*);
 void SleepThread(nn::TimeSpan);
 void WaitThread(nn::os::ThreadType*);
-void SetThreadCoreMask(nn::os::ThreadType*, int, u64 mask);
+void SetThreadCoreMask(nn::os::ThreadType*, int, uint64_t mask);
 
 // LIGHT EVENTS
 void InitializeLightEvent(LightEventType*, bool initiallySignaled, EventClearMode eventClearMode);
@@ -128,7 +128,7 @@ void ClearLightEvent(LightEventType*);
 TimeSpan ConvertToTimeSpan(Tick ticks);
 
 // SEMAPHORES
-void InitializeSemaphore(SemaphoreType* semaphore, s32 initial_count, s32 max_count);
+void InitializeSemaphore(SemaphoreType* semaphore, int32_t initial_count, int32_t max_count);
 void FinalizeSemaphore(SemaphoreType* semaphore);
 void AcquireSemaphore(SemaphoreType* semaphore);
 bool TryAcquireSemaphore(SemaphoreType* semaphore);
@@ -136,9 +136,9 @@ void ReleaseSemaphore(SemaphoreType* semaphore);
 
 // EXCEPTION HANDLING
 typedef union {
-    u64 x;  ///< 64-bit AArch64 register view.
-    u32 w;  ///< 32-bit AArch64 register view.
-    u32 r;  ///< AArch32 register view.
+    uint64_t x;  ///< 64-bit AArch64 register view.
+    uint32_t w;  ///< 32-bit AArch64 register view.
+    uint32_t r;  ///< AArch32 register view.
 } CpuRegister;
 /// Armv8 NEON register.
 
@@ -149,8 +149,8 @@ typedef union {
 } FpuRegister;
 
 struct UserExceptionInfo {
-    u32 ErrorDescription;  ///< See \ref ThreadExceptionDesc.
-    u32 pad[3];
+    uint32_t ErrorDescription;  ///< See \ref ThreadExceptionDesc.
+    uint32_t pad[3];
 
     CpuRegister CpuRegisters[29];  ///< GPRs 0..28. Note: also contains AArch32 registers.
     CpuRegister FP;                ///< Frame pointer.
@@ -158,38 +158,38 @@ struct UserExceptionInfo {
     CpuRegister SP;                ///< Stack pointer.
     CpuRegister PC;                ///< Program counter (elr_el1).
 
-    u64 padding;
+    uint64_t padding;
 
     FpuRegister FpuRegisters[32];  ///< 32 general-purpose NEON registers.
 
-    u32 PState;  ///< pstate & 0xFF0FFE20
-    u32 AFSR0;
-    u32 AFSR1;
-    u32 ESR;
+    uint32_t PState;  ///< pstate & 0xFF0FFE20
+    uint32_t AFSR0;
+    uint32_t AFSR1;
+    uint32_t ESR;
 
     CpuRegister FAR;  ///< Fault Address Register.
 };
-void SetUserExceptionHandler(void (*)(UserExceptionInfo*), void*, ulong, UserExceptionInfo*);
+void SetUserExceptionHandler(void (*)(UserExceptionInfo*), void*, size_t, UserExceptionInfo*);
 
 // OTHER
-void GenerateRandomBytes(void*, u64);
+void GenerateRandomBytes(void*, uint64_t);
 nn::os::Tick GetSystemTick();
 nn::os::Tick GetSystemTickFrequency();
-u64 GetThreadAvailableCoreMask();
-void SetMemoryHeapSize(u64 size);
+uint64_t GetThreadAvailableCoreMask();
+void SetMemoryHeapSize(uint64_t size);
 
 // Thread-local storage
 struct TlsSlot {
-    u32 slot;
+    uint32_t slot;
 };
-Result AllocateTlsSlot(TlsSlot* slot_out, void (*)(u64));
+Result AllocateTlsSlot(TlsSlot* slot_out, void (*)(uint64_t));
 void FreeTlsSlot(TlsSlot slot);
-u64 GetTlsValue(TlsSlot slot);
-void SetTlsValue(TlsSlot slot, u64 value);
-u32 GetCurrentCoreNumber();
+uint64_t GetTlsValue(TlsSlot slot);
+void SetTlsValue(TlsSlot slot, uint64_t value);
+uint32_t GetCurrentCoreNumber();
 
 namespace detail {
-extern s32 g_CommandLineParameter;
+extern int32_t g_CommandLineParameter;
 extern char** g_CommandLineParameterArgv;
 }  // namespace detail
 }  // namespace os

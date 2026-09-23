@@ -9,7 +9,7 @@
 
 namespace nn {
 struct ApplicationId {
-    u64 m_Id;
+    uint64_t m_Id;
 };
 }  // namespace nn
 

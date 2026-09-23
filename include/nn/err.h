@@ -4,7 +4,7 @@
 
 namespace nn {
 namespace err {
-enum ErrorCodeCategoryType : u32 {
+enum ErrorCodeCategoryType : uint32_t {
     unk1,
     unk2,
 };
@@ -12,20 +12,20 @@ enum ErrorCodeCategoryType : u32 {
 class ApplicationErrorArg {
 public:
     ApplicationErrorArg();
-    ApplicationErrorArg(u32 error_code, const char* dialog_message, const char* fullscreen_message,
+    ApplicationErrorArg(uint32_t error_code, const char* dialog_message, const char* fullscreen_message,
                         const nn::settings::LanguageCode& languageCode);
-    void SetApplicationErrorCodeNumber(u32 error_code);
+    void SetApplicationErrorCodeNumber(uint32_t error_code);
     void SetDialogMessage(const char* message);
     void SetFullScreenMessage(const char* message);
 
-    u64 unk;
-    u32 error_code;
+    uint64_t unk;
+    uint32_t error_code;
     nn::settings::LanguageCode language_code;
     char dialog_message[2048];
     char fullscreen_message[2048];
 };
 
-u32 MakeErrorCode(ErrorCodeCategoryType err_category_type, u32 errorCodeNumber);
+uint32_t MakeErrorCode(ErrorCodeCategoryType err_category_type, uint32_t errorCodeNumber);
 void ShowApplicationError(const ApplicationErrorArg& arg);
 }  // namespace err
 }  // namespace nn

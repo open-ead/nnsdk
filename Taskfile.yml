@@ -34,6 +34,13 @@ tasks:
   check:
     desc: Run clang-format and clang-tidy checks
     cmds:
+      # print versions in CI so it's 'Works On My Machine' is debugable
+      - silent: true
+        cmd: |
+          if [ -n "$CI" ]; then
+            clang-format --version
+            clang-tidy --version
+          fi
       - task: clang-format
         vars: { ARGS: -n -Werror }
       - task: clang-tidy

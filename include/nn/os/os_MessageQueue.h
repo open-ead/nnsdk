@@ -6,24 +6,24 @@
 
 namespace nn::os {
 
-void InitializeMessageQueue(nn::os::MessageQueueType*, u64* buf, u64 queueCount);
+void InitializeMessageQueue(nn::os::MessageQueueType*, uint64_t* buf, uint64_t queueCount);
 void FinalizeMessageQueue(nn::os::MessageQueueType*);
 
-void SendMessageQueue(MessageQueueType*, u64);
-bool TrySendMessageQueue(MessageQueueType*, u64);
-bool TimedSendMessageQueue(MessageQueueType*, u64, nn::TimeSpan);
+void SendMessageQueue(MessageQueueType*, uint64_t);
+bool TrySendMessageQueue(MessageQueueType*, uint64_t);
+bool TimedSendMessageQueue(MessageQueueType*, uint64_t, nn::TimeSpan);
 
-void ReceiveMessageQueue(u64* out, MessageQueueType*);
-bool TryReceiveMessageQueue(u64* out, MessageQueueType*);
-bool TimedReceiveMessageQueue(u64* out, MessageQueueType*, nn::TimeSpan);
+void ReceiveMessageQueue(uint64_t* out, MessageQueueType*);
+bool TryReceiveMessageQueue(uint64_t* out, MessageQueueType*);
+bool TimedReceiveMessageQueue(uint64_t* out, MessageQueueType*, nn::TimeSpan);
 
-void PeekMessageQueue(u64*, const MessageQueueType*);
-bool TryPeekMessageQueue(u64*, const MessageQueueType*);
-bool TimedPeekMessageQueue(u64*, const MessageQueueType*, nn::TimeSpan);
+void PeekMessageQueue(uint64_t*, const MessageQueueType*);
+bool TryPeekMessageQueue(uint64_t*, const MessageQueueType*);
+bool TimedPeekMessageQueue(uint64_t*, const MessageQueueType*, nn::TimeSpan);
 
-void JamMessageQueue(nn::os::MessageQueueType*, u64);
-bool TryJamMessageQueue(nn::os::MessageQueueType*, u64);
-bool TimedJamMessageQueue(nn::os::MessageQueueType*, u64, nn::TimeSpan);
+void JamMessageQueue(nn::os::MessageQueueType*, uint64_t);
+bool TryJamMessageQueue(nn::os::MessageQueueType*, uint64_t);
+bool TimedJamMessageQueue(nn::os::MessageQueueType*, uint64_t, nn::TimeSpan);
 
 class MessageQueue {
     NN_NO_COPY(MessageQueue);

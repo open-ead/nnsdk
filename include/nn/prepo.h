@@ -30,16 +30,16 @@ public:
     void SetBuffer(void* buffer, size_t size);
     void Clear();
 
-    Result Add(const char* key, s64 value);
-    Result Add(const char* key, f64 value);
+    Result Add(const char* key, int64_t value);
+    Result Add(const char* key, double value);
     Result Add(const char* key, const char* value);
 
     Result Save();
     Result Save(const account::Uid& uid);
 
-    s32 GetCount() const;
+    int32_t GetCount() const;
 
-    static u32 CalcBufferSize(s32 num_entries) { return size_t(0x82) * num_entries + 3; }
+    static uint32_t CalcBufferSize(int32_t num_entries) { return size_t(0x82) * num_entries + 3; }
 
 private:
     char m_EventId[32];
@@ -54,9 +54,9 @@ Result RequestImmediateTransmission();
 Result GetTransmissionStatus(TransmissionStatus* status);
 
 Result ClearStorage();
-Result SetOperationMode(s64 mode);
+Result SetOperationMode(int64_t mode);
 Result IsUserAgreementCheckEnabled(bool* enabled);
 Result SetUserAgreementCheckEnabled(bool enabled);
-Result GetStorageUsage(s64*, s64*);
+Result GetStorageUsage(int64_t*, int64_t*);
 
 }  // namespace nn::prepo

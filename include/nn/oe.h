@@ -39,12 +39,12 @@ struct DisplayVersion {
     char name[16];
 };
 
-typedef s32 PerformanceConfiguration;
+typedef int32_t PerformanceConfiguration;
 
 void Initialize();
 void FinishStartupLogo();
-void EnableGamePlayRecording(void*, u64);
-void SetExpectedVolumeBalance(f32, f32);
+void EnableGamePlayRecording(void*, uint64_t);
+void SetExpectedVolumeBalance(float, float);
 void SetPerformanceConfiguration(nn::oe::PerformanceMode, nn::oe::PerformanceConfiguration);
 void SetResumeNotificationEnabled(bool);
 void SetOperationModeChangedNotificationEnabled(bool);
@@ -53,9 +53,9 @@ void SetFocusHandlingMode(nn::oe::FocusHandlingMode);
 void setScreenShotImageOrientation(nn::album::ImageOrientation);
 void SetUserInactivityDetectionTimeExtended(bool);
 bool IsUserInactivityDetectionTimeExtended();
-bool TryPopNotificationMessage(u32*);
+bool TryPopNotificationMessage(uint32_t*);
 bool TryPopLaunchParameter(size_t*, void*, size_t);
-void GetExpectedVolumeBalance(f32*, f32*);
+void GetExpectedVolumeBalance(float*, float*);
 void GetDisplayVersion(DisplayVersion*);
 FocusState GetCurrentFocusState();
 OperationMode GetOperationMode();

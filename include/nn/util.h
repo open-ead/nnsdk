@@ -14,12 +14,12 @@ namespace util {
 enum CharacterEncodingResult { Success, BadLength, InvalidFormat };
 
 CharacterEncodingResult PickOutCharacterFromUtf8String(char*, char const** str);
-CharacterEncodingResult ConvertCharacterUtf8ToUtf32(u32* dest, char const* src);
-CharacterEncodingResult ConvertStringUtf16NativeToUtf8(char*, s32, u16 const*, s32);
-CharacterEncodingResult ConvertStringUtf8ToUtf16Native(u16*, s32, char const*, s32);
+CharacterEncodingResult ConvertCharacterUtf8ToUtf32(uint32_t* dest, char const* src);
+CharacterEncodingResult ConvertStringUtf16NativeToUtf8(char*, int32_t, uint16_t const*, int32_t);
+CharacterEncodingResult ConvertStringUtf8ToUtf16Native(uint16_t*, int32_t, char const*, int32_t);
 
-s32 SNPrintf(char* s, ulong n, const char* format, ...);
-s32 VSNPrintf(char* s, ulong n, const char* format, va_list arg);
+int32_t SNPrintf(char* s, size_t n, const char* format, ...);
+int32_t VSNPrintf(char* s, size_t n, const char* format, va_list arg);
 
 void ReferSymbol(const void*);
 }  // namespace util

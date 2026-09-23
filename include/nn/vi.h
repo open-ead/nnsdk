@@ -23,16 +23,16 @@ enum LayerStack {
 };
 
 struct DisplayName {
-    static constexpr u32 maxNameLen = 64;
+    static constexpr uint32_t maxNameLen = 64;
     char data[maxNameLen];
 };
 
 struct DisplayInfo {
     DisplayName name;
     bool hasLayerLimit;
-    s64 maxLayers;
-    s64 maxWidth;
-    s64 maxHeight;
+    int64_t maxLayers;
+    int64_t maxWidth;
+    int64_t maxHeight;
 };
 
 // Needs to be >128 bits, nnsdk uses X8 (indirect result register)
@@ -50,22 +50,22 @@ class NativeWindow;
 
 struct LayerCreationSettings {
     LayerCreationSettings(void);
-    LayerCreationSettings(s32 width, s32 height);
-    s32 GetWidth(void) const;
-    void SetWidth(s32 width);
-    s32 GetHeight(void) const;
-    void SetHeight(s32 height);
+    LayerCreationSettings(int32_t width, int32_t height);
+    int32_t GetWidth(void) const;
+    void SetWidth(int32_t width);
+    int32_t GetHeight(void) const;
+    void SetHeight(int32_t height);
     void SetFullscreen(bool isFullscreen);
     bool IsFullscreen(void) const;
     void SetVisibility(bool isVisible);
     bool IsVisible(void) const;
 
 private:
-    s32 width;
-    s32 height;
+    int32_t width;
+    int32_t height;
 
     union {
-        u32 rawFlags;
+        uint32_t rawFlags;
         struct {
             bool fullScreen : 1;  // defaults to false
             bool visible : 1;     // defaults to true
@@ -90,30 +90,30 @@ Result OpenDefaultDisplay(nn::vi::Display** outDisplay);
 Result OpenDisplay(nn::vi::Display** outDisplay, const char* displayName);
 Result CloseDisplay(nn::vi::Display* inDisplay);
 Result GetDisplayVsyncEvent(nn::os::SystemEventType* outEvent, nn::vi::Display* inDisplay);
-s32 GetZOrderCountMin(const nn::vi::Display* inDisplay);
-s32 GetZOrderCountMax(const nn::vi::Display* inDisplay);
-Result GetDisplayLogicalResolution(s32* width, s32* height, const nn::vi::Display* inDisplay);
-Result GetDisplayResolution(s32* width, s32* height, const nn::vi::Display* inDisplay);
-u64 GetDisplayIdWithValidation(const nn::vi::Display* inDisplay);
-Result GetLatestFrameNumber(u64* pOutFrameNumber, const Layer* pLayer);
+int32_t GetZOrderCountMin(const nn::vi::Display* inDisplay);
+int32_t GetZOrderCountMax(const nn::vi::Display* inDisplay);
+Result GetDisplayLogicalResolution(int32_t* width, int32_t* height, const nn::vi::Display* inDisplay);
+Result GetDisplayResolution(int32_t* width, int32_t* height, const nn::vi::Display* inDisplay);
+uint64_t GetDisplayIdWithValidation(const nn::vi::Display* inDisplay);
+Result GetLatestFrameNumber(uint64_t* pOutFrameNumber, const Layer* pLayer);
 
 Result CreateLayer(nn::vi::Layer** outLayer, nn::vi::Display* inDisplay);
 Result CreateLayer(nn::vi::Layer** outLayer, nn::vi::Display* inDisplay,
                    const nn::vi::LayerCreationSettings* inSettings);
-Result CreateLayer(nn::vi::Layer** outLayer, nn::vi::Display* inDisplay, s32 width, s32 height);
+Result CreateLayer(nn::vi::Layer** outLayer, nn::vi::Display* inDisplay, int32_t width, int32_t height);
 void DestroyLayer(nn::vi::Layer* inLayer);
 Result GetNativeWindow(void** outWindow, nn::vi::Layer* inLayer);
 
 Result SetLayerScalingMode(nn::vi::Layer* layer, nn::vi::ScalingMode scalingMode);
 Result SetLayerPosition(nn::vi::Layer* inLayer, float x, float y);
-Result SetLayerSize(nn::vi::Layer* inLayer, s32 width, s32 height);
-Result SetLayerZ(nn::vi::Layer* inLayer, s32 z);
-Result GetLayerZ(s32* z, const nn::vi::Layer* inLayer);
+Result SetLayerSize(nn::vi::Layer* inLayer, int32_t width, int32_t height);
+Result SetLayerZ(nn::vi::Layer* inLayer, int32_t z);
+Result GetLayerZ(int32_t* z, const nn::vi::Layer* inLayer);
 Result SetLayerVisibility(nn::vi::Layer* inLayer, bool isVisible);
 Result SetLayerAlpha(nn::vi::Layer* inLayer, float alpha);
 
 Result AddToLayerStack(nn::vi::Layer* inLayer, nn::vi::LayerStack layerStackType);
 Result RemoveFromLayerStack(nn::vi::Layer* inLayer, nn::vi::LayerStack layerStackType);
-u64 GetLayerIdWithValidation(const nn::vi::Layer* inLayer);
+uint64_t GetLayerIdWithValidation(const nn::vi::Layer* inLayer);
 }  // namespace vi
 }  // namespace nn

@@ -4,9 +4,9 @@
 
 namespace nn::irsensor {
 struct Rect {
-    u16 x = 0;
-    u16 y = 0;
-    u16 width = 320;
-    u16 height = 240;
+    uint16_t x = 0;
+    uint16_t y = 0;
+    uint16_t width = 320;
+    uint16_t height = 240;
 };
 }  // namespace nn::irsensor

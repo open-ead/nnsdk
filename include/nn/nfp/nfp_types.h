@@ -5,17 +5,17 @@
 namespace nn::nfp {
 
 struct DeviceHandle {
-    u64 m_Id;
+    uint64_t m_Id;
 };
 
-const s32 AmiiboNameLength = 10;
+const int32_t AmiiboNameLength = 10;
 
-enum State : u32 {
+enum State : uint32_t {
     State_NonInitialized = 0,
     State_Initialized = 1,
 };
 
-enum DeviceState : u32 {
+enum DeviceState : uint32_t {
     DeviceState_Initialized = 0,
     DeviceState_SearchingForTag = 1,
     DeviceState_TagFound = 2,
@@ -25,18 +25,18 @@ enum DeviceState : u32 {
     DeviceState_Finalized = 6,
 };
 
-enum ModelType : u32 {
+enum ModelType : uint32_t {
     ModelType_Amiibo = 0,
 };
 
-enum MountTarget : u32 {
+enum MountTarget : uint32_t {
     MountTarget_None = 0,
     MountTarget_Rom = 1,
     MountTarget_Ram = 2,
     MountTarget_All = 3,
 };
 
-enum TagType : u32 {
+enum TagType : uint32_t {
     TagType_None = 0,
     TagType_Type1 = 1U << 0,
     TagType_Type2 = 1U << 1,
@@ -48,7 +48,7 @@ enum TagType : u32 {
     TagType_All = 0xFFFFFFFF,
 };
 
-enum Protocol : u32 {
+enum Protocol : uint32_t {
     Protocol_None = 0,
     Protocol_TypeA = 1,
     Protocol_TypeB = 1 << 1,
@@ -57,14 +57,14 @@ enum Protocol : u32 {
 };
 
 struct AmiiboDate {
-    s16 year;
-    s8 month;
-    s8 day;
+    int16_t year;
+    int8_t month;
+    int8_t day;
 };
 
 struct TagId {
-    u8 uuid[10];
-    u8 uuidLength;
+    uint8_t uuid[10];
+    uint8_t uuidLength;
     char reserved[0x15];
 };
 
@@ -77,19 +77,19 @@ struct TagInfo {
 
 struct CommonInfo {
     AmiiboDate lastWriteDate;
-    u16 writeCounter;
-    u16 version;
-    u32 applicationAreaSize;
+    uint16_t writeCounter;
+    uint16_t version;
+    uint32_t applicationAreaSize;
     char reserved[0x34];
 };
 
 struct ModelInfo {
-    u8 gameId;
-    u8 characterId;
-    u8 characterVariant;
-    u8 amiiboType;
-    u16 modelNumber;
-    u8 series;
+    uint8_t gameId;
+    uint8_t characterId;
+    uint8_t characterVariant;
+    uint8_t amiiboType;
+    uint16_t modelNumber;
+    uint8_t series;
     char reserved[0x39];
 };
 
@@ -97,7 +97,7 @@ struct RegisterInfo {
     char miiStoreData[0x44];  // nn::mii::StoreData
     AmiiboDate registerDate;
     char nickname[AmiiboNameLength * 4 + 1];  // utf-8, null-terminated
-    u8 fontRegion;
+    uint8_t fontRegion;
     char reserved[0x7a];
 };
 

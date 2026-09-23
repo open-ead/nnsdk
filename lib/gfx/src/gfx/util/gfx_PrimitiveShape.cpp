@@ -180,10 +180,10 @@ void SphereShape::CalculateIndexBuffer() {
 
     switch (primitiveTopology) {
     case PrimitiveTopology_LineList: {
-        u32 numVertsPerStack = (m_SliceCount + 1);
+        uint32_t numVertsPerStack = (m_SliceCount + 1);
 
         for (int idxSlice = 0; idxSlice < m_SliceCount; ++idxSlice) {
-            u32 sliceStartVtxIdx = 0;
+            uint32_t sliceStartVtxIdx = 0;
             for (int idxStack = 0; idxStack < m_StackCount; ++idxStack) {
                 pIndexData[idx++] = sliceStartVtxIdx + idxSlice;
                 pIndexData[idx++] = sliceStartVtxIdx + idxSlice + numVertsPerStack;
@@ -192,7 +192,7 @@ void SphereShape::CalculateIndexBuffer() {
         }
 
         for (int idxStack = 1; idxStack < m_StackCount; ++idxStack) {
-            u32 startStackVtxIdx = idxStack * numVertsPerStack;
+            uint32_t startStackVtxIdx = idxStack * numVertsPerStack;
             for (int idxSlice = 0; idxSlice < m_SliceCount; ++idxSlice) {
                 pIndexData[idx++] = startStackVtxIdx + idxSlice;
                 pIndexData[idx++] = startStackVtxIdx + idxSlice + 1;

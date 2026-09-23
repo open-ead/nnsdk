@@ -5,13 +5,13 @@
 
 namespace nn::irsensor {
 struct MomentProcessorConfig {
-    s64 exposureTime = 300000;
-    s32 lightTarget = 0;
-    s32 gain = 8;
+    int64_t exposureTime = 300000;
+    int32_t lightTarget = 0;
+    int32_t gain = 8;
     bool isNegativeImageUsed = false;
-    u8 reserved[7];
+    uint8_t reserved[7];
     Rect windowOfInterest;
-    s32 preprocess = 1;
-    s32 preprocessIntensityThreshold = 80;
+    int32_t preprocess = 1;
+    int32_t preprocessIntensityThreshold = 80;
 };
 }  // namespace nn::irsensor

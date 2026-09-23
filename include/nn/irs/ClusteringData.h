@@ -6,7 +6,7 @@
 namespace nn::irsensor {
 struct ClusteringData {
     MomentStatistic momentStatistic;
-    s32 pixelCount;
+    int32_t pixelCount;
     Rect bounds;
 };
 }  // namespace nn::irsensor

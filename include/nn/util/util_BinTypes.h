@@ -7,7 +7,7 @@
 namespace nn::util {
 
 // todo: is this here?
-constexpr uint32_t MakeSignature(u8 a, u8 b, u8 c, u8 d) {
+constexpr uint32_t MakeSignature(uint8_t a, uint8_t b, uint8_t c, uint8_t d) {
     return a | (b << 8) | (c << 16) | (d << 24);
 }
 
@@ -107,8 +107,8 @@ struct BinTString {
     BinTString* GetNext();
     const BinTString* GetNext() const;
 
-    u16 _length;
-    CharT _data[sizeof(u16) / sizeof(CharT)];
+    uint16_t _length;
+    CharT _data[sizeof(uint16_t) / sizeof(CharT)];
 };
 
 using BinString = BinTString<char>;

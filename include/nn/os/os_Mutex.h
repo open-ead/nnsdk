@@ -5,7 +5,7 @@
 
 namespace nn::os {
 
-void InitializeMutex(MutexType*, bool recursive, s32 lockLevel);
+void InitializeMutex(MutexType*, bool recursive, int32_t lockLevel);
 void FinalizeMutex(MutexType*);
 void LockMutex(MutexType*);
 bool TryLockMutex(MutexType*);
@@ -19,7 +19,7 @@ class Mutex {
 public:
     explicit Mutex(bool recursive) { InitializeMutex(&m_Mutex, recursive, 0); }
 
-    Mutex(bool recursive, s32 lockLevel) { InitializeMutex(&m_Mutex, recursive, lockLevel); }
+    Mutex(bool recursive, int32_t lockLevel) { InitializeMutex(&m_Mutex, recursive, lockLevel); }
 
     ~Mutex() { FinalizeMutex(&m_Mutex); }
 

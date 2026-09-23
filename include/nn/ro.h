@@ -27,10 +27,10 @@ public:
         Elf64_Rela* rela;
         void* rel_rela;
     };
-    u8* moduleBaseAddr;
+    uint8_t* moduleBaseAddr;
     Elf64_Dyn* dynamic;
     bool is_rela;
-    u8 pad_x31[7];
+    uint8_t pad_x31[7];
     Elf64_Xword plt_size;
     void (*initFunc)();
     void (*finiFunc)();
@@ -47,12 +47,12 @@ public:
     Elf64_Xword nchain;
     Elf64_Xword nbucket;
     Elf64_Xword off_soname;
-    u64 unk_xb8;
+    uint64_t unk_xb8;
     bool unk_xc0;
-    u8 pad_xc1[7];
+    uint8_t pad_xc1[7];
     Elf64_Xword ArchitectureData;
 
-    void Initialize(u8* moduleBaseAddr, u64 arg1_0, Elf64_Dyn* dynamic, bool arg4_0);
+    void Initialize(uint8_t* moduleBaseAddr, uint64_t arg1_0, Elf64_Dyn* dynamic, bool arg4_0);
     Elf64_Sym* Lookup(const char* symbol);
     void Relocation(bool lazyGotPlt);
     void CallInit();
@@ -66,80 +66,80 @@ static_assert(sizeof(RoModule) == 0xD0, "RoModule definition!");
 class Module {
 public:
     detail::RoModule* ModuleObject;
-    u32 State;
+    uint32_t State;
     void* NroPtr;
     void* BssPtr;
     void* _x20;
     void* SourceBuffer;
     char Name[256]; /* Created by retype action */
-    u8 _x130;
-    u8 _x131;
+    uint8_t _x130;
+    uint8_t _x131;
     bool isLoaded;  // bool
 };
 
 struct ModuleId {
-    u8 build_id[0x20];
+    uint8_t build_id[0x20];
 };
 
 struct NroHeader {
-    static constexpr u32 NroMagic = util::MakeSignature('N', 'R', 'O', '0');
+    static constexpr uint32_t NroMagic = util::MakeSignature('N', 'R', 'O', '0');
 
-    u32 entrypoint_insn;
-    u32 mod_offset;
-    u8 _x8[0x8];
-    u32 magic;
-    u8 _x14[0x4];
-    u32 size;
-    u8 _x1c[0x4];
-    u32 text_offset;
-    u32 text_size;
-    u32 ro_offset;
-    u32 ro_size;
-    u32 rw_offset;
-    u32 rw_size;
-    u32 bss_size;
-    u8 _x3c[0x4];
+    uint32_t entrypoint_insn;
+    uint32_t mod_offset;
+    uint8_t _x8[0x8];
+    uint32_t magic;
+    uint8_t _x14[0x4];
+    uint32_t size;
+    uint8_t _x1c[0x4];
+    uint32_t text_offset;
+    uint32_t text_size;
+    uint32_t ro_offset;
+    uint32_t ro_size;
+    uint32_t rw_offset;
+    uint32_t rw_size;
+    uint32_t bss_size;
+    uint8_t _x3c[0x4];
     ModuleId module_id;
-    u8 _x60[0x20];
+    uint8_t _x60[0x20];
 };
 static_assert(sizeof(NroHeader) == 0x80, "NroHeader definition!");
 
 struct ProgramId {
-    u64 value;
+    uint64_t value;
 
-    inline explicit operator u64() const { return this->value; }
+    inline explicit operator uint64_t() const { return this->value; }
 };
 
 struct NrrCertification {
-    u64 programID_Mask;
-    u64 programID_Pattern;
-    u8 reserved_x10[0x10];
+    uint64_t programID_Mask;
+    uint64_t programID_Pattern;
+    uint8_t reserved_x10[0x10];
 
-    u8 modulus[0x100];
-    u8 signature[0x100];
+    uint8_t modulus[0x100];
+    uint8_t signature[0x100];
 };
 static_assert(sizeof(NrrCertification) == 0x220, "NrrCertification definition!");
 
-enum NrrKind : u8 {
+enum NrrKind : uint8_t {
     NrrKind_User = 0,
     NrrKind_JitPlugin = 1,
     NrrKind_Count,
 };
 
 struct NrrHeader {
-    static constexpr u32 NrrMagic = util::MakeSignature('N', 'R', 'R', '0');
+    static constexpr uint32_t NrrMagic = util::MakeSignature('N', 'R', 'R', '0');
 
-    u32 magic;
-    u8 _x4[0xC];
+    uint32_t magic;
+    uint8_t _x4[0xC];
     NrrCertification certiicate;
-    u8 nrr_signature[0x100];
+    uint8_t nrr_signature[0x100];
     ProgramId program_id;
-    u32 size;
+    uint32_t size;
     NrrKind type; /* 7.0.0+ */
-    u8 _x33d[3];
-    u32 hashes_offset;
-    u32 num_hashes;
-    u8 _x348[8];
+    uint8_t _x33d[3];
+    uint32_t hashes_offset;
+    uint32_t num_hashes;
+    uint8_t _x348[8];
 };
 static_assert(sizeof(NrrHeader) == 0x350, "NrrHeader definition!");
 
@@ -150,8 +150,8 @@ struct RegistrationInfo {
     };
     State state;
     NrrHeader* nrrPtr;
-    u64 _x10;
-    u64 _x18;
+    uint64_t _x10;
+    uint64_t _x18;
 };
 
 enum BindFlag {
@@ -163,19 +163,19 @@ Result Initialize();
 Result InitializeWithPortName(const char* portname);  // "ldr:ro" or "ro:1"
 Result Finalize();
 
-Result GetBufferSize(u64* size, const void* nro);  // Gets Bss size from nro+0x38
+Result GetBufferSize(uint64_t* size, const void* nro);  // Gets Bss size from nro+0x38
 
 Result RegisterModuleInfo(nn::ro::RegistrationInfo* regInfo, const void* nrr);
-Result RegisterModuleInfo(nn::ro::RegistrationInfo* regInfo, const void* nrr, u32);
+Result RegisterModuleInfo(nn::ro::RegistrationInfo* regInfo, const void* nrr, uint32_t);
 Result UnregisterModuleInfo(nn::ro::RegistrationInfo* regInfo);
 
-Result LoadModule(Module* outModule, const void* nro, void* nroBss, u64 nroBssSize, s32 flags);
-Result LoadModule(Module* outModule, const void* nro, void* nroBss, u64 nroBssSize, s32 flags,
+Result LoadModule(Module* outModule, const void* nro, void* nroBss, uint64_t nroBssSize, int32_t flags);
+Result LoadModule(Module* outModule, const void* nro, void* nroBss, uint64_t nroBssSize, int32_t flags,
                   bool);
 Result UnloadModule(Module* module);
 
-Result LookupSymbol(u64* funcAddress, const char* symbolName);
-Result LookupModuleSymbol(u64* funcAddress, const Module* module, const char* symbolName);
+Result LookupSymbol(uint64_t* funcAddress, const char* symbolName);
+Result LookupModuleSymbol(uint64_t* funcAddress, const Module* module, const char* symbolName);
 }  // namespace ro
 
 }  // namespace nn

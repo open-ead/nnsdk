@@ -5,6 +5,6 @@
 namespace nn::fs {
 
 Result MountBcatSaveData(const char*, ApplicationId);
-Result CreateBcatSaveData(ApplicationId, s64);
+Result CreateBcatSaveData(ApplicationId, int64_t);
 
 }  // namespace nn::fs

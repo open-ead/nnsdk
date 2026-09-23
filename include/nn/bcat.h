@@ -34,7 +34,7 @@ public:
     DeliveryCacheFile();
     ~DeliveryCacheFile();
     Result Open(nn::bcat::DirectoryName const&, nn::bcat::FileName const&);
-    Result Read(size_t file1, s64, void*, size_t file2);
+    Result Read(size_t file1, int64_t, void*, size_t file2);
     Result GetSize();
     Result GetDigest();
     Result Close();
@@ -63,10 +63,10 @@ namespace DeliveryCacheProgressImpl {
 Result Clear();
 Result NotifyStartConnect();
 Result NotifyStartProcessList();
-Result SetWholeDownloadSize(s64);
-Result SetDownloadProgress(s64, nn::bcat::DirectoryName const&, nn::bcat::FileName const&, s64);
-Result NotifyStartDownloadFile(nn::bcat::DirectoryName const&, nn::bcat::FileName const&, s64);
-Result UpdateDownloadFileProgress(s64);
+Result SetWholeDownloadSize(int64_t);
+Result SetDownloadProgress(int64_t, nn::bcat::DirectoryName const&, nn::bcat::FileName const&, int64_t);
+Result NotifyStartDownloadFile(nn::bcat::DirectoryName const&, nn::bcat::FileName const&, int64_t);
+Result UpdateDownloadFileProgress(int64_t);
 Result NotifyStartCommitDirectory(nn::bcat::DirectoryName const&);
 Result NotifyDone(nn::Result);
 

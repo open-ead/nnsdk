@@ -9,7 +9,7 @@ namespace nn::fs {
     path: Path to the directory to open.
     openMode: Mode to open the directory with, see nn::fs::OpenDirectoryMode.
 */
-Result OpenDirectory(DirectoryHandle* handleOut, const char* path, s32 openMode);
+Result OpenDirectory(DirectoryHandle* handleOut, const char* path, int32_t openMode);
 
 /*
     Closes directory.
@@ -24,8 +24,8 @@ void CloseDirectory(DirectoryHandle handle);
     handle: Handle of directory to be opened.
     entryBufferLength: How many entries provided in the entriesOut argument.
 */
-Result ReadDirectory(s64* entryCountOut, DirectoryEntry* entriesOut, DirectoryHandle handle,
-                     s64 entryBufferLength);
+Result ReadDirectory(int64_t* entryCountOut, DirectoryEntry* entriesOut, DirectoryHandle handle,
+                     int64_t entryBufferLength);
 
 /*
     Creates a directory at  given path.
@@ -38,7 +38,7 @@ Result CreateDirectory(const char* path);
     entryCountOut: Pointer to write the entry count.
     handle: Handle of the directory to count entries.
 */
-Result GetDirectoryEntryCount(s64* entryCountOut, DirectoryHandle handle);
+Result GetDirectoryEntryCount(int64_t* entryCountOut, DirectoryHandle handle);
 
 /*
     Delete a given directory path and all of it's subdirectories/folders.

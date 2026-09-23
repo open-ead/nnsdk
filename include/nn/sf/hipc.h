@@ -9,7 +9,7 @@ Result InitializeHipcServiceResolution();
 Result ConnectToHipcService(svc::Handle*, const char*);
 Result FinalizeHipcServiceResolution();
 
-Result SendSyncRequest(svc::Handle, void*, u64);
+Result SendSyncRequest(svc::Handle, void*, uint64_t);
 Result CloseClientSessionHandle(svc::Handle);
 
 }  // namespace nn::sf::hipc

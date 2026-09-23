@@ -16,7 +16,7 @@ public:
     enum SslVersion { Auto = 0x01, v10 = 0x08, v11 = 0x10, v12 = 0x20 };
 
     Result Create(nn::ssl::Context::SslVersion version);
-    Result ImportServerPki(u64*, char const* certData, u32 certSize,
+    Result ImportServerPki(uint64_t*, char const* certData, uint32_t certSize,
                            nn::ssl::CertificateFormat certFormat);
 };
 

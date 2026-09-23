@@ -82,10 +82,10 @@ struct RelocationTable {
     };
 
     struct Entry {
-        u32 file_offset;
-        u16 num_chunks;
-        u8 relocated_words_per_chunk;
-        u8 non_relocated_words_per_chunk;
+        uint32_t file_offset;
+        uint16_t num_chunks;
+        uint8_t relocated_words_per_chunk;
+        uint8_t non_relocated_words_per_chunk;
     };
 
     static const int PackedSignature;

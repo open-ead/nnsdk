@@ -5,15 +5,15 @@
 
 namespace nn::irsensor {
 struct DpdProcessorPointingState {
-    s64 samplingNumber;
-    s64 timeStamp;
+    int64_t samplingNumber;
+    int64_t timeStamp;
     struct {
-        u8 pointingStatus;
-        s32 _4;
-        f32 _8;
-        f32 positionX;
-        f32 positionY;
-        f32 _14;
+        uint8_t pointingStatus;
+        int32_t _4;
+        float _8;
+        float positionX;
+        float positionY;
+        float _14;
         Rect windowOfInterest;
     } data[3];
 };

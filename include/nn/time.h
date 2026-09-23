@@ -10,26 +10,26 @@
 namespace nn {
 class TimeSpan {
 public:
-    u64 nanoseconds;
+    uint64_t nanoseconds;
 
-    static TimeSpan FromNanoSeconds(u64 nanoSeconds) {
+    static TimeSpan FromNanoSeconds(uint64_t nanoSeconds) {
         TimeSpan ret;
         ret.nanoseconds = nanoSeconds;
         return ret;
     }
-    static TimeSpan FromMilliSeconds(u64 milliseconds) {
+    static TimeSpan FromMilliSeconds(uint64_t milliseconds) {
         return FromNanoSeconds(milliseconds * 1000 * 1000);
     }
-    static TimeSpan FromSeconds(u64 seconds) {
+    static TimeSpan FromSeconds(uint64_t seconds) {
         return FromNanoSeconds(seconds * 1000 * 1000 * 1000);
     }
-    static TimeSpan FromMinutes(u64 minutes) {
+    static TimeSpan FromMinutes(uint64_t minutes) {
         return FromNanoSeconds(minutes * 1000 * 1000 * 1000 * 60);
     }
-    static TimeSpan FromHours(u64 hours) {
+    static TimeSpan FromHours(uint64_t hours) {
         return FromNanoSeconds(hours * 1000 * 1000 * 1000 * 60 * 60);
     }
-    static TimeSpan FromDays(u64 days) {
+    static TimeSpan FromDays(uint64_t days) {
         return FromNanoSeconds(days * 1000 * 1000 * 1000 * 60 * 60 * 24);
     }
 };
@@ -40,12 +40,12 @@ Result Initialize();
 bool IsInitialized();
 
 struct CalendarTime {
-    s16 year;
-    s8 month;
-    s8 day;
-    s8 hour;
-    s8 minute;
-    s8 second;
+    int16_t year;
+    int8_t month;
+    int8_t day;
+    int8_t hour;
+    int8_t minute;
+    int8_t second;
 };
 
 enum DayOfTheWeek { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
@@ -53,17 +53,17 @@ enum DayOfTheWeek { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturd
 struct TimeZone {
     char standardTimeName[0x8];
     bool _9;        // daylight savings or something?
-    s32 utcOffset;  // in seconds
+    int32_t utcOffset;  // in seconds
 };
 
 struct CalendarAdditionalInfo {
     nn::time::DayOfTheWeek dayOfTheWeek;
-    s32 dayofYear;
+    int32_t dayofYear;
     nn::time::TimeZone timeZone;
 };
 
 struct PosixTime {
-    u64 time;
+    uint64_t time;
 };
 
 class StandardUserSystemClock {

@@ -4,9 +4,9 @@
 
 namespace nn::irsensor {
 struct TeraPluginProcessorState {
-    s64 samplingNumber;
-    s64 timeStamp;
-    s32 ambientNoiseLevel;
-    u8 pluginData[0x12c];
+    int64_t samplingNumber;
+    int64_t timeStamp;
+    int32_t ambientNoiseLevel;
+    uint8_t pluginData[0x12c];
 };
 }  // namespace nn::irsensor

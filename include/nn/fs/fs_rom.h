@@ -12,7 +12,7 @@ Result MountRom(const char* name, void* cache, size_t cache_size);
 Result MountAddOnContent(const char* name, int id, void* cache, size_t cache_size);
 bool CanMountRomForDebug();
 Result CanMountRom(nn::ApplicationId);
-Result QueryMountRomOnFileCacheSize(u64*, FileHandle);
-Result MountRomOnFile(const char*, FileHandle, void*, u64);
+Result QueryMountRomOnFileCacheSize(uint64_t*, FileHandle);
+Result MountRomOnFile(const char*, FileHandle, void*, uint64_t);
 
 }  // namespace nn::fs

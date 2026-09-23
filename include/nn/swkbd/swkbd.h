@@ -93,8 +93,8 @@ enum class DictionaryLang {
 enum class CloseResult { Enter, Cancel };
 
 struct DictionaryInfo {
-    u32 offset;
-    u16 size;
+    uint32_t offset;
+    uint16_t size;
     DictionaryLang lang;
 };
 
@@ -159,8 +159,8 @@ private:
 
 struct UserWord;  // TODO contents missing
 
-ulong GetRequiredWorkBufferSize(bool);
-ulong GetRequiredStringBufferSize();
+size_t GetRequiredWorkBufferSize(bool);
+size_t GetRequiredStringBufferSize();
 nn::applet::ExitReason GetExitReason();
 void MakePreset(KeyboardConfig*, Preset);
 void SetHeaderText(KeyboardConfig*, const char16_t*);

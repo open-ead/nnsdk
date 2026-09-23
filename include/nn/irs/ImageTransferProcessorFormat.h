@@ -3,7 +3,7 @@
 #include <nn/types.h>
 
 namespace nn::irsensor {
-enum class ImageTransferProcessorFormat : u32 {
+enum class ImageTransferProcessorFormat : uint32_t {
     _320x240,
     _160x120,
     _80x60,

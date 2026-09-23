@@ -22,8 +22,8 @@ enum PixelFormat { RGBA32, RGB24 };
 enum ProcessStage { UNREGISTERED = 0, REGISTERED = 1, ANALYZED = 2 };
 
 struct Dimension {
-    f32 width;
-    f32 height;
+    float width;
+    float height;
 };
 
 class JpegDecoder {
@@ -31,19 +31,19 @@ public:
     JpegDecoder();
     virtual ~JpegDecoder();
 
-    void SetImageData(void const* source, u64 size);
+    void SetImageData(void const* source, uint64_t size);
     nn::image::JpegStatus Analyze();
     nn::image::Dimension GetAnalyzedDimension() const;
-    s64 GetAnalyzedWorkBufferSize() const;
-    JpegStatus Decode(void* out, u64, s32 alignment, void*, u64);
+    int64_t GetAnalyzedWorkBufferSize() const;
+    JpegStatus Decode(void* out, uint64_t, int32_t alignment, void*, uint64_t);
 
     nn::image::ProcessStage mProcessStage;  // _8
     void* mData;                            // _C
-    s64 mSize;                              // _14
-    s32 _18;
+    int64_t mSize;                              // _14
+    int32_t _18;
     nn::image::PixelFormat mFormat;  // _1C
     Dimension mImgDimensions;        // _20
-    s64 _28;
+    int64_t _28;
     // rest is related to EXIF processing
 };
 }  // namespace image

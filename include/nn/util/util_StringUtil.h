@@ -2,8 +2,8 @@
 
 namespace nn::util {
 template <typename T>
-inline s32 Strlcpy(T* pOutDst, const T* pSrc, s32 count) {
-    s32 length = 0;
+inline int32_t Strlcpy(T* pOutDst, const T* pSrc, int32_t count) {
+    int32_t length = 0;
 
     if (count > 0) {
         while (--count && *pSrc) {
@@ -20,8 +20,8 @@ inline s32 Strlcpy(T* pOutDst, const T* pSrc, s32 count) {
 }
 
 template <typename T>
-inline s32 Strnlen(const T* pStr, s32 count) {
-    s32 length = 0;
+inline int32_t Strnlen(const T* pStr, int32_t count) {
+    int32_t length = 0;
 
     if (count > 0) {
         while (count && *pStr) {
@@ -35,7 +35,7 @@ inline s32 Strnlen(const T* pStr, s32 count) {
 }
 
 template <typename T>
-inline s32 Strncmp(const T* pStr1, const T* pStr2, s32 count) {
+inline int32_t Strncmp(const T* pStr1, const T* pStr2, int32_t count) {
     if (count == 0)
         return 0;
 

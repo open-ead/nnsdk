@@ -6,16 +6,16 @@
 namespace nn::fs {
 using namespace ams::fs;  // for errors
 
-typedef u64 UserId;
+typedef uint64_t UserId;
 
 /* Handle representing an opened file. */
 struct FileHandle {
-    u64 _internal;
+    uint64_t _internal;
 };
 
 /* Handle representing an opened directory. */
 struct DirectoryHandle {
-    u64 _internal;
+    uint64_t _internal;
 };
 
 /* Kinds of entries within a directory. */
@@ -32,7 +32,7 @@ enum OpenDirectoryMode {
 };
 
 /* Maximum length a directory name can be. */
-constexpr s32 PathLengthMax = 0x300;
+constexpr int32_t PathLengthMax = 0x300;
 
 /* Information about an entry within a directory. */
 struct DirectoryEntry {
@@ -40,9 +40,9 @@ struct DirectoryEntry {
     char _x302[3];
     union {
         DirectoryEntryType mType;
-        u8 mTypeByte;
+        uint8_t mTypeByte;
     };
-    s64 mFileSize;
+    int64_t mFileSize;
 };
 
 /* Mode for opening files. */
@@ -56,9 +56,9 @@ enum OpenMode {
 
 /* Options for reading. */
 struct ReadOption {
-    u32 value;
+    uint32_t value;
 
-    static inline ReadOption MakeOption(u32 value) { return {value}; }
+    static inline ReadOption MakeOption(uint32_t value) { return {value}; }
     static const ReadOption None;
 };
 inline constexpr const ReadOption ReadOption::None = {0};

@@ -23,19 +23,19 @@ struct MomentProcessorState;
 struct TeraPluginProcessorConfig;
 struct TeraPluginProcessorState;
 
-enum class IrCameraStatus : u32 {
+enum class IrCameraStatus : uint32_t {
     Available,
     Unsupported,
     Unconnected,
 };
 
 struct IrCameraHandle {
-    u8 playerNumber;
-    u8 deviceType;
-    u8 reserved[2];
+    uint8_t playerNumber;
+    uint8_t deviceType;
+    uint8_t reserved[2];
 };
 
-IrCameraHandle GetIrCameraHandle(const u32&);
+IrCameraHandle GetIrCameraHandle(const uint32_t&);
 void Initialize(const IrCameraHandle& handle);
 void Finalize(const IrCameraHandle& handle);
 IrCameraStatus GetIrCameraStatus(const IrCameraHandle& handle);
@@ -44,22 +44,22 @@ void StopImageProcessor(const IrCameraHandle& handle);
 void GetMomentProcessorDefaultConfig(MomentProcessorConfig* outConfig);
 void RunMomentProcessor(const IrCameraHandle& handle, const MomentProcessorConfig& config);
 Result GetMomentProcessorState(MomentProcessorState* outState, const IrCameraHandle& handle);
-Result GetMomentProcessorStates(MomentProcessorState* outStates, s32* outCount, s32,
+Result GetMomentProcessorStates(MomentProcessorState* outStates, int32_t* outCount, int32_t,
                                 const IrCameraHandle& handle);
-MomentStatistic CalculateMomentRegionStatistic(const MomentProcessorState* state, const Rect&, s32,
-                                               s32, s32, s32);
+MomentStatistic CalculateMomentRegionStatistic(const MomentProcessorState* state, const Rect&, int32_t,
+                                               int32_t, int32_t, int32_t);
 
 void GetClusteringProcessorDefaultConfig(ClusteringProcessorConfig* outConfig);
 void RunClusteringProcessor(const IrCameraHandle& handle, const ClusteringProcessorConfig& config);
 Result GetClusteringProcessorState(ClusteringProcessorState* outState,
                                    const IrCameraHandle& handle);
-Result GetClusteringProcessorStates(ClusteringProcessorState* outStates, s32* outCount, s32,
+Result GetClusteringProcessorStates(ClusteringProcessorState* outStates, int32_t* outCount, int32_t,
                                     const IrCameraHandle& handle);
 
 void GetImageTransferProcessorDefaultConfig(ImageTransferProcessorConfig* outConfig);
 void RunImageTransferProcessor(const IrCameraHandle& handle,
-                               const ImageTransferProcessorConfig& config, void*, u64);
-Result GetImageTransferProcessorState(ImageTransferProcessorState* outState, void*, u64,
+                               const ImageTransferProcessorConfig& config, void*, uint64_t);
+Result GetImageTransferProcessorState(ImageTransferProcessorState* outState, void*, uint64_t,
                                       const IrCameraHandle& handle);
 
 Result RunHandAnalysis(const IrCameraHandle& handle, const HandAnalysisConfig& config);
@@ -71,14 +71,14 @@ Result RunTeraPluginProcessor(const IrCameraHandle& handle,
 void RunDpdProcessor(const IrCameraHandle& handle);
 void GetDpdProcessorDefaultConfig(DpdProcessorConfig* outConfig);
 void RunDpdProcessor(const IrCameraHandle& handle, const DpdProcessorConfig& config);
-Result GetDpdProcessorStates(DpdProcessorPointingState* outStates, s32* outCount, s32,
+Result GetDpdProcessorStates(DpdProcessorPointingState* outStates, int32_t* outCount, int32_t,
                              const IrCameraHandle& handle);
-Result GetDpdProcessorStates(DpdProcessorState* outStates, s32* outCount, s32,
+Result GetDpdProcessorStates(DpdProcessorState* outStates, int32_t* outCount, int32_t,
                              const IrCameraHandle& handle);
 #endif
 
-Result GetTeraPluginProcessorStates(TeraPluginProcessorState* outStates, s32* outCount, s32, long,
-                                    u32, s32, const IrCameraHandle& handle);
+Result GetTeraPluginProcessorStates(TeraPluginProcessorState* outStates, int32_t* outCount, int32_t, long,
+                                    uint32_t, int32_t, const IrCameraHandle& handle);
 
-Rect MakeRect(s32 x, s32 y, s32 width, s32 height);
+Rect MakeRect(int32_t x, int32_t y, int32_t width, int32_t height);
 }  // namespace nn::irsensor

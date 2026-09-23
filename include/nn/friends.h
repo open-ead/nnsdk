@@ -14,7 +14,7 @@ struct Url {
     char m_Buffer[0xA0];
 };
 struct ImageSize {
-    s32 m_Size;
+    int32_t m_Size;
 };
 
 class AsyncContext;
@@ -23,7 +23,7 @@ class Profile;
 void Initialize();
 Result GetProfileList(nn::friends::AsyncContext* context, nn::friends::Profile* profiles,
                       nn::account::Uid const& userID,
-                      nn::account::NetworkServiceAccountId const* accountIDs, s32 numAccounts);
+                      nn::account::NetworkServiceAccountId const* accountIDs, int32_t numAccounts);
 
 class Profile {
 public:

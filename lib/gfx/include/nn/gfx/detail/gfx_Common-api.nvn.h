@@ -4,6 +4,6 @@
 
 namespace nn::gfx::detail {
 
-typedef u64 NvnHandle;
+typedef uint64_t NvnHandle;
 
 };

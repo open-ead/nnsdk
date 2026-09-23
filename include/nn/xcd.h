@@ -10,7 +10,7 @@
 namespace nn {
 namespace xcd {
 
-typedef u64 DeviceHandle;
+typedef uint64_t DeviceHandle;
 
 }  // namespace xcd
 }  // namespace nn

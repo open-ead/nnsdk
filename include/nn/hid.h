@@ -314,40 +314,40 @@ typedef nn::util::BitFlagSet<32, DigitizerAttribute> DigitizerAttributeSet;
 typedef nn::util::BitFlagSet<32, DigitizerButton> DigitizerButtonSet;
 
 struct AnalogStickState {
-    s32 mX;
-    s32 mY;
+    int32_t mX;
+    int32_t mY;
 };
 
 struct ControllerSupportArg {
-    u8 mMinPlayerCount;
-    u8 mMaxPlayerCount;
-    u8 mTakeOverConnection;
+    uint8_t mMinPlayerCount;
+    uint8_t mMaxPlayerCount;
+    uint8_t mTakeOverConnection;
     bool mLeftJustify;
     bool mPermitJoyconDual;
     bool mSingleMode;
     bool mUseColors;
     Color4u8 mColors[4];
-    u8 mUsingControllerNames;
+    uint8_t mUsingControllerNames;
     char mControllerNames[4][0x81];
 };
 
 struct ControllerSupportArgV2 {
-    u8 mMinPlayerCount;
-    u8 mMaxPlayerCount;
-    u8 mTakeOverConnection;
+    uint8_t mMinPlayerCount;
+    uint8_t mMaxPlayerCount;
+    uint8_t mTakeOverConnection;
     bool mLeftJustify;
     bool mPermitJoyconDual;
     bool mSingleMode;
     bool mUseColors;
     Color4u8 mColors[8];
-    u8 mUsingControllerNames;
+    uint8_t mUsingControllerNames;
     char mControllerNames[8][0x81];
 };
 
 struct ControllerSupportResultInfo {
-    s8 mPlayerCount;
-    s32 mSelectedId;
-    s32 mResult;
+    int8_t mPlayerCount;
+    int32_t mSelectedId;
+    int32_t mResult;
 };
 
 struct NpadControllerColor {
@@ -356,7 +356,7 @@ struct NpadControllerColor {
 };
 
 struct DebugPadState {
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
     DebugPadAttributeSet mAttributes;
     DebugPadButtonSet mButtons;
     AnalogStickState mAnalogStickR;
@@ -364,43 +364,43 @@ struct DebugPadState {
 };
 
 struct TouchState {
-    u64 mDeltaTime;
+    uint64_t mDeltaTime;
     TouchAttributeSet mAttributes;
-    s32 mFingerId;
-    s32 mX;
-    s32 mY;
-    s32 mDiameterX;
-    s32 mDiameterY;
-    s32 mRotationAngle;
+    int32_t mFingerId;
+    int32_t mX;
+    int32_t mY;
+    int32_t mDiameterX;
+    int32_t mDiameterY;
+    int32_t mRotationAngle;
 };
 
-template <u64 N>
+template <uint64_t N>
 struct TouchScreenState {
-    u64 mSamplingNumber;
-    s32 mCount;
+    uint64_t mSamplingNumber;
+    int32_t mCount;
     TouchState mTouches[N];
 };
 
 struct MouseState {
-    u64 mSamplingNumber;
-    s32 mX;
-    s32 mY;
-    s32 mDeltaX;
-    s32 mDeltaY;
-    s32 mWheelDeltaX;
-    s32 mWheelDeltaY;
+    uint64_t mSamplingNumber;
+    int32_t mX;
+    int32_t mY;
+    int32_t mDeltaX;
+    int32_t mDeltaY;
+    int32_t mWheelDeltaX;
+    int32_t mWheelDeltaY;
     MouseButtonSet mButtons;
     MouseAttributeSet mAttributes;
 };
 
 struct KeyboardState {
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
     nn::util::BitFlagSet<32, KeyboardModifier> mModifiers;
     nn::util::BitFlagSet<256, KeyboardKey> mKeys;
 };
 
 struct BasicXpadState {
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
     BasicXpadAttributeSet mAttributes;
     BasicXpadButtonSet mButtons;
     AnalogStickState mAnalogStickL;
@@ -408,7 +408,7 @@ struct BasicXpadState {
 };
 
 struct NpadBaseState {
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
     NpadButtonSet mButtons;
     AnalogStickState mAnalogStickL;
     AnalogStickState mAnalogStickR;
@@ -428,68 +428,68 @@ struct NpadJoyRightState : NpadBaseState {};
 struct NpadPalmaState : NpadBaseState {};
 
 struct DirectionState {
-    f32 mMtx[3][3];
+    float mMtx[3][3];
 };
 
 struct SixAxisSensorState {
-    u64 mDeltaTime;
-    u64 mSamplingNumber;
-    f32 mAcceleration[3];
-    f32 mAngularVelocity[3];
-    f32 mAngle[3];
+    uint64_t mDeltaTime;
+    uint64_t mSamplingNumber;
+    float mAcceleration[3];
+    float mAngularVelocity[3];
+    float mAngle[3];
     DirectionState mDirection;
     SixAxisSensorAttributeSet mAttributes;
 };
 
 struct GesturePoint {
-    s32 mX;
-    s32 mY;
+    int32_t mX;
+    int32_t mY;
 };
 
 struct GestureState {
-    u64 mSamplingNumber;
-    u64 mContextNumber;
+    uint64_t mSamplingNumber;
+    uint64_t mContextNumber;
     GestureType mType;
     GestureDirection mDirection;
-    s32 mX;
-    s32 mY;
-    s32 mDeltaX;
-    s32 mDeltaY;
-    f32 mVelocityX;
-    f32 mVelocityY;
+    int32_t mX;
+    int32_t mY;
+    int32_t mDeltaX;
+    int32_t mDeltaY;
+    float mVelocityX;
+    float mVelocityY;
     GestureAttributeSet mAttributes;
-    f32 mScale;
-    f32 mRotationAngle;
-    s32 mPointCount;
+    float mScale;
+    float mRotationAngle;
+    int32_t mPointCount;
     GesturePoint mPoint[4];
 };
 
 struct DigitizerState {
-    u64 mSamplingNumber;
-    u8 padding_8[0x8];
+    uint64_t mSamplingNumber;
+    uint8_t padding_8[0x8];
     DigitizerAttributeSet mAttributes;
     DigitizerButtonSet mButtons;
-    u8 padding[0x40];
+    uint8_t padding[0x40];
 };
 
 struct SixAxisSensorHandle {
     union {
-        u32 typeValue;
+        uint32_t typeValue;
         struct {
-            u8 mNpadStyleIndex;
-            u8 mPlayerNumber;
-            u8 mDeviceIndex;
+            uint8_t mNpadStyleIndex;
+            uint8_t mPlayerNumber;
+            uint8_t mDeviceIndex;
         };
     };
 };
 
 struct VibrationDeviceHandle {
     union {
-        u32 typeValue;
+        uint32_t typeValue;
         struct {
-            u8 mNpadStyleIndex;
-            u8 mPlayerNumber;
-            u8 mDeviceIndex;
+            uint8_t mNpadStyleIndex;
+            uint8_t mPlayerNumber;
+            uint8_t mDeviceIndex;
         };
     };
 };
@@ -500,29 +500,29 @@ struct VibrationDeviceInfo {
 };
 
 struct VibrationValue {
-    f32 mAmplitudeLow;
-    f32 mFrequencyLow;
-    f32 mAmplitudeHigh;
-    f32 mFrequencyHigh;
+    float mAmplitudeLow;
+    float mFrequencyLow;
+    float mAmplitudeHigh;
+    float mFrequencyHigh;
 };
 
 void InitializeNpad();
-void SetSupportedNpadIdType(const u32*, u64);
+void SetSupportedNpadIdType(const uint32_t*, uint64_t);
 void SetSupportedNpadStyleSet(NpadStyleSet);
-NpadStyleSet GetNpadStyleSet(const u32& id);
-s32 ShowControllerSupport(ControllerSupportResultInfo*, const ControllerSupportArg&);
+NpadStyleSet GetNpadStyleSet(const uint32_t& id);
+int32_t ShowControllerSupport(ControllerSupportResultInfo*, const ControllerSupportArg&);
 
-void GetNpadState(NpadFullKeyState* state, const u32& id);
-void GetNpadState(NpadHandheldState* state, const u32& id);
-void GetNpadState(NpadJoyDualState* state, const u32& id);
-void GetNpadState(NpadJoyLeftState* state, const u32& id);
-void GetNpadState(NpadJoyRightState* state, const u32& id);
+void GetNpadState(NpadFullKeyState* state, const uint32_t& id);
+void GetNpadState(NpadHandheldState* state, const uint32_t& id);
+void GetNpadState(NpadJoyDualState* state, const uint32_t& id);
+void GetNpadState(NpadJoyLeftState* state, const uint32_t& id);
+void GetNpadState(NpadJoyRightState* state, const uint32_t& id);
 
-s32 GetNpadStates(NpadFullKeyState* states, s32 count, const u32& id);
-s32 GetNpadStates(NpadHandheldState* states, s32 count, const u32& id);
-s32 GetNpadStates(NpadJoyDualState* states, s32 count, const u32& id);
-s32 GetNpadStates(NpadJoyLeftState* states, s32 count, const u32& id);
-s32 GetNpadStates(NpadJoyRightState* states, s32 count, const u32& id);
+int32_t GetNpadStates(NpadFullKeyState* states, int32_t count, const uint32_t& id);
+int32_t GetNpadStates(NpadHandheldState* states, int32_t count, const uint32_t& id);
+int32_t GetNpadStates(NpadJoyDualState* states, int32_t count, const uint32_t& id);
+int32_t GetNpadStates(NpadJoyLeftState* states, int32_t count, const uint32_t& id);
+int32_t GetNpadStates(NpadJoyRightState* states, int32_t count, const uint32_t& id);
 
 void InitializeMouse();
 void InitializeKeyboard();
@@ -532,10 +532,10 @@ void GetKeyboardState(KeyboardState*);
 
 namespace system {
 
-typedef u8 UniquePadSerialNumber[0x10];
-typedef u32 BatteryLevel;
+typedef uint8_t UniquePadSerialNumber[0x10];
+typedef uint32_t BatteryLevel;
 
-enum class UniquePadType : u64 {
+enum class UniquePadType : uint64_t {
     Embedded,
     FullKeyController,
     RightController,
@@ -551,7 +551,7 @@ enum class SleepButton {};
 
 enum class CaptureButton {};
 
-enum class AnalogStickManualCalibrationStage : u64 {
+enum class AnalogStickManualCalibrationStage : uint64_t {
     ReleaseFromRight,
     ReleaseFromBottom,
     ReleaseFromLeft,
@@ -563,7 +563,7 @@ enum class AnalogStickManualCalibrationStage : u64 {
     ClearCompleted
 };
 
-enum class SixAxisSensorUserCalibrationStage : u64 { Measuring, Update, Completed };
+enum class SixAxisSensorUserCalibrationStage : uint64_t { Measuring, Update, Completed };
 
 enum class DeviceType {
     FullKey,
@@ -587,7 +587,7 @@ enum class DeviceType {
     System = 31
 };
 
-enum class AppletFooterUiType : u8 {
+enum class AppletFooterUiType : uint8_t {
     None,
     HandheldNone,
     HandheldJoyConLeftOnly,
@@ -620,17 +620,17 @@ typedef nn::util::BitFlagSet<64, CaptureButton> CaptureButtonSet;
 typedef nn::util::BitFlagSet<32, AppletFooterUiAttribute> AppletFooterUiAttributeSet;
 
 struct HomeButtonState {
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
     HomeButtonSet mButtons;
 };
 
 struct SleepButtonState {
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
     SleepButtonSet mButtons;
 };
 
 struct CaptureButtonState {
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
     CaptureButtonSet mButtons;
 };
 
@@ -639,7 +639,7 @@ struct NpadSystemState : NpadBaseState {};
 struct NpadSystemExtState : NpadBaseState {};
 
 struct InputSourceState {
-    u64 mTimestamp;
+    uint64_t mTimestamp;
 };
 
 }  // namespace system
@@ -647,7 +647,7 @@ struct InputSourceState {
 namespace tmp {
 
 struct SixAxisSensorCountState {
-    u8 padding[0x28];
+    uint8_t padding[0x28];
 };
 
 }  // namespace tmp
@@ -658,16 +658,16 @@ template <typename T>
 
 class AtomicStorage {
 public:
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
     T mStorage;
 };
 
-template <typename T, s32 N, typename Atomic>
+template <typename T, int32_t N, typename Atomic>
 struct RingLifo {
-    u64 mTimestamp;
-    u64 mBufferCount = N + 1;
-    u64 mTail = 0;
-    u64 mCount = 0;
+    uint64_t mTimestamp;
+    uint64_t mBufferCount = N + 1;
+    uint64_t mTail = 0;
+    uint64_t mCount = 0;
     Atomic mStorage[N + 1];
 };
 
@@ -679,13 +679,13 @@ typedef detail::RingLifo<DigitizerState, 16, detail::AtomicStorage<DigitizerStat
 
 struct DigitizerSharedMemoryFormat {
     DigitizerLifo mLifo;
-    u8 padding[0x1000 - sizeof(DigitizerLifo)];
+    uint8_t padding[0x1000 - sizeof(DigitizerLifo)];
 };
 
 struct NpadGcTriggerState {
-    u64 mSamplingNumber;
-    u32 mTriggerL;
-    u32 mTriggerR;
+    uint64_t mSamplingNumber;
+    uint32_t mTriggerL;
+    uint32_t mTriggerR;
 };
 
 enum class SixAxisSensorProperties {
@@ -712,36 +712,36 @@ typedef nn::util::BitFlagSet<32, NpadSystemButtonProperties> NpadSystemButtonPro
 
 struct InputDetectorState {
     system::InputSourceState mInputSourceState;
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
 };
 
 struct UniquePadConfig {
     system::UniquePadType mType;
     system::UniquePadInterface mInterface;
     system::UniquePadSerialNumber mSerialNumber;
-    u32 mControllerNumber;
+    uint32_t mControllerNumber;
     bool mIsActive;
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
 };
 
 struct AnalogStickCalibrationStateImpl {
     AnalogStickState mState;
     AnalogStickCalibrationFlagsSet mFlags;
     system::AnalogStickManualCalibrationStage mStage;
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
 };
 
 struct SixAxisSensorUserCalibrationState {
     SixAxisSensorUserCalibrationFlagsSet mFlags;
     system::SixAxisSensorUserCalibrationStage mStage;
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
 };
 
 struct NfcXcdDeviceHandleStateImpl {
     xcd::DeviceHandle mHandle;
     bool mIsAvailable;
     bool mIsActivated;
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
 };
 
 typedef RingLifo<MouseState, 16, AtomicStorage<MouseState>> MouseLifo;
@@ -782,27 +782,27 @@ typedef RingLifo<SixAxisSensorState, 16, NpadGcTriggerStateAtomicStorage> NpadGc
 
 struct DebugPadSharedMemoryFormat {
     DebugPadLifo mLifo;
-    u8 padding[0x400 - sizeof(DebugPadLifo)];
+    uint8_t padding[0x400 - sizeof(DebugPadLifo)];
 };
 
 struct TouchScreenSharedMemoryFormat {
     TouchScreenLifo mLifo;
-    u8 padding[0x3000 - sizeof(TouchScreenLifo)];
+    uint8_t padding[0x3000 - sizeof(TouchScreenLifo)];
 };
 
 struct MouseSharedMemoryFormat {
     MouseLifo mLifo;
-    u8 padding[0x400 - sizeof(MouseLifo)];
+    uint8_t padding[0x400 - sizeof(MouseLifo)];
 };
 
 struct KeyboardSharedMemoryFormat {
     KeyboardLifo mLifo;
-    u8 padding[0x400 - sizeof(KeyboardLifo)];
+    uint8_t padding[0x400 - sizeof(KeyboardLifo)];
 };
 
 struct BasicXpadSharedMemoryEntry {
     BasicXpadLifo mLifo;
-    u8 padding[0x400 - sizeof(BasicXpadLifo)];
+    uint8_t padding[0x400 - sizeof(BasicXpadLifo)];
 };
 
 struct BasicXpadSharedMemoryFormat {
@@ -811,22 +811,22 @@ struct BasicXpadSharedMemoryFormat {
 
 struct HomeButtonSharedMemoryFormat {
     HomeButtonLifo mLifo;
-    u8 padding[0x200 - sizeof(HomeButtonLifo)];
+    uint8_t padding[0x200 - sizeof(HomeButtonLifo)];
 };
 
 struct SleepButtonSharedMemoryFormat {
     SleepButtonLifo mLifo;
-    u8 padding[0x200 - sizeof(SleepButtonLifo)];
+    uint8_t padding[0x200 - sizeof(SleepButtonLifo)];
 };
 
 struct CaptureButtonSharedMemoryFormat {
     CaptureButtonLifo mLifo;
-    u8 padding[0x200 - sizeof(CaptureButtonLifo)];
+    uint8_t padding[0x200 - sizeof(CaptureButtonLifo)];
 };
 
 struct InputDetectorSharedMemoryEntry {
     InputDetectorLifo mLifo;
-    u8 padding[0x80 - sizeof(InputDetectorLifo)];
+    uint8_t padding[0x80 - sizeof(InputDetectorLifo)];
 };
 
 struct InputDetectorSharedMemoryFormat {
@@ -838,7 +838,7 @@ struct UniquePadSharedMemoryEntry {
     AnalogStickCalibrationStateImplLifo mAnalogStickCalibrationStateImplLifo[2];
     SixAxisSensorUserCalibrationStateLifo mSixAxisSensorUserCalibrationStateLifo;
     os::MutexType mMutex;
-    u8 padding[0x400 - 0x1f0];
+    uint8_t padding[0x400 - 0x1f0];
 };
 
 struct UniquePadSharedMemoryFormat {
@@ -883,11 +883,11 @@ struct NpadInternalState {
 #if NN_SDK_VER < NN_MAKE_VER(9, 0, 0)
     NfcXcdDeviceHandleState mNfcXcdDeviceHandle;
     os::MutexType mMutex;
-    u8 padding[0x20];
+    uint8_t padding[0x20];
 #else
     system::AppletFooterUiAttributeSet mAppletFooterUiAttributes;
     system::AppletFooterUiType mAppletFooterUiType;
-    u8 padding[0x7b];
+    uint8_t padding[0x7b];
 #endif
     NpadGcTriggerLifo GcTriggerLifo;
     NpadLarkType mLarkTypeLAndMain;
@@ -899,7 +899,7 @@ struct NpadInternalState {
 
 struct NpadSharedMemoryEntry {
     NpadInternalState mInternalState;
-    u8 padding[0x5000 - sizeof(NpadInternalState)];
+    uint8_t padding[0x5000 - sizeof(NpadInternalState)];
 };
 
 struct NpadSharedMemoryFormat {
@@ -908,15 +908,15 @@ struct NpadSharedMemoryFormat {
 
 struct GestureSharedMemoryFormat {
     GestureLifo mLifo;
-    u8 padding[0x800 - sizeof(GestureLifo)];
+    uint8_t padding[0x800 - sizeof(GestureLifo)];
 };
 
 struct ConsoleSixAxisSensorSharedMemoryFormat {
-    u64 mSamplingNumber;
+    uint64_t mSamplingNumber;
     bool mIsSevenSixAxisSensorAtRest;
-    u32 mVerticalizationError;
-    f32 mGyroBias[3];
-    u8 padding[0x19e4];
+    uint32_t mVerticalizationError;
+    float mGyroBias[3];
+    uint8_t padding[0x19e4];
 };
 
 struct SharedMemoryFormat {
@@ -936,27 +936,27 @@ struct SharedMemoryFormat {
 #if NN_SDK_VER < NN_MAKE_VER(5, 0, 0)
     UniquePadSharedMemoryFormat mUniquePad;
 #else
-    u8 padding_5a00[sizeof(UniquePadSharedMemoryFormat)];
+    uint8_t padding_5a00[sizeof(UniquePadSharedMemoryFormat)];
 #endif
     NpadSharedMemoryFormat mNpad;
     GestureSharedMemoryFormat mGesture;
 #if NN_SDK_VER < NN_MAKE_VER(5, 0, 0)
-    u8 padding_3c200[sizeof(ConsoleSixAxisSensorSharedMemoryFormat)];
+    uint8_t padding_3c200[sizeof(ConsoleSixAxisSensorSharedMemoryFormat)];
 #else
     ConsoleSixAxisSensorSharedMemoryFormat mConsoleSixAxisSensor;
 #endif
 #if NN_SDK_VER >= NN_MAKE_VER(16, 0, 0)
     MouseSharedMemoryFormat mDebugMouse;
 #else
-    u8 padding_3dc00[sizeof(MouseSharedMemoryFormat)];
+    uint8_t padding_3dc00[sizeof(MouseSharedMemoryFormat)];
 #endif
-    u8 padding_3e000[0x2000];
+    uint8_t padding_3e000[0x2000];
 };
 
 static_assert(sizeof(SharedMemoryFormat) == 0x40000);
 
 struct SharedMemoryType {
-    u8 padding[0x40];
+    uint8_t padding[0x40];
 };
 
 struct SharedMemoryHolder {

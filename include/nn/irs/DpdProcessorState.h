@@ -4,10 +4,10 @@
 
 namespace nn::irsensor {
 struct DpdProcessorState {
-    s64 samplingNumber;
-    s64 timeStamp;
-    s32 pointingStatus;
-    f32 positionX;
-    f32 positionY;
+    int64_t samplingNumber;
+    int64_t timeStamp;
+    int32_t pointingStatus;
+    float positionX;
+    float positionY;
 };
 }  // namespace nn::irsensor

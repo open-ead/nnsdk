@@ -4,9 +4,9 @@
 
 namespace nn {
 
-typedef u8 Bit8;
-typedef u16 Bit16;
-typedef u32 Bit32;
-typedef u64 Bit64;
+typedef uint8_t Bit8;
+typedef uint16_t Bit16;
+typedef uint32_t Bit32;
+typedef uint64_t Bit64;
 
 }  // namespace nn

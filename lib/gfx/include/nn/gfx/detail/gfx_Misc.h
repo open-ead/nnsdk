@@ -4,7 +4,7 @@
 
 namespace nn::gfx::detail {
 
-template <class TType, class TValue = u64>
+template <class TType, class TValue = uint64_t>
 union Ptr {
     typedef TValue ValueType;
     typedef TType* PtrType;

@@ -4,13 +4,13 @@
 
 namespace nn::svc {
 struct Handle {
-    u32 handle;
+    uint32_t handle;
 
-    Handle(u32 h) { handle = h; }
+    Handle(uint32_t h) { handle = h; }
 
     Handle() : Handle(0) {}
 
-    operator u32() const { return handle; }
+    operator uint32_t() const { return handle; }
 };
 
 }  // namespace nn::svc
