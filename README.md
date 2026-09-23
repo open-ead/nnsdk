@@ -12,3 +12,9 @@ Usage of the materials here outside of matching decompilation is not supported.
  - [Shadow](https://github.com/shadowninja108/) - For [Skyline](https://github.com/shadowninja108/Skyline), which was the primary inspiration and use case for this repo.
  - [Shibbo](https://github.com/shibbo) - For [OdysseyReversed](https://github.com/shibbo/OdysseyReversed/), which most of these headers came from.
  - [SciresM](https://github.com/SciresM) - For [libvapours](https://github.com/Atmosphere-NX/Atmosphere/tree/master/libraries/libvapours) and exemption for this project to use libvapours results headers under the ISC license
+
+# Development
+For running commands please install [task](https://taskfile.dev), CMake, Ninja and Clang/LLVM.
+The Clang/LLVM toolchain version should match the [image used in the PR](https://github.com/open-ead/containers/blob/main/ubuntu-builder/Dockerfile)
+
+Run `task pr` to run the same checks that the PR runs. Run `task fix` to fix the clang-format issues.

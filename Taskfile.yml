@@ -1,0 +1,96 @@
+version: '3'
+
+# https://taskfile.dev
+
+vars:
+  # Sources to check with clang-format/clang-tidy
+  SOURCES: lib include/nn
+
+tasks:
+  pr:
+    desc: Run everything the PR checks
+    cmds:
+      - task: configure
+      - task: build
+      - task: check
+
+  configure:
+    desc: Configure CMake
+    cmds:
+      - task: update-sources
+      - >
+        cmake -G Ninja -B build -S .
+        -DNN_SDK=1.2.3 
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        -DCMAKE_CXX_STANDARD=17
+        -DCMAKE_C_COMPILER=clang
+        -DCMAKE_CXX_COMPILER=clang++
+  build:
+    desc: Check the project builds
+    cmds:
+      - cmake --build build
+      - cmake --build build --target all_verify_header_sets
+
+  check:
+    desc: Run clang-format and clang-tidy checks
+    cmds:
+      - task: clang-format
+        vars: { ARGS: -n -Werror }
+      - task: clang-tidy
+  fix:
+    desc: Run clang-format to format the code
+    cmds:
+      - task: clang-format
+        vars: { ARGS: -i }
+
+  update-sources:
+    desc: Update sources in CMakeLists.txt
+    env:
+      LC_ALL: C
+    cmds:
+      - silent: true
+        cmd: |
+          echo '# SOURCES_START' > out
+          echo '' >> out
+          find include/nn -type f | sort >> out
+          echo '' >> out
+          echo '# SOURCES_END' >> out
+          sed -i -e 's/^include/    include/' out
+          sed -i -e '/# SOURCES_START/r out' -e '/# SOURCES_START/,/# SOURCES_END/d' CMakeLists.txt
+          echo 'CMakeLists.txt updated'
+
+          rm out
+
+          if [ -n "$CI" ]; then
+            for f in CMakeLists.txt ; do
+              if ! git diff --quiet -- "$f"; then
+                git diff -- "$f"
+                echo "error: sources in $f are out of date. Run \`task configure\` and commit the changes."
+                exit 1
+              fi
+            done
+          fi
+          
+  clean:
+    desc: Remove CMake build files
+    cmds:
+      - rm -rf build
+
+  clang-format:
+    cmds:
+      - > 
+        find {{.SOURCES}}
+        -regextype posix-extended
+        -regex '.*\.[ch](\+\+|pp|xx|c|h)?'
+        | xargs -P {{numCPU}} -n 1
+        clang-format {{.ARGS}}
+  clang-tidy:
+    cmds:
+      - >
+        find {{.SOURCES}}
+        -regextype posix-extended
+        -regex '.*\.[ch](\+\+|pp|xx|c|h)?'
+        | xargs -P {{numCPU}} -n 1
+        clang-tidy --warnings-as-errors='*' --header-filter='include/(nn|nvn|nvnTool|nv)'
+        -p build
+        --quiet
