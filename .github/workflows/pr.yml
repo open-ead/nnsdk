@@ -32,7 +32,7 @@ jobs:
           repository: open-ead/nnware
           path: lib/nnware
       - name: Build nnware
-        working_directory: lib/nnware
+        working-directory: lib/nnware
         env:
           NNSDK_DIR: ${{ github.workspace }}
         run: |
