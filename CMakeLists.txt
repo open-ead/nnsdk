@@ -51,3 +51,6 @@ target_compile_options(nnSdk INTERFACE
     -Wextra
     -Wno-invalid-offsetof
 )
+
+add_subdirectory(lib/nvn)
+add_subdirectory(lib/gfx)
