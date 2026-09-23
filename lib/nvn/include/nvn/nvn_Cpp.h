@@ -1,6 +1,8 @@
 #pragma once
 
+// NOLINTNEXTLINE(modernize-deprecated-headers)
 #include <stddef.h>
+// NOLINTNEXTLINE(modernize-deprecated-headers)
 #include <stdint.h>
 
 // todo: verify ENUM and BITS' void ctor funcitonality
@@ -125,105 +127,105 @@ struct SeparateTextureHandle {
 
 struct DeviceInfo {
     enum Enum {
-        API_MAJOR_VERSION,
-        API_MINOR_VERSION,
-        UNIFORM_BUFFER_BINDINGS_PER_STAGE,
-        MAX_UNIFORM_BUFFER_SIZE,
-        UNIFORM_BUFFER_ALIGNMENT,
-        COLOR_BUFFER_BINDINGS,
-        VERTEX_BUFFER_BINDINGS,
-        TRANSFORM_FEEDBACK_BUFFER_BINDINGS,
-        SHADER_STORAGE_BUFFER_BINDINGS_PER_STAGE,
-        TEXTURE_BINDINGS_PER_STAGE,
-        COUNTER_ALIGNMENT,
-        TRANSFORM_FEEDBACK_BUFFER_ALIGNMENT,
-        TRANSFORM_FEEDBACK_CONTROL_ALIGNMENT,
-        INDIRECT_DRAW_ALIGNMENT,
-        VERTEX_ATTRIBUTES,
-        TEXTURE_DESCRIPTOR_SIZE,
-        SAMPLER_DESCRIPTOR_SIZE,
-        RESERVED_TEXTURE_DESCRIPTORS,
-        RESERVED_SAMPLER_DESCRIPTORS,
-        COMMAND_BUFFER_COMMAND_ALIGNMENT,
-        COMMAND_BUFFER_CONTROL_ALIGNMENT,
-        COMMAND_BUFFER_MIN_COMMAND_SIZE,
-        COMMAND_BUFFER_MIN_CONTROL_SIZE,
-        SHADER_SCRATCH_MEMORY_SCALE_FACTOR_MINIMUM,
-        SHADER_SCRATCH_MEMORY_SCALE_FACTOR_RECOMMENDED,
-        SHADER_SCRATCH_MEMORY_ALIGNMENT,
-        SHADER_SCRATCH_MEMORY_GRANULARITY,
-        MAX_TEXTURE_ANISOTROPY,
-        MAX_COMPUTE_WORK_GROUP_SIZE_X,
-        MAX_COMPUTE_WORK_GROUP_SIZE_Y,
-        MAX_COMPUTE_WORK_GROUP_SIZE_Z,
-        MAX_COMPUTE_WORK_GROUP_SIZE_THREADS,
-        MAX_COMPUTE_DISPATCH_WORK_GROUPS_X,
-        MAX_COMPUTE_DISPATCH_WORK_GROUPS_Y,
-        MAX_COMPUTE_DISPATCH_WORK_GROUPS_Z,
-        IMAGE_BINDINGS_PER_STAGE,
-        MAX_TEXTURE_POOL_SIZE,
-        MAX_SAMPLER_POOL_SIZE,
-        MAX_VIEWPORTS,
-        MEMPOOL_TEXTURE_OBJECT_PAGE_ALIGNMENT,
-        SUPPORTS_MIN_MAX_FILTERING,
-        SUPPORTS_STENCIL8_FORMAT,
-        SUPPORTS_ASTC_FORMATS,
-        L2_SIZE,
-        MAX_TEXTURE_LEVELS,
-        MAX_TEXTURE_LAYERS,
-        GLSLC_MAX_SUPPORTED_GPU_CODE_MAJOR_VERSION,
-        GLSLC_MIN_SUPPORTED_GPU_CODE_MAJOR_VERSION,
-        GLSLC_MAX_SUPPORTED_GPU_CODE_MINOR_VERSION,
-        GLSLC_MIN_SUPPORTED_GPU_CODE_MINOR_VERSION,
-        SUPPORTS_CONSERVATIVE_RASTER,
-        SUBPIXEL_BITS,
-        MAX_SUBPIXEL_BIAS_BITS,
-        INDIRECT_DISPATCH_ALIGNMENT,
-        ZCULL_SAVE_RESTORE_ALIGNMENT,
-        SHADER_SCRATCH_MEMORY_COMPUTE_SCALE_FACTOR_MINIMUM,
-        LINEAR_TEXTURE_STRIDE_ALIGNMENT,
-        LINEAR_RENDER_TARGET_STRIDE_ALIGNMENT,
-        MEMORY_POOL_PAGE_SIZE,
-        SUPPORTS_ZERO_FROM_UNMAPPED_VIRTUAL_POOL_PAGES,
-        UNIFORM_BUFFER_UPDATE_ALIGNMENT,
-        MAX_TEXTURE_SIZE,
-        MAX_BUFFER_TEXTURE_SIZE,
-        MAX_3D_TEXTURE_SIZE,
-        MAX_CUBE_MAP_TEXTURE_SIZE,
-        MAX_RECTANGLE_TEXTURE_SIZE,
-        SUPPORTS_PASSTHROUGH_GEOMETRY_SHADERS,
-        SUPPORTS_VIEWPORT_SWIZZLE,
-        SUPPORTS_SPARSE_TILED_PACKAGED_TEXTURES,
-        SUPPORTS_ADVANCED_BLEND_MODES,
-        MAX_PRESENT_INTERVAL,
-        SUPPORTS_DRAW_TEXTURE,
-        SUPPORTS_TARGET_INDEPENDENT_RASTERIZATION,
-        SUPPORTS_FRAGMENT_COVERAGE_TO_COLOR,
-        SUPPORTS_POST_DEPTH_COVERAGE,
-        SUPPORTS_IMAGES_USING_TEXTURE_HANDLES,
-        SUPPORTS_SAMPLE_LOCATIONS,
-        MAX_SAMPLE_LOCATION_TABLE_ENTRIES,
-        SHADER_CODE_MEMORY_POOL_PADDING_SIZE,
-        MAX_PATCH_SIZE,
-        QUEUE_COMMAND_MEMORY_GRANULARITY,
-        QUEUE_COMMAND_MEMORY_MIN_SIZE,
-        QUEUE_COMMAND_MEMORY_DEFAULT_SIZE,
-        QUEUE_COMPUTE_MEMORY_GRANULARITY,
-        QUEUE_COMPUTE_MEMORY_MIN_SIZE,
-        QUEUE_COMPUTE_MEMORY_DEFAULT_SIZE,
-        QUEUE_COMMAND_MEMORY_MIN_FLUSH_THRESHOLD,
-        SUPPORTS_FRAGMENT_SHADER_INTERLOCK,
-        MAX_TEXTURES_PER_WINDOW,
-        MIN_TEXTURES_PER_WINDOW,
-        SUPPORTS_DEBUG_LAYER,
-        QUEUE_CONTROL_MEMORY_MIN_SIZE,
-        QUEUE_CONTROL_MEMORY_DEFAULT_SIZE,
-        QUEUE_CONTROL_MEMORY_GRANULARITY,
-        SEPARATE_TEXTURE_BINDINGS_PER_STAGE,
-        SEPARATE_SAMPLER_BINDINGS_PER_STAGE,
-        DEBUG_GROUPS_MAX_DOMAIN_ID,
-        EVENTS_SUPPORT_REDUCTION_OPERATIONS,
-        NVN_DEVICE_INFO_LARGE = -1
+        API_MAJOR_VERSION = 0,
+        API_MINOR_VERSION = 1,
+        UNIFORM_BUFFER_BINDINGS_PER_STAGE = 2,
+        MAX_UNIFORM_BUFFER_SIZE = 3,
+        UNIFORM_BUFFER_ALIGNMENT = 4,
+        COLOR_BUFFER_BINDINGS = 5,
+        VERTEX_BUFFER_BINDINGS = 6,
+        TRANSFORM_FEEDBACK_BUFFER_BINDINGS = 7,
+        SHADER_STORAGE_BUFFER_BINDINGS_PER_STAGE = 8,
+        TEXTURE_BINDINGS_PER_STAGE = 9,
+        COUNTER_ALIGNMENT = 10,
+        TRANSFORM_FEEDBACK_BUFFER_ALIGNMENT = 11,
+        TRANSFORM_FEEDBACK_CONTROL_ALIGNMENT = 12,
+        INDIRECT_DRAW_ALIGNMENT = 13,
+        VERTEX_ATTRIBUTES = 14,
+        TEXTURE_DESCRIPTOR_SIZE = 15,
+        SAMPLER_DESCRIPTOR_SIZE = 16,
+        RESERVED_TEXTURE_DESCRIPTORS = 17,
+        RESERVED_SAMPLER_DESCRIPTORS = 18,
+        COMMAND_BUFFER_COMMAND_ALIGNMENT = 19,
+        COMMAND_BUFFER_CONTROL_ALIGNMENT = 20,
+        COMMAND_BUFFER_MIN_COMMAND_SIZE = 21,
+        COMMAND_BUFFER_MIN_CONTROL_SIZE = 22,
+        SHADER_SCRATCH_MEMORY_SCALE_FACTOR_MINIMUM = 23,
+        SHADER_SCRATCH_MEMORY_SCALE_FACTOR_RECOMMENDED = 24,
+        SHADER_SCRATCH_MEMORY_ALIGNMENT = 25,
+        SHADER_SCRATCH_MEMORY_GRANULARITY = 26,
+        MAX_TEXTURE_ANISOTROPY = 27,
+        MAX_COMPUTE_WORK_GROUP_SIZE_X = 28,
+        MAX_COMPUTE_WORK_GROUP_SIZE_Y = 29,
+        MAX_COMPUTE_WORK_GROUP_SIZE_Z = 30,
+        MAX_COMPUTE_WORK_GROUP_SIZE_THREADS = 31,
+        MAX_COMPUTE_DISPATCH_WORK_GROUPS_X = 32,
+        MAX_COMPUTE_DISPATCH_WORK_GROUPS_Y = 33,
+        MAX_COMPUTE_DISPATCH_WORK_GROUPS_Z = 34,
+        IMAGE_BINDINGS_PER_STAGE = 35,
+        MAX_TEXTURE_POOL_SIZE = 36,
+        MAX_SAMPLER_POOL_SIZE = 37,
+        MAX_VIEWPORTS = 38,
+        MEMPOOL_TEXTURE_OBJECT_PAGE_ALIGNMENT = 39,
+        SUPPORTS_MIN_MAX_FILTERING = 40,
+        SUPPORTS_STENCIL8_FORMAT = 41,
+        SUPPORTS_ASTC_FORMATS = 42,
+        L2_SIZE = 43,
+        MAX_TEXTURE_LEVELS = 44,
+        MAX_TEXTURE_LAYERS = 45,
+        GLSLC_MAX_SUPPORTED_GPU_CODE_MAJOR_VERSION = 46,
+        GLSLC_MIN_SUPPORTED_GPU_CODE_MAJOR_VERSION = 47,
+        GLSLC_MAX_SUPPORTED_GPU_CODE_MINOR_VERSION = 48,
+        GLSLC_MIN_SUPPORTED_GPU_CODE_MINOR_VERSION = 49,
+        SUPPORTS_CONSERVATIVE_RASTER = 50,
+        SUBPIXEL_BITS = 51,
+        MAX_SUBPIXEL_BIAS_BITS = 52,
+        INDIRECT_DISPATCH_ALIGNMENT = 53,
+        ZCULL_SAVE_RESTORE_ALIGNMENT = 54,
+        SHADER_SCRATCH_MEMORY_COMPUTE_SCALE_FACTOR_MINIMUM = 55,
+        LINEAR_TEXTURE_STRIDE_ALIGNMENT = 56,
+        LINEAR_RENDER_TARGET_STRIDE_ALIGNMENT = 57,
+        MEMORY_POOL_PAGE_SIZE = 58,
+        SUPPORTS_ZERO_FROM_UNMAPPED_VIRTUAL_POOL_PAGES = 59,
+        UNIFORM_BUFFER_UPDATE_ALIGNMENT = 60,
+        MAX_TEXTURE_SIZE = 61,
+        MAX_BUFFER_TEXTURE_SIZE = 62,
+        MAX_3D_TEXTURE_SIZE = 63,
+        MAX_CUBE_MAP_TEXTURE_SIZE = 64,
+        MAX_RECTANGLE_TEXTURE_SIZE = 65,
+        SUPPORTS_PASSTHROUGH_GEOMETRY_SHADERS = 66,
+        SUPPORTS_VIEWPORT_SWIZZLE = 67,
+        SUPPORTS_SPARSE_TILED_PACKAGED_TEXTURES = 68,
+        SUPPORTS_ADVANCED_BLEND_MODES = 69,
+        MAX_PRESENT_INTERVAL = 70,
+        SUPPORTS_DRAW_TEXTURE = 71,
+        SUPPORTS_TARGET_INDEPENDENT_RASTERIZATION = 72,
+        SUPPORTS_FRAGMENT_COVERAGE_TO_COLOR = 73,
+        SUPPORTS_POST_DEPTH_COVERAGE = 74,
+        SUPPORTS_IMAGES_USING_TEXTURE_HANDLES = 75,
+        SUPPORTS_SAMPLE_LOCATIONS = 76,
+        MAX_SAMPLE_LOCATION_TABLE_ENTRIES = 77,
+        SHADER_CODE_MEMORY_POOL_PADDING_SIZE = 78,
+        MAX_PATCH_SIZE = 79,
+        QUEUE_COMMAND_MEMORY_GRANULARITY = 80,
+        QUEUE_COMMAND_MEMORY_MIN_SIZE = 81,
+        QUEUE_COMMAND_MEMORY_DEFAULT_SIZE = 82,
+        QUEUE_COMPUTE_MEMORY_GRANULARITY = 83,
+        QUEUE_COMPUTE_MEMORY_MIN_SIZE = 84,
+        QUEUE_COMPUTE_MEMORY_DEFAULT_SIZE = 85,
+        QUEUE_COMMAND_MEMORY_MIN_FLUSH_THRESHOLD = 86,
+        SUPPORTS_FRAGMENT_SHADER_INTERLOCK = 87,
+        MAX_TEXTURES_PER_WINDOW = 88,
+        MIN_TEXTURES_PER_WINDOW = 89,
+        SUPPORTS_DEBUG_LAYER = 90,
+        QUEUE_CONTROL_MEMORY_MIN_SIZE = 91,
+        QUEUE_CONTROL_MEMORY_DEFAULT_SIZE = 92,
+        QUEUE_CONTROL_MEMORY_GRANULARITY = 93,
+        SEPARATE_TEXTURE_BINDINGS_PER_STAGE = 94,
+        SEPARATE_SAMPLER_BINDINGS_PER_STAGE = 95,
+        DEBUG_GROUPS_MAX_DOMAIN_ID = 96,
+        EVENTS_SUPPORT_REDUCTION_OPERATIONS = 97,
+        NVN_DEVICE_INFO_LARGE = -1,
     };
 
     NVN_ENUM(DeviceInfo);
@@ -231,195 +233,195 @@ struct DeviceInfo {
 
 struct TextureTarget {
     enum Enum {
-        TARGET_1D,
-        TARGET_2D,
-        TARGET_3D,
-        TARGET_1D_ARRAY,
-        TARGET_2D_ARRAY,
-        TARGET_2D_MULTISAMPLE,
-        TARGET_2D_MULTISAMPLE_ARRAY,
-        TARGET_RECTANGLE,
-        TARGET_CUBEMAP,
-        TARGET_CUBEMAP_ARRAY,
-        TARGET_BUFFER,
-        NVN_TEXTURE_TARGET_LARGE = -1
+        TARGET_1D = 0,
+        TARGET_2D = 1,
+        TARGET_3D = 2,
+        TARGET_1D_ARRAY = 3,
+        TARGET_2D_ARRAY = 4,
+        TARGET_2D_MULTISAMPLE = 5,
+        TARGET_2D_MULTISAMPLE_ARRAY = 6,
+        TARGET_RECTANGLE = 7,
+        TARGET_CUBEMAP = 8,
+        TARGET_CUBEMAP_ARRAY = 9,
+        TARGET_BUFFER = 10,
+        NVN_TEXTURE_TARGET_LARGE = -1,
     };
 
     NVN_ENUM(TextureTarget);
 };
 
 struct TextureSwizzle {
-    enum Enum { ZERO, ONE, R, G, B, A, NVN_TEXTURE_SWIZZLE_LARGE = -1 };
+    enum Enum { ZERO = 0, ONE = 1, R = 2, G = 3, B = 4, A = 5, NVN_TEXTURE_SWIZZLE_LARGE = -1 };
 
     NVN_ENUM(TextureSwizzle);
 };
 
 struct TextureDepthStencilMode {
-    enum Enum { DEPTH, STENCIL, NVN_TEXTURE_DEPTH_STENCIL_MODE_LARGE = -1 };
+    enum Enum { DEPTH = 0, STENCIL = 1, NVN_TEXTURE_DEPTH_STENCIL_MODE_LARGE = -1 };
 
     NVN_ENUM(TextureDepthStencilMode);
 };
 
 struct Format {
     enum Enum {
-        NONE,
-        R8,
-        R8SN,
-        R8UI,
-        R8I,
-        R16F,
-        R16,
-        R16SN,
-        R16UI,
-        R16I,
-        R32F,
-        R32UI,
-        R32I,
-        RG8,
-        RG8SN,
-        RG8UI,
-        RG8I,
-        RG16F,
-        RG16,
-        RG16SN,
-        RG16UI,
-        RG16I,
-        RG32F,
-        RG32UI,
-        RG32I,
-        RGB8,
-        RGB8SN,
-        RGB8UI,
-        RGB8I,
-        RGB16F,
-        RGB16,
-        RGB16SN,
-        RGB16UI,
-        RGB16I,
-        RGB32F,
-        RGB32UI,
-        RGB32I,
-        RGBA8,
-        RGBA8SN,
-        RGBA8UI,
-        RGBA8I,
-        RGBA16F,
-        RGBA16,
-        RGBA16SN,
-        RGBA16UI,
-        RGBA16I,
-        RGBA32F,
-        RGBA32UI,
-        RGBA32I,
-        STENCIL8,
-        DEPTH16,
-        DEPTH24,
-        DEPTH32F,
-        DEPTH24_STENCIL8,
-        DEPTH32F_STENCIL8,
-        RGBX8_SRGB,
-        RGBA8_SRGB,
-        RGBA4,
-        RGB5,
-        RGB5A1,
-        RGB565,
-        RGB10A2,
-        RGB10A2UI,
-        R11G11B10F,
-        RGB9E5F,
-        RGB_DXT1,
-        RGBA_DXT1,
-        RGBA_DXT3,
-        RGBA_DXT5,
-        RGB_DXT1_SRGB,
-        RGBA_DXT1_SRGB,
-        RGBA_DXT3_SRGB,
-        RGBA_DXT5_SRGB,
-        RGTC1_UNORM,
-        RGTC1_SNORM,
-        RGTC2_UNORM,
-        RGTC2_SNORM,
-        BPTC_UNORM,
-        BPTC_UNORM_SRGB,
-        BPTC_SFLOAT,
-        BPTC_UFLOAT,
-        R8_UI2F,
-        R8_I2F,
-        R16_UI2F,
-        R16_I2F,
-        R32_UI2F,
-        R32_I2F,
-        RG8_UI2F,
-        RG8_I2F,
-        RG16_UI2F,
-        RG16_I2F,
-        RG32_UI2F,
-        RG32_I2F,
-        RGB8_UI2F,
-        RGB8_I2F,
-        RGB16_UI2F,
-        RGB16_I2F,
-        RGB32_UI2F,
-        RGB32_I2F,
-        RGBA8_UI2F,
-        RGBA8_I2F,
-        RGBA16_UI2F,
-        RGBA16_I2F,
-        RGBA32_UI2F,
-        RGBA32_I2F,
-        RGB10A2SN,
-        RGB10A2I,
-        RGB10A2_UI2F,
-        RGB10A2_I2F,
-        RGBX8,
-        RGBX8SN,
-        RGBX8UI,
-        RGBX8I,
-        RGBX16F,
-        RGBX16,
-        RGBX16SN,
-        RGBX16UI,
-        RGBX16I,
-        RGBX32F,
-        RGBX32UI,
-        RGBX32I,
-        RGBA_ASTC_4x4,
-        RGBA_ASTC_5x4,
-        RGBA_ASTC_5x5,
-        RGBA_ASTC_6x5,
-        RGBA_ASTC_6x6,
-        RGBA_ASTC_8x5,
-        RGBA_ASTC_8x6,
-        RGBA_ASTC_8x8,
-        RGBA_ASTC_10x5,
-        RGBA_ASTC_10x6,
-        RGBA_ASTC_10x8,
-        RGBA_ASTC_10x10,
-        RGBA_ASTC_12x10,
-        RGBA_ASTC_12x12,
-        RGBA_ASTC_4x4_SRGB,
-        RGBA_ASTC_5x4_SRGB,
-        RGBA_ASTC_5x5_SRGB,
-        RGBA_ASTC_6x5_SRGB,
-        RGBA_ASTC_6x6_SRGB,
-        RGBA_ASTC_8x5_SRGB,
-        RGBA_ASTC_8x6_SRGB,
-        RGBA_ASTC_8x8_SRGB,
-        RGBA_ASTC_10x5_SRGB,
-        RGBA_ASTC_10x6_SRGB,
-        RGBA_ASTC_10x8_SRGB,
-        RGBA_ASTC_10x10_SRGB,
-        RGBA_ASTC_12x10_SRGB,
-        RGBA_ASTC_12x12_SRGB,
-        BGR565,
-        BGR5,
-        BGR5A1,
-        A1BGR5,
-        BGRX8,
-        BGRA8,
-        BGRX8_SRGB,
-        BGRA8_SRGB,
-        NVN_FORMAT_LARGE = -1
+        NONE = 0,
+        R8 = 1,
+        R8SN = 2,
+        R8UI = 3,
+        R8I = 4,
+        R16F = 5,
+        R16 = 6,
+        R16SN = 7,
+        R16UI = 8,
+        R16I = 9,
+        R32F = 10,
+        R32UI = 11,
+        R32I = 12,
+        RG8 = 13,
+        RG8SN = 14,
+        RG8UI = 15,
+        RG8I = 16,
+        RG16F = 17,
+        RG16 = 18,
+        RG16SN = 19,
+        RG16UI = 20,
+        RG16I = 21,
+        RG32F = 22,
+        RG32UI = 23,
+        RG32I = 24,
+        RGB8 = 25,
+        RGB8SN = 26,
+        RGB8UI = 27,
+        RGB8I = 28,
+        RGB16F = 29,
+        RGB16 = 30,
+        RGB16SN = 31,
+        RGB16UI = 32,
+        RGB16I = 33,
+        RGB32F = 34,
+        RGB32UI = 35,
+        RGB32I = 36,
+        RGBA8 = 37,
+        RGBA8SN = 38,
+        RGBA8UI = 39,
+        RGBA8I = 40,
+        RGBA16F = 41,
+        RGBA16 = 42,
+        RGBA16SN = 43,
+        RGBA16UI = 44,
+        RGBA16I = 45,
+        RGBA32F = 46,
+        RGBA32UI = 47,
+        RGBA32I = 48,
+        STENCIL8 = 49,
+        DEPTH16 = 50,
+        DEPTH24 = 51,
+        DEPTH32F = 52,
+        DEPTH24_STENCIL8 = 53,
+        DEPTH32F_STENCIL8 = 54,
+        RGBX8_SRGB = 55,
+        RGBA8_SRGB = 56,
+        RGBA4 = 57,
+        RGB5 = 58,
+        RGB5A1 = 59,
+        RGB565 = 60,
+        RGB10A2 = 61,
+        RGB10A2UI = 62,
+        R11G11B10F = 63,
+        RGB9E5F = 64,
+        RGB_DXT1 = 65,
+        RGBA_DXT1 = 66,
+        RGBA_DXT3 = 67,
+        RGBA_DXT5 = 68,
+        RGB_DXT1_SRGB = 69,
+        RGBA_DXT1_SRGB = 70,
+        RGBA_DXT3_SRGB = 71,
+        RGBA_DXT5_SRGB = 72,
+        RGTC1_UNORM = 73,
+        RGTC1_SNORM = 74,
+        RGTC2_UNORM = 75,
+        RGTC2_SNORM = 76,
+        BPTC_UNORM = 77,
+        BPTC_UNORM_SRGB = 78,
+        BPTC_SFLOAT = 79,
+        BPTC_UFLOAT = 80,
+        R8_UI2F = 81,
+        R8_I2F = 82,
+        R16_UI2F = 83,
+        R16_I2F = 84,
+        R32_UI2F = 85,
+        R32_I2F = 86,
+        RG8_UI2F = 87,
+        RG8_I2F = 88,
+        RG16_UI2F = 89,
+        RG16_I2F = 90,
+        RG32_UI2F = 91,
+        RG32_I2F = 92,
+        RGB8_UI2F = 93,
+        RGB8_I2F = 94,
+        RGB16_UI2F = 95,
+        RGB16_I2F = 96,
+        RGB32_UI2F = 97,
+        RGB32_I2F = 98,
+        RGBA8_UI2F = 99,
+        RGBA8_I2F = 100,
+        RGBA16_UI2F = 101,
+        RGBA16_I2F = 102,
+        RGBA32_UI2F = 103,
+        RGBA32_I2F = 104,
+        RGB10A2SN = 105,
+        RGB10A2I = 106,
+        RGB10A2_UI2F = 107,
+        RGB10A2_I2F = 108,
+        RGBX8 = 109,
+        RGBX8SN = 110,
+        RGBX8UI = 111,
+        RGBX8I = 112,
+        RGBX16F = 113,
+        RGBX16 = 114,
+        RGBX16SN = 115,
+        RGBX16UI = 116,
+        RGBX16I = 117,
+        RGBX32F = 118,
+        RGBX32UI = 119,
+        RGBX32I = 120,
+        RGBA_ASTC_4x4 = 121,
+        RGBA_ASTC_5x4 = 122,
+        RGBA_ASTC_5x5 = 123,
+        RGBA_ASTC_6x5 = 124,
+        RGBA_ASTC_6x6 = 125,
+        RGBA_ASTC_8x5 = 126,
+        RGBA_ASTC_8x6 = 127,
+        RGBA_ASTC_8x8 = 128,
+        RGBA_ASTC_10x5 = 129,
+        RGBA_ASTC_10x6 = 130,
+        RGBA_ASTC_10x8 = 131,
+        RGBA_ASTC_10x10 = 132,
+        RGBA_ASTC_12x10 = 133,
+        RGBA_ASTC_12x12 = 134,
+        RGBA_ASTC_4x4_SRGB = 135,
+        RGBA_ASTC_5x4_SRGB = 136,
+        RGBA_ASTC_5x5_SRGB = 137,
+        RGBA_ASTC_6x5_SRGB = 138,
+        RGBA_ASTC_6x6_SRGB = 139,
+        RGBA_ASTC_8x5_SRGB = 140,
+        RGBA_ASTC_8x6_SRGB = 141,
+        RGBA_ASTC_8x8_SRGB = 142,
+        RGBA_ASTC_10x5_SRGB = 143,
+        RGBA_ASTC_10x6_SRGB = 144,
+        RGBA_ASTC_10x8_SRGB = 145,
+        RGBA_ASTC_10x10_SRGB = 146,
+        RGBA_ASTC_12x10_SRGB = 147,
+        RGBA_ASTC_12x12_SRGB = 148,
+        BGR565 = 149,
+        BGR5 = 150,
+        BGR5A1 = 151,
+        A1BGR5 = 152,
+        BGRX8 = 153,
+        BGRA8 = 154,
+        BGRX8_SRGB = 155,
+        BGRA8_SRGB = 156,
+        NVN_FORMAT_LARGE = -1,
     };
 
     NVN_ENUM(Format);
@@ -428,25 +430,25 @@ struct Format {
 struct BlendFunc {
     enum Enum {
         ZERO = 1,
-        ONE,
-        SRC_COLOR,
-        ONE_MINUS_SRC_COLOR,
-        SRC_ALPHA,
-        ONE_MINUS_SRC_ALPHA,
-        DST_ALPHA,
-        ONE_MINUS_DST_ALPHA,
-        DST_COLOR,
-        ONE_MINUS_DST_COLOR,
-        SRC_ALPHA_SATURATE,
+        ONE = 2,
+        SRC_COLOR = 3,
+        ONE_MINUS_SRC_COLOR = 4,
+        SRC_ALPHA = 5,
+        ONE_MINUS_SRC_ALPHA = 6,
+        DST_ALPHA = 7,
+        ONE_MINUS_DST_ALPHA = 8,
+        DST_COLOR = 9,
+        ONE_MINUS_DST_COLOR = 10,
+        SRC_ALPHA_SATURATE = 11,
         SRC1_COLOR = 16,
-        ONE_MINUS_SRC1_COLOR,
-        SRC1_ALPHA,
-        ONE_MINUS_SRC1_ALPHA,
+        ONE_MINUS_SRC1_COLOR = 17,
+        SRC1_ALPHA = 18,
+        ONE_MINUS_SRC1_ALPHA = 19,
         CONSTANT_COLOR = 97,
-        ONE_MINUS_CONSTANT_COLOR,
-        CONSTANT_ALPHA,
-        ONE_MINUS_CONSTANT_ALPHA,
-        NVN_BLEND_FUNC_LARGE = -1
+        ONE_MINUS_CONSTANT_COLOR = 98,
+        CONSTANT_ALPHA = 99,
+        ONE_MINUS_CONSTANT_ALPHA = 100,
+        NVN_BLEND_FUNC_LARGE = -1,
     };
 
     NVN_ENUM(BlendFunc);
@@ -454,90 +456,102 @@ struct BlendFunc {
 
 struct BlendAdvancedMode {
     enum Enum {
-        BLEND_NONE,
+        BLEND_NONE = 0,
         BLEND_ZERO = 5,
-        BLEND_SRC,
-        BLEND_DST,
-        BLEND_SRC_OVER,
-        BLEND_DST_OVER,
-        BLEND_SRC_IN,
-        BLEND_DST_IN,
-        BLEND_SRC_OUT,
-        BLEND_DST_OUT,
-        BLEND_SRC_ATOP,
-        BLEND_DST_ATOP,
-        BLEND_XOR,
-        BLEND_PLUS,
-        BLEND_PLUS_CLAMPED,
-        BLEND_PLUS_CLAMPED_ALPHA,
-        BLEND_PLUS_DARKER,
-        BLEND_MULTIPLY,
-        BLEND_SCREEN,
-        BLEND_OVERLAY,
-        BLEND_DARKEN,
-        BLEND_LIGHTEN,
-        BLEND_COLORDODGE,
-        BLEND_COLORBURN,
-        BLEND_HARDLIGHT,
-        BLEND_SOFTLIGHT,
-        BLEND_DIFFERENCE,
-        BLEND_MINUS,
-        BLEND_MINUS_CLAMPED,
-        BLEND_EXCLUSION,
-        BLEND_CONTRAST,
-        BLEND_INVERT,
-        BLEND_INVERT_RGB,
-        BLEND_INVERT_OVG,
-        BLEND_LINEARDODGE,
-        BLEND_LINEARBURN,
-        BLEND_VIVIDLIGHT,
-        BLEND_LINEARLIGHT,
-        BLEND_PINLIGHT,
-        BLEND_HARDMIX,
-        BLEND_RED,
-        BLEND_GREEN,
-        BLEND_BLUE,
-        BLEND_HSL_HUE,
-        BLEND_HSL_SATURATION,
-        BLEND_HSL_COLOR,
-        BLEND_HSL_LUMINOSITY,
-        NVN_BLEND_ADVANCED_MODE_LARGE = -1
+        BLEND_SRC = 6,
+        BLEND_DST = 7,
+        BLEND_SRC_OVER = 8,
+        BLEND_DST_OVER = 9,
+        BLEND_SRC_IN = 10,
+        BLEND_DST_IN = 11,
+        BLEND_SRC_OUT = 12,
+        BLEND_DST_OUT = 13,
+        BLEND_SRC_ATOP = 14,
+        BLEND_DST_ATOP = 15,
+        BLEND_XOR = 16,
+        BLEND_PLUS = 17,
+        BLEND_PLUS_CLAMPED = 18,
+        BLEND_PLUS_CLAMPED_ALPHA = 19,
+        BLEND_PLUS_DARKER = 20,
+        BLEND_MULTIPLY = 21,
+        BLEND_SCREEN = 22,
+        BLEND_OVERLAY = 23,
+        BLEND_DARKEN = 24,
+        BLEND_LIGHTEN = 25,
+        BLEND_COLORDODGE = 26,
+        BLEND_COLORBURN = 27,
+        BLEND_HARDLIGHT = 28,
+        BLEND_SOFTLIGHT = 29,
+        BLEND_DIFFERENCE = 30,
+        BLEND_MINUS = 31,
+        BLEND_MINUS_CLAMPED = 32,
+        BLEND_EXCLUSION = 33,
+        BLEND_CONTRAST = 34,
+        BLEND_INVERT = 35,
+        BLEND_INVERT_RGB = 36,
+        BLEND_INVERT_OVG = 37,
+        BLEND_LINEARDODGE = 38,
+        BLEND_LINEARBURN = 39,
+        BLEND_VIVIDLIGHT = 40,
+        BLEND_LINEARLIGHT = 41,
+        BLEND_PINLIGHT = 42,
+        BLEND_HARDMIX = 43,
+        BLEND_RED = 44,
+        BLEND_GREEN = 45,
+        BLEND_BLUE = 46,
+        BLEND_HSL_HUE = 47,
+        BLEND_HSL_SATURATION = 48,
+        BLEND_HSL_COLOR = 49,
+        BLEND_HSL_LUMINOSITY = 50,
+        NVN_BLEND_ADVANCED_MODE_LARGE = -1,
     };
 
     NVN_ENUM(BlendAdvancedMode);
 };
 
 struct BlendAdvancedOverlap {
-    enum Enum { UNCORRELATED, DISJOINT, CONJOINT, NVN_BLEND_ADVANCED_OVERLAP_LARGE = -1 };
+    enum Enum {
+        UNCORRELATED = 0,
+        DISJOINT = 1,
+        CONJOINT = 2,
+        NVN_BLEND_ADVANCED_OVERLAP_LARGE = -1,
+    };
 
     NVN_ENUM(BlendAdvancedOverlap);
 };
 
 struct BlendEquation {
-    enum Enum { ADD = 1, SUB, REVERSE_SUB, MIN, MAX, NVN_BLEND_EQUATION_LARGE = -1 };
+    enum Enum {
+        ADD = 1,
+        SUB = 2,
+        REVERSE_SUB = 3,
+        MIN = 4,
+        MAX = 5,
+        NVN_BLEND_EQUATION_LARGE = -1,
+    };
 
     NVN_ENUM(BlendEquation);
 };
 
 struct LogicOp {
     enum Enum {
-        CLEAR,
-        AND,
-        AND_REVERSE,
-        COPY,
-        AND_INVERTED,
-        NOOP,
-        XOR,
-        OR,
-        NOR,
-        EQUIV,
-        INVERT,
-        OR_REVERSE,
-        COPY_INVERTED,
-        OR_INVERTED,
-        NAND,
-        SET,
-        NVN_LOGIC_OP_LARGE = -1
+        CLEAR = 0,
+        AND = 1,
+        AND_REVERSE = 2,
+        COPY = 3,
+        AND_INVERTED = 4,
+        NOOP = 5,
+        XOR = 6,
+        OR = 7,
+        NOR = 8,
+        EQUIV = 9,
+        INVERT = 10,
+        OR_REVERSE = 11,
+        COPY_INVERTED = 12,
+        OR_INVERTED = 13,
+        NAND = 14,
+        SET = 15,
+        NVN_LOGIC_OP_LARGE = -1,
     };
 
     NVN_ENUM(LogicOp);
@@ -546,14 +560,14 @@ struct LogicOp {
 struct AlphaFunc {
     enum Enum {
         NEVER = 1,
-        LESS,
-        EQUAL,
-        LEQUAL,
-        GREATER,
-        NOTEQUAL,
-        GEQUAL,
-        ALWAYS,
-        NVN_ALPHA_FUNC_LARGE = -1
+        LESS = 2,
+        EQUAL = 3,
+        LEQUAL = 4,
+        GREATER = 5,
+        NOTEQUAL = 6,
+        GEQUAL = 7,
+        ALWAYS = 8,
+        NVN_ALPHA_FUNC_LARGE = -1,
     };
 
     NVN_ENUM(AlphaFunc);
@@ -561,29 +575,34 @@ struct AlphaFunc {
 
 struct DrawPrimitive {
     enum Enum {
-        POINTS,
-        LINES,
-        LINE_LOOP,
-        LINE_STRIP,
-        TRIANGLES,
-        TRIANGLE_STRIP,
-        TRIANGLE_FAN,
-        QUADS,
-        QUAD_STRIP,
-        POLYGON,
-        LINES_ADJACENCY,
-        LINE_STRIP_ADJACENCY,
-        TRIANGLES_ADJACENCY,
-        TRIANGLE_STRIP_ADJACENCY,
-        PATCHES,
-        NVN_DRAW_PRIMITIVE_LARGE = -1
+        POINTS = 0,
+        LINES = 1,
+        LINE_LOOP = 2,
+        LINE_STRIP = 3,
+        TRIANGLES = 4,
+        TRIANGLE_STRIP = 5,
+        TRIANGLE_FAN = 6,
+        QUADS = 7,
+        QUAD_STRIP = 8,
+        POLYGON = 9,
+        LINES_ADJACENCY = 10,
+        LINE_STRIP_ADJACENCY = 11,
+        TRIANGLES_ADJACENCY = 12,
+        TRIANGLE_STRIP_ADJACENCY = 13,
+        PATCHES = 14,
+        NVN_DRAW_PRIMITIVE_LARGE = -1,
     };
 
     NVN_ENUM(DrawPrimitive);
 };
 
 struct IndexType {
-    enum Enum { UNSIGNED_BYTE, UNSIGNED_SHORT, UNSIGNED_INT, NVN_INDEX_TYPE_LARGE = -1 };
+    enum Enum {
+        UNSIGNED_BYTE = 0,
+        UNSIGNED_SHORT = 1,
+        UNSIGNED_INT = 2,
+        NVN_INDEX_TYPE_LARGE = -1,
+    };
 
     NVN_ENUM(IndexType);
 };
@@ -591,34 +610,34 @@ struct IndexType {
 struct DepthFunc {
     enum Enum {
         NEVER = 1,
-        LESS,
-        EQUAL,
-        LEQUAL,
-        GREATER,
-        NOTEQUAL,
-        GEQUAL,
-        ALWAYS,
-        NVN_DEPTH_FUNC_LARGE = -1
+        LESS = 2,
+        EQUAL = 3,
+        LEQUAL = 4,
+        GREATER = 5,
+        NOTEQUAL = 6,
+        GEQUAL = 7,
+        ALWAYS = 8,
+        NVN_DEPTH_FUNC_LARGE = -1,
     };
 
     NVN_ENUM(DepthFunc);
 };
 
 struct MagFilter {
-    enum Enum { NEAREST, LINEAR, NVN_MAG_FILTER_LARGE = -1 };
+    enum Enum { NEAREST = 0, LINEAR = 1, NVN_MAG_FILTER_LARGE = -1 };
 
     NVN_ENUM(MagFilter);
 };
 
 struct MinFilter {
     enum Enum {
-        NEAREST,
-        LINEAR,
-        NEAREST_MIPMAP_NEAREST,
-        LINEAR_MIPMAP_NEAREST,
-        NEAREST_MIPMAP_LINEAR,
-        LINEAR_MIPMAP_LINEAR,
-        NVN_MIN_FILTER_LARGE = -1
+        NEAREST = 0,
+        LINEAR = 1,
+        NEAREST_MIPMAP_NEAREST = 2,
+        LINEAR_MIPMAP_NEAREST = 3,
+        NEAREST_MIPMAP_LINEAR = 4,
+        LINEAR_MIPMAP_LINEAR = 5,
+        NVN_MIN_FILTER_LARGE = -1,
     };
 
     NVN_ENUM(MinFilter);
@@ -626,22 +645,22 @@ struct MinFilter {
 
 struct WrapMode {
     enum Enum {
-        CLAMP,
-        REPEAT,
-        MIRROR_CLAMP,
-        MIRROR_CLAMP_TO_EDGE,
-        MIRROR_CLAMP_TO_BORDER,
-        CLAMP_TO_BORDER,
-        MIRRORED_REPEAT,
-        CLAMP_TO_EDGE,
-        NVN_WRAP_MODE_LARGE = -1
+        CLAMP = 0,
+        REPEAT = 1,
+        MIRROR_CLAMP = 2,
+        MIRROR_CLAMP_TO_EDGE = 3,
+        MIRROR_CLAMP_TO_BORDER = 4,
+        CLAMP_TO_BORDER = 5,
+        MIRRORED_REPEAT = 6,
+        CLAMP_TO_EDGE = 7,
+        NVN_WRAP_MODE_LARGE = -1,
     };
 
     NVN_ENUM(WrapMode);
 };
 
 struct CompareMode {
-    enum Enum { NONE, COMPARE_R_TO_TEXTURE, NVN_COMPARE_MODE_LARGE = -1 };
+    enum Enum { NONE = 0, COMPARE_R_TO_TEXTURE = 1, NVN_COMPARE_MODE_LARGE = -1 };
 
     NVN_ENUM(CompareMode);
 };
@@ -649,27 +668,27 @@ struct CompareMode {
 struct CompareFunc {
     enum Enum {
         NEVER = 1,
-        LESS,
-        EQUAL,
-        LEQUAL,
-        GREATER,
-        NOTEQUAL,
-        GEQUAL,
-        ALWAYS,
-        NVN_COMPARE_FUNC_LARGE = -1
+        LESS = 2,
+        EQUAL = 3,
+        LEQUAL = 4,
+        GREATER = 5,
+        NOTEQUAL = 6,
+        GEQUAL = 7,
+        ALWAYS = 8,
+        NVN_COMPARE_FUNC_LARGE = -1,
     };
 
     NVN_ENUM(CompareFunc);
 };
 
 struct SamplerReduction {
-    enum Enum { AVERAGE, MIN, MAX, NVN_SAMPLER_REDUCTION_LARGE = -1 };
+    enum Enum { AVERAGE = 0, MIN = 1, MAX = 2, NVN_SAMPLER_REDUCTION_LARGE = -1 };
 
     NVN_ENUM(SamplerReduction);
 };
 
 struct Face {
-    enum Enum { NONE, FRONT, BACK, FRONT_AND_BACK, NVN_FACE_LARGE = -1 };
+    enum Enum { NONE = 0, FRONT = 1, BACK = 2, FRONT_AND_BACK = 3, NVN_FACE_LARGE = -1 };
 
     NVN_ENUM(Face);
 };
@@ -677,14 +696,14 @@ struct Face {
 struct StencilFunc {
     enum Enum {
         NEVER = 1,
-        LESS,
-        EQUAL,
-        LEQUAL,
-        GREATER,
-        NOTEQUAL,
-        GEQUAL,
-        ALWAYS,
-        NVN_STENCIL_FUNC_LARGE = -1
+        LESS = 2,
+        EQUAL = 3,
+        LEQUAL = 4,
+        GREATER = 5,
+        NOTEQUAL = 6,
+        GEQUAL = 7,
+        ALWAYS = 8,
+        NVN_STENCIL_FUNC_LARGE = -1,
     };
 
     NVN_ENUM(StencilFunc);
@@ -693,27 +712,27 @@ struct StencilFunc {
 struct StencilOp {
     enum Enum {
         KEEP = 1,
-        ZERO,
-        REPLACE,
-        INCR,
-        DECR,
-        INVERT,
-        INCR_WRAP,
-        DECR_WRAP,
-        NVN_STENCIL_OP_LARGE = -1
+        ZERO = 2,
+        REPLACE = 3,
+        INCR = 4,
+        DECR = 5,
+        INVERT = 6,
+        INCR_WRAP = 7,
+        DECR_WRAP = 8,
+        NVN_STENCIL_OP_LARGE = -1,
     };
 
     NVN_ENUM(StencilOp);
 };
 
 struct FrontFace {
-    enum Enum { CW, CCW, NVN_FRONT_FACE_LARGE = -1 };
+    enum Enum { CW = 0, CCW = 1, NVN_FRONT_FACE_LARGE = -1 };
 
     NVN_ENUM(FrontFace);
 };
 
 struct PolygonMode {
-    enum Enum { POINT, LINE, FILL, NVN_POLYGON_MODE_LARGE = -1 };
+    enum Enum { POINT = 0, LINE = 1, FILL = 2, NVN_POLYGON_MODE_LARGE = -1 };
 
     NVN_ENUM(PolygonMode);
 };
@@ -726,9 +745,9 @@ struct PolygonOffsetEnable {
 
 struct SyncCondition {
     enum Enum {
-        ALL_GPU_COMMANDS_COMPLETE,
-        GRAPHICS_WORLD_SPACE_COMPLETE,
-        NVN_SYNC_CONDITION_LARGE = -1
+        ALL_GPU_COMMANDS_COMPLETE = 0,
+        GRAPHICS_WORLD_SPACE_COMPLETE = 1,
+        NVN_SYNC_CONDITION_LARGE = -1,
     };
 
     NVN_ENUM(SyncCondition);
@@ -736,37 +755,37 @@ struct SyncCondition {
 
 struct SyncWaitResult {
     enum Enum {
-        ALREADY_SIGNALED,
-        CONDITION_SATISFIED,
-        TIMEOUT_EXPIRED,
-        FAILED,
-        NVN_SYNC_WAIT_RESULT_LARGE = -1
+        ALREADY_SIGNALED = 0,
+        CONDITION_SATISFIED = 1,
+        TIMEOUT_EXPIRED = 2,
+        FAILED = 3,
+        NVN_SYNC_WAIT_RESULT_LARGE = -1,
     };
 
     NVN_ENUM(SyncWaitResult);
 };
 
 struct QueueAcquireTextureResult {
-    enum Enum { SUCCESS, NATIVE_ERROR, NVN_QUEUE_ACQUIRE_TEXTURE_RESULT_LARGE = -1 };
+    enum Enum { SUCCESS = 0, NATIVE_ERROR = 1, NVN_QUEUE_ACQUIRE_TEXTURE_RESULT_LARGE = -1 };
 
     NVN_ENUM(QueueAcquireTextureResult);
 };
 
 struct WindowAcquireTextureResult {
-    enum Enum { SUCCESS, NATIVE_ERROR, NVN_WINDOW_ACQUIRE_TEXTURE_RESULT_LARGE = -1 };
+    enum Enum { SUCCESS = 0, NATIVE_ERROR = 1, NVN_WINDOW_ACQUIRE_TEXTURE_RESULT_LARGE = -1 };
 
     NVN_ENUM(WindowAcquireTextureResult);
 };
 
 struct ShaderStage {
     enum Enum {
-        VERTEX,
-        FRAGMENT,
-        GEOMETRY,
-        TESS_CONTROL,
-        TESS_EVALUATION,
-        COMPUTE,
-        NVN_SHADER_STAGE_LARGE = -1
+        VERTEX = 0,
+        FRAGMENT = 1,
+        GEOMETRY = 2,
+        TESS_CONTROL = 3,
+        TESS_EVALUATION = 4,
+        COMPUTE = 5,
+        NVN_SHADER_STAGE_LARGE = -1,
     };
 
     NVN_ENUM(ShaderStage);
@@ -775,12 +794,12 @@ struct ShaderStage {
 struct TiledCacheAction {
     enum Enum {
         ENABLE = 1,
-        DISABLE,
-        FLUSH,
-        FLUSH_NO_TILING,
-        ENABLE_RENDER_TARGET_BINNING,
-        DISABLE_RENDER_TARGET_BINNING,
-        NVN_TILED_CACHE_ACTION_LARGE = -1
+        DISABLE = 2,
+        FLUSH = 3,
+        FLUSH_NO_TILING = 4,
+        ENABLE_RENDER_TARGET_BINNING = 5,
+        DISABLE_RENDER_TARGET_BINNING = 6,
+        NVN_TILED_CACHE_ACTION_LARGE = -1,
     };
 
     NVN_ENUM(TiledCacheAction);
@@ -795,7 +814,7 @@ struct ShaderStageBits {
         TESS_EVALUATION = 16,
         COMPUTE = 32,
         ALL_GRAPHICS_BITS = 31,
-        NVN_SHADER_STAGE_BITS_LARGE = -1
+        NVN_SHADER_STAGE_BITS_LARGE = -1,
     };
 
     NVN_BITS(ShaderStageBits);
@@ -821,7 +840,7 @@ struct DeviceFlagBits {
         DEBUG_ENABLE_LEVEL_4 = 16,
         DEFERRED_FIRMWARE_MEMORY_RECLAIM = 128,
         ENABLE_SEPARATE_SAMPLER_TEXTURE_SUPPORT = 256,
-        NVN_DEVICE_FLAG_BITS_LARGE = -1
+        NVN_DEVICE_FLAG_BITS_LARGE = -1,
     };
 
     NVN_BITS(DeviceFlagBits);
@@ -834,19 +853,25 @@ struct ClearColorMask {
 };
 
 struct DebugCallbackSource {
-    enum Enum { API, NVN_DEBUG_CALLBACK_SOURCE_LARGE = -1 };
+    enum Enum { API = 0, NVN_DEBUG_CALLBACK_SOURCE_LARGE = -1 };
 
     NVN_ENUM(DebugCallbackSource);
 };
 
 struct DebugCallbackType {
-    enum Enum { API_ERROR, API_WARNING, NVN_DEBUG_CALLBACK_TYPE_LARGE = -1 };
+    enum Enum { API_ERROR = 0, API_WARNING = 1, NVN_DEBUG_CALLBACK_TYPE_LARGE = -1 };
 
     NVN_ENUM(DebugCallbackType);
 };
 
 struct DebugCallbackSeverity {
-    enum Enum { HIGH, MEDIUM, LOW, NOTIFICATION, NVN_DEBUG_CALLBACK_SEVERITY_LARGE = -1 };
+    enum Enum {
+        HIGH = 0,
+        MEDIUM = 1,
+        LOW = 2,
+        NOTIFICATION = 3,
+        NVN_DEBUG_CALLBACK_SEVERITY_LARGE = -1,
+    };
 
     NVN_ENUM(DebugCallbackSeverity);
 };
@@ -863,7 +888,7 @@ struct MemoryPoolFlags {
         COMPRESSIBLE = 128,
         PHYSICAL = 256,
         VIRTUAL = 512,
-        NVN_MEMORY_POOL_FLAGS_LARGE = -1
+        NVN_MEMORY_POOL_FLAGS_LARGE = -1,
     };
 
     NVN_BITS(MemoryPoolFlags);
@@ -871,24 +896,24 @@ struct MemoryPoolFlags {
 
 struct CounterType {
     enum Enum {
-        TIMESTAMP,
-        SAMPLES_PASSED,
-        INPUT_VERTICES,
-        INPUT_PRIMITIVES,
-        VERTEX_SHADER_INVOCATIONS,
-        TESS_CONTROL_SHADER_INVOCATIONS,
-        TESS_EVALUATION_SHADER_INVOCATIONS,
-        GEOMETRY_SHADER_INVOCATIONS,
-        FRAGMENT_SHADER_INVOCATIONS,
-        TESS_EVALUATION_SHADER_PRIMITIVES,
-        GEOMETRY_SHADER_PRIMITIVES,
-        CLIPPER_INPUT_PRIMITIVES,
-        CLIPPER_OUTPUT_PRIMITIVES,
-        PRIMITIVES_GENERATED,
-        TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN,
-        ZCULL_STATS,
-        TIMESTAMP_TOP,
-        NVN_COUNTER_TYPE_LARGE = -1
+        TIMESTAMP = 0,
+        SAMPLES_PASSED = 1,
+        INPUT_VERTICES = 2,
+        INPUT_PRIMITIVES = 3,
+        VERTEX_SHADER_INVOCATIONS = 4,
+        TESS_CONTROL_SHADER_INVOCATIONS = 5,
+        TESS_EVALUATION_SHADER_INVOCATIONS = 6,
+        GEOMETRY_SHADER_INVOCATIONS = 7,
+        FRAGMENT_SHADER_INVOCATIONS = 8,
+        TESS_EVALUATION_SHADER_PRIMITIVES = 9,
+        GEOMETRY_SHADER_PRIMITIVES = 10,
+        CLIPPER_INPUT_PRIMITIVES = 11,
+        CLIPPER_OUTPUT_PRIMITIVES = 12,
+        PRIMITIVES_GENERATED = 13,
+        TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN = 14,
+        ZCULL_STATS = 15,
+        TIMESTAMP_TOP = 16,
+        NVN_COUNTER_TYPE_LARGE = -1,
     };
 
     NVN_ENUM(CounterType);
@@ -896,28 +921,32 @@ struct CounterType {
 
 struct CommandBufferMemoryEvent {
     enum Enum {
-        OUT_OF_COMMAND_MEMORY,
-        OUT_OF_CONTROL_MEMORY,
-        NVN_COMMAND_BUFFER_MEMORY_EVENT_LARGE = -1
+        OUT_OF_COMMAND_MEMORY = 0,
+        OUT_OF_CONTROL_MEMORY = 1,
+        NVN_COMMAND_BUFFER_MEMORY_EVENT_LARGE = -1,
     };
 
     NVN_ENUM(CommandBufferMemoryEvent);
 };
 
 struct ConditionalRenderMode {
-    enum Enum { RENDER_IF_EQUAL, RENDER_IF_NOT_EQUAL, NVN_CONDITIONAL_RENDER_MODE_LARGE = -1 };
+    enum Enum {
+        RENDER_IF_EQUAL = 0,
+        RENDER_IF_NOT_EQUAL = 1,
+        NVN_CONDITIONAL_RENDER_MODE_LARGE = -1,
+    };
 
     NVN_ENUM(ConditionalRenderMode);
 };
 
 struct WindowOriginMode {
-    enum Enum { LOWER_LEFT, UPPER_LEFT, NVN_WINDOW_ORIGIN_MODE_LARGE = -1 };
+    enum Enum { LOWER_LEFT = 0, UPPER_LEFT = 1, NVN_WINDOW_ORIGIN_MODE_LARGE = -1 };
 
     NVN_ENUM(WindowOriginMode);
 };
 
 struct DepthMode {
-    enum Enum { NEAR_IS_MINUS_W, NEAR_IS_ZERO, NVN_DEPTH_MODE_LARGE = -1 };
+    enum Enum { NEAR_IS_MINUS_W = 0, NEAR_IS_ZERO = 1, NVN_DEPTH_MODE_LARGE = -1 };
 
     NVN_ENUM(DepthMode);
 };
@@ -935,7 +964,7 @@ struct TextureFlags {
         DEPTH16_PREFER_FAST_CLEAR = 256,
         MINIMAL_LAYOUT = 512,
         ZCULL_SUPPORT_STENCIL = 1024,
-        NVN_TEXTURE_FLAGS_LARGE = -1
+        NVN_TEXTURE_FLAGS_LARGE = -1,
     };
 
     NVN_BITS(TextureFlags);
@@ -952,7 +981,7 @@ struct BarrierBits {
         INVALIDATE_TEXTURE_DESCRIPTOR = 64,
         INVALIDATE_ZCULL = 128,
         INVALIDATE_L2_CACHE = 256,
-        NVN_BARRIER_BITS_LARGE = -1
+        NVN_BARRIER_BITS_LARGE = -1,
     };
 
     NVN_BITS(BarrierBits);
@@ -966,7 +995,7 @@ struct CopyFlags {
         MIRROR_X = 4,
         MIRROR_Y = 8,
         MIRROR_Z = 16,
-        NVN_COPY_FLAGS_LARGE = -1
+        NVN_COPY_FLAGS_LARGE = -1,
     };
 
     NVN_BITS(CopyFlags);
@@ -974,22 +1003,22 @@ struct CopyFlags {
 
 struct ViewportSwizzle {
     enum Enum {
-        POSITIVE_X,
-        NEGATIVE_X,
-        POSITIVE_Y,
-        NEGATIVE_Y,
-        POSITIVE_Z,
-        NEGATIVE_Z,
-        POSITIVE_W,
-        NEGATIVE_W,
-        NVN_VIEWPORT_SWIZZLE_LARGE = -1
+        POSITIVE_X = 0,
+        NEGATIVE_X = 1,
+        POSITIVE_Y = 2,
+        NEGATIVE_Y = 3,
+        POSITIVE_Z = 4,
+        NEGATIVE_Z = 5,
+        POSITIVE_W = 6,
+        NEGATIVE_W = 7,
+        NVN_VIEWPORT_SWIZZLE_LARGE = -1,
     };
 
     NVN_ENUM(ViewportSwizzle);
 };
 
 struct CoverageModulationMode {
-    enum Enum { NONE, RGB, ALPHA, RGBA, NVN_COVERAGE_MODULATION_MODE_LARGE = -1 };
+    enum Enum { NONE = 0, RGB = 1, ALPHA = 2, RGBA = 3, NVN_COVERAGE_MODULATION_MODE_LARGE = -1 };
 
     NVN_ENUM(CoverageModulationMode);
 };
@@ -1002,34 +1031,34 @@ struct QueueFlags {
 
 struct DebugObjectType {
     enum Enum {
-        WINDOW,
-        QUEUE,
-        COMMAND_BUFFER,
-        MEMORY_POOL,
+        WINDOW = 0,
+        QUEUE = 1,
+        COMMAND_BUFFER = 2,
+        MEMORY_POOL = 3,
         SYNC = 7,
         PROGRAM = 9,
-        TEXTURE_POOL,
-        SAMPLER_POOL,
-        NVN_DEBUG_OBJECT_TYPE_LARGE = -1
+        TEXTURE_POOL = 10,
+        SAMPLER_POOL = 11,
+        NVN_DEBUG_OBJECT_TYPE_LARGE = -1,
     };
 
     NVN_ENUM(DebugObjectType);
 };
 
 struct EventSignalMode {
-    enum Enum { WRITE, ADD, NVN_EVENT_SIGNAL_MODE_LARGE = -1 };
+    enum Enum { WRITE = 0, ADD = 1, NVN_EVENT_SIGNAL_MODE_LARGE = -1 };
 
     NVN_ENUM(EventSignalMode);
 };
 
 struct EventWaitMode {
-    enum Enum { EQUAL, GEQUAL_WRAP, NVN_EVENT_WAIT_MODE_LARGE = -1 };
+    enum Enum { EQUAL = 0, GEQUAL_WRAP = 1, NVN_EVENT_WAIT_MODE_LARGE = -1 };
 
     NVN_ENUM(EventWaitMode);
 };
 
 struct EventSignalLocation {
-    enum Enum { TOP, VERTEX_PIPE, BOTTOM, NVN_EVENT_SIGNAL_LOCATION_LARGE = -1 };
+    enum Enum { TOP = 0, VERTEX_PIPE = 1, BOTTOM = 2, NVN_EVENT_SIGNAL_LOCATION_LARGE = -1 };
 
     NVN_ENUM(EventSignalLocation);
 };
@@ -1041,20 +1070,28 @@ struct EventSignalFlags {
 };
 
 struct FormatClass {
-    enum Enum { UNORM8, UNORM10, UNORM16, FP11, FP16, SRGB8, NVN_FORMAT_CLASS_LARGE = -1 };
+    enum Enum {
+        UNORM8 = 0,
+        UNORM10 = 1,
+        UNORM16 = 2,
+        FP11 = 3,
+        FP16 = 4,
+        SRGB8 = 5,
+        NVN_FORMAT_CLASS_LARGE = -1,
+    };
 
     NVN_ENUM(FormatClass);
 };
 
 struct QueueGetErrorResult {
     enum Enum {
-        GPU_NO_ERROR,
-        GPU_ERROR_UNKNOWN,
-        GPU_ERROR_MMU_FAULT,
-        GPU_ERROR_PBDMA_EXCEPTION,
-        GPU_ERROR_ENGINE_EXCEPTION,
-        GPU_ERROR_TIMEOUT,
-        NVN_QUEUE_GET_ERROR_RESULT_LARGE = -1
+        GPU_NO_ERROR = 0,
+        GPU_ERROR_UNKNOWN = 1,
+        GPU_ERROR_MMU_FAULT = 2,
+        GPU_ERROR_PBDMA_EXCEPTION = 3,
+        GPU_ERROR_ENGINE_EXCEPTION = 4,
+        GPU_ERROR_TIMEOUT = 5,
+        NVN_QUEUE_GET_ERROR_RESULT_LARGE = -1,
     };
 
     NVN_ENUM(QueueGetErrorResult);
@@ -1068,13 +1105,13 @@ struct QueuePriority {
 
 struct RawStorageClass {
     enum Enum {
-        NONE,
-        LINEAR,
-        COLOR_AND_ZF32,
-        S8_AND_Z16,
-        Z24_AND_Z24S8,
-        ZF32S8,
-        NVN_RAW_STORAGE_CLASS_LARGE = -1
+        NONE = 0,
+        LINEAR = 1,
+        COLOR_AND_ZF32 = 2,
+        S8_AND_Z16 = 3,
+        Z24_AND_Z24S8 = 4,
+        ZF32S8 = 5,
+        NVN_RAW_STORAGE_CLASS_LARGE = -1,
     };
 
     NVN_ENUM(RawStorageClass);
@@ -1082,10 +1119,10 @@ struct RawStorageClass {
 
 struct SampleShadingMode {
     enum Enum {
-        DEFAULT_FRAGMENT,
-        FORCE_SAMPLE_SHADING_ON,
-        FORCE_SAMPLE_SHADING_OFF,
-        NVN_SAMPLE_SHADING_MODE_LARGE = -1
+        DEFAULT_FRAGMENT = 0,
+        FORCE_SAMPLE_SHADING_ON = 1,
+        FORCE_SAMPLE_SHADING_OFF = 2,
+        NVN_SAMPLE_SHADING_MODE_LARGE = -1,
     };
 
     NVN_ENUM(SampleShadingMode);
@@ -1143,7 +1180,7 @@ class SamplerBuilder;
 class SamplerPool;
 class Event;
 
-typedef void (*GenericFuncPtrFunc)(void);
+typedef void (*GenericFuncPtrFunc)();
 typedef void (*DebugCallbackFunc)(DebugCallbackSource::Enum, DebugCallbackType::Enum, int,
                                   DebugCallbackSeverity::Enum, const char*, void*);
 typedef void (*CommandBufferMemoryCallbackFunc)(CommandBuffer*, CommandBufferMemoryEvent::Enum,

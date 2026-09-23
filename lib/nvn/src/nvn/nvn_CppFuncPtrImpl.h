@@ -1,4 +1,5 @@
 #pragma once
+// NOLINTBEGIN(misc-definitions-in-headers)
 
 #include <nvn/nvn_CppFuncPtrBase.h>
 
@@ -1498,3 +1499,4 @@ void nvnLoadCPPProcs(Device* device, DeviceGetProcAddressFunc getProc) {
 }
 
 }  // namespace nvn
+// NOLINTEND(misc-definitions-in-headers)

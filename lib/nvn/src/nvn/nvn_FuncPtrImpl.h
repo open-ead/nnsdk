@@ -1,4 +1,5 @@
 #pragma once
+// NOLINTBEGIN(misc-definitions-in-headers)
 
 #include <nvn/nvn_FuncPtrBase.h>
 
@@ -1678,3 +1679,4 @@ void nvnLoadCProcs(const NVNdevice* device, PFNNVNDEVICEGETPROCADDRESSPROC devic
 #ifdef __cplusplus
 }
 #endif
+// NOLINTEND(misc-definitions-in-headers)
