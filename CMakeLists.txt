@@ -104,11 +104,22 @@ target_sources(nnSdk PUBLIC
     include/nn/sf.h
     include/nn/sf/detail/sf_PointerAndSize.h
     include/nn/sf/sf_Hipc.h
+    include/nn/sf/sf_IServiceObject.h
+    include/nn/sf/sf_ISharedObject.h
     include/nn/sf/sf_InBuffer.h
     include/nn/sf/sf_Out.h
     include/nn/sf/sf_OutBuffer.h
     include/nn/socket.h
     include/nn/ssl.h
+    include/nn/ssl/ssl_BuiltInManager.h
+    include/nn/ssl/ssl_CBindings.h
+    include/nn/ssl/ssl_Connection.h
+    include/nn/ssl/ssl_Context.h
+    include/nn/ssl/ssl_Debug.h
+    include/nn/ssl/ssl_ISslConnection.h
+    include/nn/ssl/ssl_ISslContext.h
+    include/nn/ssl/ssl_ISslService.h
+    include/nn/ssl/ssl_Types.h
     include/nn/svc.h
     include/nn/swkbd.h
     include/nn/time.h
@@ -170,6 +181,7 @@ target_compile_options(nnSdk INTERFACE
     -Wall
     -Wextra
     -Wno-invalid-offsetof
+    -Wno-return-type-c-linkage
 )
 
 add_subdirectory(lib/nvn)
