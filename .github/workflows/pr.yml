@@ -15,3 +15,26 @@ jobs:
           persist-credentials: false
           submodules: false
       - run: task pr
+
+  check-nnware:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/open-ead/ubuntu-builder
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          submodules: false
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          submodules: false
+          repository: open-ead/nnware
+          path: lib/nnware
+      - name: Build nnware
+        working-directory: lib/nnware
+        env:
+          NNSDK_DIR: ${{ github.workspace }}
+        run: |
+          task cmake -- -DNNSDK_DIR=$NNSDK_DIR
+          task build
