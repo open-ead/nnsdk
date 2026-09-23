@@ -1,17 +1,8 @@
 /**
- * @file nn.h
  * @brief Barebones NN functions, such as init and nnMain.
  */
 
 #pragma once
-
-#include <nn/types.h>
-
-namespace nn {
-struct ApplicationId {
-    uint64_t m_Id;
-};
-}  // namespace nn
 
 #ifdef __cplusplus
 extern "C" {

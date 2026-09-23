@@ -5,6 +5,6 @@ enum ImageOrientation {
     ImageOrientation_None,
     ImageOrientation_Rotate90,
     ImageOrientation_Rotate180,
-    ImageOrientation_Rotate270
+    ImageOrientation_Rotate270,
 };
 }  // namespace nn::album
