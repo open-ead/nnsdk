@@ -4,6 +4,7 @@
 #include <nn/nn_Result.h>
 
 namespace nn {
+// @nncbindgen typedef int64_t
 class TimeSpan {
 public:
     uint64_t nanoseconds;
