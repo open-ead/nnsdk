@@ -67,7 +67,6 @@ target_sources(nnSdk PUBLIC
     include/nn/mem/mem_NumberLineAllocator.h
     include/nn/mem/mem_StandardAllocator.h
     include/nn/nfp.h
-    include/nn/nfp/nfp.h
     include/nn/nfp/nfp_Types.h
     include/nn/nifm.h
     include/nn/nlibsdk.h
@@ -103,7 +102,11 @@ target_sources(nnSdk PUBLIC
     include/nn/ro/ro_Types.h
     include/nn/settings.h
     include/nn/sf.h
-    include/nn/sf/hipc.h
+    include/nn/sf/detail/sf_PointerAndSize.h
+    include/nn/sf/sf_Hipc.h
+    include/nn/sf/sf_InBuffer.h
+    include/nn/sf/sf_Out.h
+    include/nn/sf/sf_OutBuffer.h
     include/nn/socket.h
     include/nn/ssl.h
     include/nn/svc.h

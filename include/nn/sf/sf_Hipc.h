@@ -4,6 +4,7 @@
 #include <nn/svc.h>
 
 namespace nn::sf::hipc {
+
 void* GetMessageBufferOnTls();
 
 Result InitializeHipcServiceResolution();
