@@ -13,54 +13,71 @@ target_sources(nnSdk PUBLIC
 # SOURCES_START
 
     include/nn/account.h
-    include/nn/album/album_types.h
+    include/nn/album.h
+    include/nn/album/album_Types.h
     include/nn/am.h
     include/nn/aoc.h
     include/nn/applet.h
     include/nn/atk.h
     include/nn/audio.h
     include/nn/bcat.h
+    include/nn/bcat/bcat_DeliveryCache.h
+    include/nn/bcat/bcat_DeliveryCacheDirectory.h
+    include/nn/bcat/bcat_DeliveryCacheFile.h
+    include/nn/bcat/bcat_DeliveryCacheProgress.h
+    include/nn/bcat/bcat_Util.h
+    include/nn/bcat/detail/bcat_DeliveryCacheProgressImpl.h
+    include/nn/bcat/detail/bcat_Error.h
+    include/nn/bcat/detail/bcat_Ipc.h
+    include/nn/bcat/detail/bcat_ShimLibraryGlobal.h
     include/nn/crypto.h
     include/nn/diag.h
     include/nn/err.h
     include/nn/friends.h
     include/nn/fs.h
-    include/nn/fs/fs_bcat.h
-    include/nn/fs/fs_directories.h
-    include/nn/fs/fs_files.h
-    include/nn/fs/fs_mount.h
-    include/nn/fs/fs_rom.h
-    include/nn/fs/fs_save.h
-    include/nn/fs/fs_types.h
+    include/nn/fs/fs_Bcat.h
+    include/nn/fs/fs_Directories.h
+    include/nn/fs/fs_Files.h
+    include/nn/fs/fs_Mount.h
+    include/nn/fs/fs_Rom.h
+    include/nn/fs/fs_Save.h
+    include/nn/fs/fs_Types.h
     include/nn/hid.h
     include/nn/image.h
     include/nn/init.h
-    include/nn/irs.h
-    include/nn/irs/ClusteringData.h
-    include/nn/irs/ClusteringProcessorConfig.h
-    include/nn/irs/ClusteringProcessorState.h
-    include/nn/irs/DpdProcessorConfig.h
-    include/nn/irs/DpdProcessorPointingState.h
-    include/nn/irs/DpdProcessorState.h
-    include/nn/irs/HandAnalysisConfig.h
-    include/nn/irs/HandAnalysisMode.h
-    include/nn/irs/ImageTransferProcessorConfig.h
-    include/nn/irs/ImageTransferProcessorFormat.h
-    include/nn/irs/ImageTransferProcessorState.h
-    include/nn/irs/MomentProcessorConfig.h
-    include/nn/irs/MomentProcessorState.h
-    include/nn/irs/MomentStatistic.h
-    include/nn/irs/Rect.h
-    include/nn/irs/TeraPluginProcessorConfig.h
-    include/nn/irs/TeraPluginProcessorState.h
-    include/nn/irs/sys.h
+    include/nn/irsensor.h
+    include/nn/irsensor/irsensor_ClusteringData.h
+    include/nn/irsensor/irsensor_ClusteringProcessorConfig.h
+    include/nn/irsensor/irsensor_ClusteringProcessorState.h
+    include/nn/irsensor/irsensor_DpdProcessorConfig.h
+    include/nn/irsensor/irsensor_DpdProcessorPointingState.h
+    include/nn/irsensor/irsensor_DpdProcessorState.h
+    include/nn/irsensor/irsensor_HandAnalysisConfig.h
+    include/nn/irsensor/irsensor_HandAnalysisMode.h
+    include/nn/irsensor/irsensor_ImageTransferProcessorConfig.h
+    include/nn/irsensor/irsensor_ImageTransferProcessorFormat.h
+    include/nn/irsensor/irsensor_ImageTransferProcessorState.h
+    include/nn/irsensor/irsensor_MomentProcessorConfig.h
+    include/nn/irsensor/irsensor_MomentProcessorState.h
+    include/nn/irsensor/irsensor_MomentStatistic.h
+    include/nn/irsensor/irsensor_Rect.h
+    include/nn/irsensor/irsensor_System.h
+    include/nn/irsensor/irsensor_TeraPluginProcessorConfig.h
+    include/nn/irsensor/irsensor_TeraPluginProcessorState.h
     include/nn/mem.h
+    include/nn/mem/mem_NumberLineAllocator.h
+    include/nn/mem/mem_StandardAllocator.h
     include/nn/nfp.h
     include/nn/nfp/nfp.h
-    include/nn/nfp/nfp_types.h
+    include/nn/nfp/nfp_Types.h
     include/nn/nifm.h
+    include/nn/nlibsdk/heap/nlibsdk_CentralHeap.h
+    include/nn/nlibsdk/heap/nlibsdk_HeapError.h
+    include/nn/nlibsdk/nlibsdk_LockFreePlaceHolderPool.h
     include/nn/nn.h
+    include/nn/nn_ApplicationId.h
     include/nn/nn_BitTypes.h
+    include/nn/nn_Result.h
     include/nn/nnmusl.hpp
     include/nn/oe.h
     include/nn/os.h
@@ -82,15 +99,16 @@ target_sources(nnSdk PUBLIC
     include/nn/pl.h
     include/nn/prepo.h
     include/nn/ro.h
+    include/nn/ro/detail/ro_RoModule.h
+    include/nn/ro/ro_Types.h
     include/nn/settings.h
     include/nn/sf.h
     include/nn/sf/hipc.h
     include/nn/socket.h
     include/nn/ssl.h
     include/nn/svc.h
-    include/nn/swkbd/swkbd.h
+    include/nn/swkbd.h
     include/nn/time.h
-    include/nn/types.h
     include/nn/util.h
     include/nn/util/AccessorBase.h
     include/nn/util/MathTypes.h
