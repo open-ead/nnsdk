@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nn/nlibsdk/heap/nlibsdk_CentralHeap.h>
+#include <nn/nlibsdk/nlibsdk_CentralHeap.h>
 #include <nn/os.h>
 #include <nn/util/util_TypedStorage.h>
 
