@@ -2,8 +2,8 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <nn/util.h>
 #include <nn/nn_Result.h>
+#include <nn/util.h>
 
 namespace nn::svc {
 
@@ -67,7 +67,7 @@ enum class MemoryAttribute {
     Uncached = 1 << 3,
     PermissionLocked = 1 << 4,
     GpuSharable = 1 << 5,
-    GpuShared = 1 << 6
+    GpuShared = 1 << 6,
 };
 
 struct PageInfo {};  // TODO
@@ -109,7 +109,7 @@ enum class InfoType {
     RemoteMemoryUsage,
     RemoteMemoryUsagePeak,
     ProcessPageSize,
-    TransferMemoryHint
+    TransferMemoryHint,
 };
 
 enum class LimitableResource {
@@ -117,7 +117,7 @@ enum class LimitableResource {
     ThreadCountMax,
     EventCountMax,
     TransferMemoryCountMax,
-    SessionCountMax
+    SessionCountMax,
 };
 
 enum class ThreadActivity { None, Runnable };
@@ -125,7 +125,7 @@ enum class ThreadActivity { None, Runnable };
 enum class ProcessActivity { None, Runnable };
 
 struct ThreadContext {
-    s8 padding[0xe8];
+    int8_t padding[0xe8];
 };  // TODO
 
 enum class DumpInfoType {};  // TODO
@@ -173,7 +173,7 @@ enum class DeviceName {
     TSECB,
     TSEC1,
     TSECB1,
-    NVDEC1
+    NVDEC1,
 };
 
 enum class HardwareBreakPointRegisterName {};  // TODO
@@ -183,7 +183,7 @@ enum class DebugThreadParam {
     SchedulingStatus,
     PreferredCpuCore,
     CurrentCpuCore,
-    AffinityMask
+    AffinityMask,
 };
 
 enum class ProcessInfoType { ProcessState };
@@ -200,36 +200,36 @@ struct MemoryInfo {
 };
 
 struct LastThreadContext {
-    u64 _0;
-    u64 _8;
-    u64 _10;
-    u64 _18;
+    uint64_t _0;
+    uint64_t _8;
+    uint64_t _10;
+    uint64_t _18;
 };  // TODO
 
 struct PhysicalMemoryInfo {
-    u64 _0;
-    u64 _8;
-    u64 _10;
+    uint64_t _0;
+    uint64_t _8;
+    uint64_t _10;
 };  // TODO
 
 struct DebugEventInfo {
-    s8 padding[0x40];
+    char padding[0x40];
 };  // TODO
 
 struct CreateProcessParameter {
     char _0[0xc];
-    s32 _c;
-    s64 _10;
-    u64 _18;
-    s32 _20;
-    s32 _24;
+    int32_t _c;
+    int64_t _10;
+    uint64_t _18;
+    int32_t _20;
+    int32_t _24;
     Handle _28;
-    s32 _2c;
+    int32_t _2c;
 };  // TODO
 
 }  // namespace lp
 
-
+// NOLINTNEXTLINE(modernize-concat-nested-namespaces) need aarch to exist
 namespace aarch {
 #ifdef __aarch64__
 namespace lp {
@@ -264,120 +264,131 @@ Result ResetSignal(Handle handle);
 Result WaitSynchronization(int32_t* outHandleIndex, const Handle* handles, int32_t handleCount,
                            int64_t timeoutNs);
 Result CancelSynchronization(Handle handle);
-Result ArbitrateLock(Handle handle, uintptr address, u32 tag);
-Result ArbitrateUnlock(uintptr address);
-Result WaitProcessWideKeyAtomic(uintptr keyAddress, uintptr tagAddress, u32 tag, s64 timeoutNs);
-Result SignalProcessWideKey(uintptr address, s32 value);
-s64 GetSystemTick();
+Result ArbitrateLock(Handle handle, uintptr_t address, uint32_t tag);
+Result ArbitrateUnlock(uintptr_t address);
+Result WaitProcessWideKeyAtomic(uintptr_t keyAddress, uintptr_t tagAddress, uint32_t tag,
+                                int64_t timeoutNs);
+Result SignalProcessWideKey(uintptr_t address, int32_t value);
+int64_t GetSystemTick();
 Result ConnectToNamedPort(Handle* outHandle, const char* portName);
 Result SendSyncRequestLight(Handle handle);
 Result SendSyncRequest(Handle handle);
-Result SendSyncRequestWithUserBuffer(uintptr address, size size, Handle handle);
-Result SendAsyncRequestWithUserBuffer(Handle* outHandle, uintptr address, size size, Handle handle);
-Result GetProcessId(u64* outProcessId, Handle handle);
-Result GetThreadId(u64* outThreadId, Handle handle);
-Result Break(BreakReason reason, uintptr, size);
-Result OutputDebugString(const char* message, size size);
+Result SendSyncRequestWithUserBuffer(uintptr_t address, size_t size, Handle handle);
+Result SendAsyncRequestWithUserBuffer(Handle* outHandle, uintptr_t address, size_t size,
+                                      Handle handle);
+Result GetProcessId(uint64_t* outProcessId, Handle handle);
+Result GetThreadId(uint64_t* outThreadId, Handle handle);
+Result Break(BreakReason reason, uintptr_t, size_t);
+Result OutputDebugString(const char* message, size_t size);
 void ReturnFromException(Result result);
-Result GetInfo(u64* outInfo, InfoType infotype, Handle handle, u64 infoSubType);
+Result GetInfo(uint64_t* outInfo, InfoType infotype, Handle handle, uint64_t infoSubType);
 void FlushEntireDataCache();
-Result FlushDataCache(uintptr address, size size);
-Result MapPhysicalMemory(uintptr address, size size);
-Result UnmapPhysicalMemory(uintptr address, size size);
-Result GetLastThreadInfo(svc::lp::LastThreadContext* outContext, uintptr* outTlsAddress,
-                         u32* outFlags);
-Result GetResourceLimitLimitValue(s64* outLimit, Handle handle, LimitableResource resource);
-Result GetResourceLimitCurrentValue(s64* outCurrentValue, Handle handle,
+Result FlushDataCache(uintptr_t address, size_t size);
+Result MapPhysicalMemory(uintptr_t address, size_t size);
+Result UnmapPhysicalMemory(uintptr_t address, size_t size);
+Result GetLastThreadInfo(svc::lp::LastThreadContext* outContext, uintptr_t* outTlsAddress,
+                         uint32_t* outFlags);
+Result GetResourceLimitLimitValue(int64_t* outLimit, Handle handle, LimitableResource resource);
+Result GetResourceLimitCurrentValue(int64_t* outCurrentValue, Handle handle,
                                     LimitableResource resource);
 Result SetThreadActivity(Handle handle, ThreadActivity activity);
 Result GetThreadContext3(ThreadContext* outThreadContext, Handle handle);
-Result DumpInfo(DumpInfoType dumpInfoType, u64);
-Result ReadWriteRegister(u32* outValue, u64 registerAddress, u32 rwMask, u32 value);
+Result DumpInfo(DumpInfoType dumpInfoType, uint64_t);
+Result ReadWriteRegister(uint32_t* outValue, uint64_t registerAddress, uint32_t rwMask,
+                         uint32_t value);
 Result SetProcessActivity(Handle handle, ProcessActivity activity);
-Result CreateSharedMemory(Handle* outHandle, size size, MemoryPermission localMemoryPermission,
+Result CreateSharedMemory(Handle* outHandle, size_t size, MemoryPermission localMemoryPermission,
                           MemoryPermission remoteMemoryPermission);
-Result MapTransferMemory(Handle handle, uintptr address, size size,
+Result MapTransferMemory(Handle handle, uintptr_t address, size_t size,
                          MemoryPermission memoryPermission);
-Result UnmapTransferMemory(Handle handle, uintptr address, size size);
+Result UnmapTransferMemory(Handle handle, uintptr_t address, size_t size);
 Result CreateInterruptEvent(Handle* outHandle, InterruptEvent interruptEvent,
                             InterruptEventType eventType);
 Result QueryPhysicalAddress(svc::lp::PhysicalMemoryInfo* outPhysicalMemoryInfo,
-                            uintptr virtualAddress);
-Result QueryIoMapping(uintptr* outVirtualAddress, u64 ioAddress, size size);
-Result CreateDeviceAddressSpace(Handle* outHandle, u64 startAddress, u64 endAddress);
+                            uintptr_t virtualAddress);
+Result QueryIoMapping(uintptr_t* outVirtualAddress, uint64_t ioAddress, size_t size);
+Result CreateDeviceAddressSpace(Handle* outHandle, uint64_t startAddress, uint64_t endAddress);
 Result AttachDeviceAddressSpace(DeviceName deviceName, Handle handle);
 Result DetachDeviceAddressSpace(DeviceName deviceName, Handle handle);
 Result MapDeviceAddressSpaceByForce(Handle deviceAddressSpaceHandle, Handle processHandle,
-                                    u64 processAddress, size size, u64 deviceAddress,
+                                    uint64_t processAddress, size_t size, uint64_t deviceAddress,
                                     MemoryPermission memoryPermission);
 Result MapDeviceAddressSpaceAligned(Handle deviceAddressSpaceHandle, Handle processHandle,
-                                    u64 processAddress, size size, u64 deviceAddress,
+                                    uint64_t processAddress, size_t size, uint64_t deviceAddress,
                                     MemoryPermission memoryPermission);
-Result MapDeviceAddressSpace(size* outMappedSize, Handle deviceAddressSpaceHandle,
-                             Handle processHandle, u64 processAddress, size size, u64 deviceAddress,
-                             MemoryPermission memoryPermission);
+Result MapDeviceAddressSpace(size_t* outMappedSize, Handle deviceAddressSpaceHandle,
+                             Handle processHandle, uint64_t processAddress, size_t size,
+                             uint64_t deviceAddress, MemoryPermission memoryPermission);
 Result UnmapDeviceAddressSpace(Handle deviceAddressSpaceHandle, Handle processHandle,
-                               u64 processAddress, size size, u64 deviceAddress,
+                               uint64_t processAddress, size_t size, uint64_t deviceAddress,
                                MemoryPermission memoryPermission);
-Result InvalidateProcessDataCache(Handle handle, u64 address, u64 size);
-Result StoreProcessDataCache(Handle handle, u64 address, u64 size);
-Result FlushProcessDataCache(Handle handle, u64 address, u64 size);
-Result DebugActiveProcess(Handle handle, u64 processId);
+Result InvalidateProcessDataCache(Handle handle, uint64_t address, uint64_t size);
+Result StoreProcessDataCache(Handle handle, uint64_t address, uint64_t size);
+Result FlushProcessDataCache(Handle handle, uint64_t address, uint64_t size);
+Result DebugActiveProcess(Handle handle, uint64_t processId);
 Result BreakDebugProcess(Handle handle);
 Result TerminateDebugProcess(Handle handle);
 Result GetDebugEvent(svc::lp::DebugEventInfo* outDebugEventInfo, Handle handle);
 #if NN_SDK_VER >= NN_MAKE_VER(3, 0, 0)
-Result ContinueDebugEvent(Handle handle, u32 flags, const u64* threadIds, u32 threadIdCount);
+Result ContinueDebugEvent(Handle handle, uint32_t flags, const uint64_t* threadIds,
+                          uint32_t threadIdCount);
 #else
-Result ContinueDebugEvent(Handle handle, u32 flags, u64 threadId);
+Result ContinueDebugEvent(Handle handle, uint32_t flags, uint64_t threadId);
 #endif
-Result GetProcessList(s32* outProcessIdCount, u64* outProcessIds, s32 maxProcessIdCount);
-Result GetThreadList(s32* outThreadIdCount, u64* outThreadIds, s32 maxThreadIdCount, Handle handle);
-Result GetDebugThreadContext(ThreadContext* outThreadContext, Handle handle, u64 threadId,
-                             u32 flags);
-Result SetDebugThreadContext(Handle handle, u64 threadId, const ThreadContext& threadContext,
-                             u32 flags);
+Result GetProcessList(int32_t* outProcessIdCount, uint64_t* outProcessIds,
+                      int32_t maxProcessIdCount);
+Result GetThreadList(int32_t* outThreadIdCount, uint64_t* outThreadIds, int32_t maxThreadIdCount,
+                     Handle handle);
+Result GetDebugThreadContext(ThreadContext* outThreadContext, Handle handle, uint64_t threadId,
+                             uint32_t flags);
+Result SetDebugThreadContext(Handle handle, uint64_t threadId, const ThreadContext& threadContext,
+                             uint32_t flags);
 Result QueryDebugProcessMemory(svc::lp::MemoryInfo* outMemoryInfo, PageInfo* outPageInfo,
-                               Handle handle, uintptr address);
-Result ReadDebugProcessMemory(uintptr bufferAddress, Handle handle, uintptr srcAddress, size size);
-Result WriteDebugProcessMemory(Handle handle, uintptr bufferAddress, uintptr dstAddress, size size);
-Result SetHardwareBreakPoint(HardwareBreakPointRegisterName registerName, u64 flags, u64 value);
-Result GetDebugThreadParam(u64*, u32*, Handle handle, u64 threadId, DebugThreadParam param);
-Result CreateSession(Handle* outServerHandle, Handle* outClientHandle, bool isLight, uintptr);
+                               Handle handle, uintptr_t address);
+Result ReadDebugProcessMemory(uintptr_t bufferAddress, Handle handle, uintptr_t srcAddress,
+                              size_t size);
+Result WriteDebugProcessMemory(Handle handle, uintptr_t bufferAddress, uintptr_t dstAddress,
+                               size_t size);
+Result SetHardwareBreakPoint(HardwareBreakPointRegisterName registerName, uint64_t flags,
+                             uint64_t value);
+Result GetDebugThreadParam(uint64_t*, uint32_t*, Handle handle, uint64_t threadId,
+                           DebugThreadParam param);
+Result CreateSession(Handle* outServerHandle, Handle* outClientHandle, bool isLight, uintptr_t);
 Result AcceptSession(Handle* outPortHandle, Handle sessionHandle);
 Result ReplyAndReceiveLight(Handle handle);
-Result ReplyAndReceive(s32* outHandleIndex, const Handle* handles, s32 handleCount, Handle handle,
-                       s64 timeout);
-Result ReplyAndReceiveWithUserBuffer(s32* outHandleIndex, uintptr bufferAddress, size bufferSize,
-                                     const Handle* handles, s32 handleCount, Handle handle,
-                                     s64 timeout);
+Result ReplyAndReceive(int32_t* outHandleIndex, const Handle* handles, int32_t handleCount,
+                       Handle handle, int64_t timeout);
+Result ReplyAndReceiveWithUserBuffer(int32_t* outHandleIndex, uintptr_t bufferAddress,
+                                     size_t bufferSize, const Handle* handles, int32_t handleCount,
+                                     Handle handle, int64_t timeout);
 Result CreateEvent(Handle* outWritableEventHandle, Handle* outReadableEventHandle);
 void SleepSystem();
-Result CreatePort(Handle* outServerHandle, Handle* outClientHandle, s32 maxSessionCount,
-                  bool isLight, uintptr);
-Result ManageNamedPort(Handle* outServerHandle, const char* name, s32 maxSessionCount);
+Result CreatePort(Handle* outServerHandle, Handle* outClientHandle, int32_t maxSessionCount,
+                  bool isLight, uintptr_t);
+Result ManageNamedPort(Handle* outServerHandle, const char* name, int32_t maxSessionCount);
 Result ConnectToPort(Handle* outSessionHandle, Handle handle);
-Result SetProcessMemoryPermission(Handle handle, u64 address, u64 size,
+Result SetProcessMemoryPermission(Handle handle, uint64_t address, uint64_t size,
                                   MemoryPermission memoryPermission);
-Result MapProcessMemory(uintptr dstAddress, Handle handle, u64 srcAddress, size size);
-Result UnmapProcessMemory(uintptr dstAddress, Handle handle, u64 srcAddress, size size);
+Result MapProcessMemory(uintptr_t dstAddress, Handle handle, uint64_t srcAddress, size_t size);
+Result UnmapProcessMemory(uintptr_t dstAddress, Handle handle, uint64_t srcAddress, size_t size);
 Result QueryProcessMemory(svc::lp::MemoryInfo* outMemoryInfo, PageInfo* outPageInfo, Handle handle,
-                          u64 address);
-Result MapProcessCodeMemory(Handle handle, u64 dstAddress, u64 srcAddress, u64 size);
-Result UnmapProcessCodeMemory(Handle handle, u64 dstAddress, u64 srcAddress, u64 size);
+                          uint64_t address);
+Result MapProcessCodeMemory(Handle handle, uint64_t dstAddress, uint64_t srcAddress, uint64_t size);
+Result UnmapProcessCodeMemory(Handle handle, uint64_t dstAddress, uint64_t srcAddress,
+                              uint64_t size);
 Result CreateProcess(Handle* outHandle, const svc::lp::CreateProcessParameter& parameter,
-                     const u32* capabilities, s32 capabilityCount);
-Result StartProcess(Handle handle, s32 priority, s32 defaultCpuId, u64 stackSize);
+                     const uint32_t* capabilities, int32_t capabilityCount);
+Result StartProcess(Handle handle, int32_t priority, int32_t defaultCpuId, uint64_t stackSize);
 Result TerminateProcess(Handle handle);
-Result GetProcessInfo(s64* outProcessInfo, Handle handle, ProcessInfoType processInfoType);
+Result GetProcessInfo(int64_t* outProcessInfo, Handle handle, ProcessInfoType processInfoType);
 Result CreateResourceLimit(Handle* outHandle);
-Result SetResourceLimitLimitValue(Handle handle, LimitableResource resource, s64 value);
+Result SetResourceLimitLimitValue(Handle handle, LimitableResource resource, int64_t value);
 void CallSecureMonitor();
 
 #ifdef __aarch64__
 }  // namespace lp
 #endif
 
-}
+}  // namespace aarch
 
 }  // namespace nn::svc
