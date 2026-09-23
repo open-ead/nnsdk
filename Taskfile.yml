@@ -85,19 +85,19 @@ tasks:
 
   clang-format:
     cmds:
-      - > 
-        find {{.SOURCES}}
-        -regextype posix-extended
-        -regex '.*\.[ch](\+\+|pp|xx|c|h)?'
-        | xargs -P {{numCPU}} -n 1
-        clang-format {{.ARGS}}
+      - silent: true
+        cmd: > 
+          echo 'running clang-format with {{numCPU}} cpus with args: {{.ARGS}}';
+          find {{.SOURCES}}
+          -regextype posix-extended
+          -regex '.*\.[ch](\+\+|pp|xx|c|h)?'
+          | xargs -P {{numCPU}} -n 1 clang-format {{.ARGS}}
   clang-tidy:
+    vars:
+      CMD: clang-tidy --warnings-as-errors="*" --header-filter="include/(nn|nvn|nvnTool|nv)" -p build --quiet
     cmds:
-      - >
-        find {{.SOURCES}}
-        -regextype posix-extended
-        -regex '.*\.[ch](\+\+|pp|xx|c|h)?'
-        | xargs -P {{numCPU}} -n 1
-        clang-tidy --warnings-as-errors='*' --header-filter='include/(nn|nvn|nvnTool|nv)'
-        -p build
-        --quiet
+      - silent: true
+        cmd: |
+          echo 'running clang-tidy with {{numCPU}} cpus';
+          find {{.SOURCES}} -regextype posix-extended -regex '.*\.[ch](\+\+|pp|xx|c|h)?' | xargs -P {{numCPU}} -n 1 sh -c 'printf "\r\033[Kclang-tidy: $1"; {{.CMD}} "$1"' _;
+          echo ''
