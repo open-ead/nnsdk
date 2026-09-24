@@ -26,6 +26,19 @@ target_sources(nnSdk INTERFACE
     include/nn/aoc.h
     include/nn/applet.h
     include/nn/audio.h
+    include/nn/audio/audio_Adpcm.h
+    include/nn/audio/audio_AudioRendererTypes.h
+    include/nn/audio/audio_Common.h
+    include/nn/audio/audio_EffectTypes.h
+    include/nn/audio/audio_FinalMixTypes.h
+    include/nn/audio/audio_MemoryPoolTypes.h
+    include/nn/audio/audio_PerformanceMetrics.h
+    include/nn/audio/audio_PerformanceMetricsTypes.h
+    include/nn/audio/audio_SampleFormat.h
+    include/nn/audio/audio_SinkTypes.h
+    include/nn/audio/audio_SubMixTypes.h
+    include/nn/audio/audio_VoiceTypes.h
+    include/nn/audio/audio_WaveBuffer.h
     include/nn/bcat.h
     include/nn/bcat/bcat_DeliveryCache.h
     include/nn/bcat/bcat_DeliveryCacheDirectory.h
