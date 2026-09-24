@@ -1,8 +1,3 @@
-cmake_minimum_required(VERSION 3.15)
-
-set(NN_GFX_TARGET "NVN" CACHE STRING "Set nn::gfx build target")
-set_property(CACHE NN_GFX_TARGET PROPERTY STRINGS "" "NVN")
-
 set(NN_GFX_HEADERS
   include/nn/gfx/detail/gfx_DataContainer.h
   include/nn/gfx/detail/gfx_Fwd.h
@@ -149,10 +144,14 @@ target_sources(nn_gfx PUBLIC
 )
 
 set_target_properties(nn_gfx PROPERTIES
-    LINKER_LANGUAGE CXX
-    VERIFY_INTERFACE_HEADER_SETS ON
+  VERIFY_INTERFACE_HEADER_SETS ON
 )
 
-target_include_directories(nn_gfx PUBLIC include/)
+target_compile_options(nn_gfx PRIVATE ${NNSDK_COMPILE_FLAGS})
+nnsdk_header_verification_compile_options(nn_gfx)
 
-target_link_libraries(nn_gfx PUBLIC nvn nnSdk)
+if(NN_GFX_TARGET STREQUAL "NVN")
+  target_link_libraries(nn_gfx PUBLIC nvn)
+endif()
+
+target_link_libraries(nn_gfx PUBLIC nnSdk)

@@ -1,7 +1,5 @@
 #include <nn/gfx/gfx_StateInfo.h>
 
-#include "detail/gfx_NvnHelper.h"
-
 namespace nn::gfx {
 
 void MultisampleStateInfo::SetDefault() {
