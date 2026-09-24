@@ -1,9 +1,3 @@
-cmake_minimum_required(VERSION 3.15)
-
-# note that nn_gfx includes the C impl
-set(NVN_API "C" CACHE STRING "Set NVN platform type")
-set_property(CACHE NVN_API PROPERTY STRINGS "C" "CPP")
-
 set(NVN_HEADERS
   include/nv.h
 
@@ -31,12 +25,11 @@ target_sources(nvn PUBLIC
 )
 
 set_target_properties(nvn PROPERTIES
-    LINKER_LANGUAGE CXX
-    VERIFY_INTERFACE_HEADER_SETS ON
+  VERIFY_INTERFACE_HEADER_SETS ON
 )
-if (NVN_API)
-  target_compile_definitions(nvn PUBLIC NVN_API_${NVN_API})
+if(NVN_API)
+  target_compile_definitions(nvn PRIVATE NVN_API_${NVN_API})
 endif()
 
-target_include_directories(nvn PUBLIC include)
-target_include_directories(nvn PUBLIC src)
+target_compile_options(nvn PRIVATE ${NNSDK_COMPILE_FLAGS})
+nnsdk_header_verification_compile_options(nvn)
