@@ -25,6 +25,8 @@ tasks:
         -DCMAKE_CXX_STANDARD=17
         -DCMAKE_C_COMPILER=clang
         -DCMAKE_CXX_COMPILER=clang++
+        -DCMAKE_C_FLAGS='-D__aarch64__'
+        -DCMAKE_CXX_FLAGS='-D__aarch64__'
   build:
     desc: Check the project builds
     cmds:
