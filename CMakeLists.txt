@@ -102,6 +102,7 @@ target_sources(nnSdk INTERFACE
     include/nn/os/os_MutexTypes.h
     include/nn/os/os_ThreadCommon.h
     include/nn/os/os_ThreadTypes.h
+    include/nn/os/os_TickTypes.h
     include/nn/pl.h
     include/nn/prepo.h
     include/nn/ro.h
@@ -139,6 +140,12 @@ target_sources(nnSdk INTERFACE
     include/nn/util/util_TypedStorage.h
     include/nn/vi.h
     include/nn/xcd.h
+    include/nnc/nn_Result.h
+    include/nnc/os/os_EventCommon.h
+    include/nnc/os/os_Mutex.h
+    include/nnc/os/os_MutexTypes.h
+    include/nnc/os/os_TickTypes.h
+    include/nnc/result/result_ResultBase.h
 
 # SOURCES_END
 )

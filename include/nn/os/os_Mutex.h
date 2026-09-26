@@ -5,11 +5,17 @@
 
 namespace nn::os {
 
+// @nncbindgen
 void InitializeMutex(MutexType*, bool recursive, int32_t lockLevel);
+// @nncbindgen
 void FinalizeMutex(MutexType*);
+// @nncbindgen
 void LockMutex(MutexType*);
+// @nncbindgen
 bool TryLockMutex(MutexType*);
+// @nncbindgen
 void UnlockMutex(MutexType*);
+
 bool IsMutexLockedByCurrentThread(const MutexType*);
 
 class Mutex {

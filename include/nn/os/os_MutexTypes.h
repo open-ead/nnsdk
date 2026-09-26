@@ -2,12 +2,14 @@
 
 #include <cstdint>
 
+// @nncbindgen skip
 #include <nn/os/detail/os_InternalCriticalSection.h>
 
 namespace nn::os {
 
 struct ThreadType;
 
+// @nncbindgen
 struct MutexType {
     uint8_t _state;
     bool _isRecursive;
