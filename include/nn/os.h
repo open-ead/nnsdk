@@ -13,7 +13,10 @@
 #include <nn/os/os_Event.h>
 #include <nn/os/os_MessageQueue.h>
 #include <nn/os/os_Mutex.h>
+#include <nn/os/os_MutexTypes.h>
+#include <nn/os/os_ThreadCommon.h>
 #include <nn/os/os_ThreadTypes.h>
+#include <nn/os/os_TickTypes.h>
 
 namespace nn::os {
 
@@ -35,12 +38,6 @@ struct InterProcessEventType {
     uint32_t writableHandle;
 };
 }  // namespace detail
-
-struct Tick {
-    Tick(uint64_t val) : value(val) {}
-
-    uint64_t value;
-};
 
 struct LightEventType {
     std::aligned_storage_t<0xc, 4> storage;

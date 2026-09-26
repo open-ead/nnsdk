@@ -4,7 +4,7 @@ version: '3'
 
 vars:
   # Sources to check with clang-format/clang-tidy
-  SOURCES: lib include/nn
+  SOURCES: lib include/nn include/nnc
 
 tasks:
   pr:
@@ -55,11 +55,12 @@ tasks:
     env:
       LC_ALL: C
     cmds:
+      - task: cbindgen
       - silent: true
         cmd: |
           echo '# SOURCES_START' > out
           echo '' >> out
-          find include/nn -type f | sort >> out
+          find include/nn include/nnc -type f | sort >> out
           echo '' >> out
           echo '# SOURCES_END' >> out
           sed -i -e 's/^include/    include/' out
@@ -77,6 +78,26 @@ tasks:
               fi
             done
           fi
+
+  cbindgen:
+    aliases: [cbg]
+    desc: Generate nnc bindings
+    env:
+      LC_ALL: C
+    cmds:
+      - silent: true
+        cmd: | 
+          cd include/nn
+          grep -rl "@nncbindgen" | sort > ../../out
+          cd ../..
+          cat out | xargs -P {{numCPU}} -n 1 python nncbindgen.py
+
+  cbindgen-check:
+    desc: Check nnc bindings are up-to-date
+    env:
+      NN_CBINDGEN_CHECK: 1
+    cmds:
+      - task: cbindgen
           
   clean:
     desc: Remove CMake build files
