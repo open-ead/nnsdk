@@ -1,7 +1,5 @@
 #pragma once
 
-#include <nn/types.h>
-
 namespace nn::applet {
 
 enum class ExitReason { Normal = 0, Canceled = 1, Abnormal = 2, Unexpected = 10 };
@@ -50,7 +48,7 @@ enum class LibraryAppletMode {
 struct LibraryAppletHandle {
     char _filler0[0x18];
     AppletId id;
-    AppletMode mode;
+    LibraryAppletMode mode;
     char _filler20[0x78];
 };
 static_assert(sizeof(LibraryAppletHandle) == 0x98);
