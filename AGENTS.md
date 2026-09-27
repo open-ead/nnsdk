@@ -1,6 +1,8 @@
 It is strongly recommended to disclose your vendor and model (e.g. `GitHub Copilot on GPT 5.6 Sol`)
 in your commit messages and PR description.
 
+Please read @CONTRIBUTING.md in addition to the rules below.
+
 # RE/Decompile Rules
 
 - The contributions must be based on publicly available sources.
@@ -17,17 +19,6 @@ in your commit messages and PR description.
   - The only exception is `asm("")` which can serve as a barrier for optimization.
 - Do not use `goto` for matching unless it is **absolutely** necessary and plausible
   that the original source code contained `goto`.
-- For nnSdk modules, the headers should follow these rules:
-  - Use `nn/foo.h` and `nn/foo/` for the namespace `nn::foo` and any sub-namespaces.
-  - Put things in the `nn::foo::detail` namespace in one of `nn/foo/detail/foo_Something.h` headers.
-  - Put everything that is not `detail` in one of `nn/foo/foo_Something.h` headers even if it has
-    a sub-namespace.
-  - Put things that don't really fit in any `foo_Something.h` in `nn/foo.h`. This file should also
-    re-export every `nn/foo/foo_Something.h`, but not the `detail` headers.
-  - For inter-module dependencies, prefer including the exact `nn/foo/foo_Something.h` instead of
-    the everything `nn/foo.h`
-  - For types that have not been defined, do not use forward declaration. Use a `nn/foo/foo_Todo.h`
-    to include all TODO types (types that don't have definition but their name is needed by other types).
 
 # PR Rules
 
