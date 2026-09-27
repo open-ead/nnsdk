@@ -47,7 +47,8 @@ def main(file: str, check: bool):
     current_lines = [ x.rstrip() for x in current_file.strip().split("\n") ]
 
     if current_lines == output_lines and current_file.endswith("\n"):
-        print(f"up-to-date: nnc/{file}")
+        if check:
+            print(f"up-to-date: nnc/{file}")
         return
 
     if check:
@@ -293,35 +294,51 @@ def process_node(
 
 
 def figure_out_size_and_align(input_file: str, typename: str):
+    # can't run the output since it's for the switch, so compile the values
+    # into a data constant and read them back from the generated assembly
+    symbol = "nncbindgen_size_align"
     temp_cpp_file = "\n".join([
-        "#include <cstdio>",
         f"#include <nn/{input_file}>",
-        "int main() {",
-        f"printf(\"%zu %zu\\n\", sizeof({typename}), alignof({typename}));",
-        "return 0;",
-        "}",
+        f"extern \"C\" __attribute__((used)) const unsigned long long {symbol}[2] = {{",
+        f"    sizeof({typename}), alignof({typename})",
+        "};",
     ])
     with tempfile.NamedTemporaryFile(mode="w+", delete=True, suffix=".cpp") as input_cpp:
         input_cpp.write(temp_cpp_file)
         input_cpp.flush()
-        with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix="") as output_bin:
-            output_bin_name = output_bin.name
-            include_path = str(get_include_root())
-            if " " in include_path:
-                raise RuntimeError("project path cannot contain spaces")
-            subprocess.check_call([
-                "clang",
-                "-std=c++17",
-                f"-I{str(get_include_root())}",
-                input_cpp.name,
-                "-o",
-                output_bin.name
-            ])
-        output = subprocess.check_output([output_bin_name], text=True)
-        os.remove(output_bin_name)
+        include_path = str(get_include_root())
+        if " " in include_path:
+            raise RuntimeError("project path cannot contain spaces")
+        asm = subprocess.check_output([
+            str(get_nx_clang() / "bin" / "clang++"),
+            "--target=aarch64-linux-elf",
+            "-mcpu=cortex-a57+fp+simd+crypto+crc",
+            "-std=c++17",
+            "-stdlib=libc++",
+            f"--sysroot={str(get_musl())}",
+            f"-I{include_path}",
+            "-DSWITCH",
+            "-DNNSDK",
+            "-DMATCHING_HACK_NX_CLANG",
+            "-S",
+            "-o",
+            "-",
+            input_cpp.name,
+        ], text=True)
 
-    size, align = output.split(" ")
-    return int(size), int(align)
+    lines = [ x.strip() for x in asm.split("\n") ]
+    try:
+        i = lines.index(f"{symbol}:")
+    except ValueError:
+        raise RuntimeError(f"cannot find {symbol} in compiled assembly:\n{asm}")
+    values = []
+    for line in lines[i+1:i+3]:
+        parts = line.split()
+        if len(parts) < 2 or parts[0] != ".xword":
+            raise RuntimeError(f"unexpected assembly for {symbol}: {line}")
+        values.append(int(parts[1], 0))
+    size, align = values
+    return size, align
 
 def parse_function(
     c_namespace: str,
@@ -373,11 +390,52 @@ def convert_to_c_type(c_namespace: str, t: str) -> str:
     output = "".join(converted_segs)
     return output
 
+def get_nx_clang():
+    clang = os.environ.get("NX_CLANG")
+    if clang:
+        return Path(clang)
+    aarch64 = os.environ.get("NX_AARCH64")
+    if not aarch64:
+        raise RuntimeError("either NX_CLANG or NX_AARCH64 must be set")
+    clang = get_toolchain_root() / f"nx-aarch64-{aarch64}"
+    if not clang.is_dir():
+        raise RuntimeError("cannot find nx-aarch64")
+    return Path(clang)
+    
 
+def get_musl():
+    musl = os.environ.get("NX_MUSL")
+    if musl:
+        return Path(musl)
+    musl = get_toolchain_root() / "musl"
+    if not musl.is_dir():
+        raise RuntimeError("cannot find musl")
+    return Path(musl)
+
+def get_toolchain_root():
+    return Path(__file__).resolve().parent / "toolchain"
 
 def get_include_root():
     return Path(__file__).resolve().parent / "include"
 
 if __name__ == "__main__":
+    if not os.environ.get("NX_CLANG") and not os.environ.get("NX_AARCH64"):
+        print("please run this script through task - run 'task cbindgen'")
+        exit(1)
+
+    try:
+        get_nx_clang()
+    except:
+        print("cannot find nx-aarch64, please run 'task configure' to download it")
+    try:
+        get_musl()
+    except:
+        print("cannot find musl, please run 'task configure' to download it")
+
     check = bool(os.environ.get("NN_CBINDGEN_CHECK")) or bool(os.environ.get("CI"))
-    main(sys.argv[1], check)
+    file = sys.argv[1]
+    try:
+        main(file, check)
+    except:
+        print("failed to generate nnc bindings for: " + file)
+        raise
