@@ -26,6 +26,7 @@ INCLUDE_MAP = {
     "<nn/util.h>": None # TODO: these macros need to be available to nnc but there are some cpp only stuff
 }
 ALIGN_HOLDER = {
+    1: "char", # for placeholder types
     8: "void*"
 }
 
@@ -103,11 +104,12 @@ def process(input_file_ident: str, input_file: str):
             output.append("")
             last_item_type = t
 
-    directive = {
+    directive_stack: list[dict] = [{
         "type": "none"
-    }
+    }]
+    is_bulk_skipping = False
     namespace = ""
-    node_buffer = ""
+    node_buffer_stack = []
 
     for line in input_file.split('\n'):
         line = line.strip()
@@ -118,8 +120,10 @@ def process(input_file_ident: str, input_file: str):
         if not line:
             continue
         if line.startswith("#include "):
-            if directive["type"] == "skip":
-                directive = { "type": "none" }
+            if directive_stack[-1]["type"] == "skip":
+                if not is_bulk_skipping:
+                    directive_stack.pop()
+                    node_buffer_stack.pop()
                 continue
 
             include = line[len("#include "):].strip()
@@ -144,31 +148,61 @@ def process(input_file_ident: str, input_file: str):
 
         if line.startswith("// @nncbindgen"):
             d = line[len("// @nncbindgen"):].strip()
+            attrs, d = parse_directive_attrs(d)
             if not d:
-                directive = { "type": "auto" }
+                directive_stack.append({ "type": "auto", "attrs": attrs })
             elif d.startswith("typedef"):
                 typedef_t = d[len("typedef"):].strip()
                 if not typedef_t:
                     raise RuntimeError("missing type after typedef directive")
-                directive = { "type": "typedef", "target": typedef_t }
+                directive_stack.append({ "type": "typedef", "target": typedef_t })
+            elif d.startswith("skip-start"):
+                directive_stack.append({ "type": "skip" })
+                is_bulk_skipping = True
+            elif d.startswith("skip-end"):
+                directive_stack.pop()
+                node_buffer_stack.pop()
+                is_bulk_skipping = False
             elif d.startswith("skip"):
-                directive = { "type": "skip" }
+                directive_stack.append({ "type": "skip" })
             else:
                 raise RuntimeError("unknown directive: " + d)
+            node_buffer_stack.append("")
             continue
 
-        if directive["type"] == "none":
+        if directive_stack[-1]["type"] == "none" or not node_buffer_stack:
             continue
 
         i = line.find("//")
         if i > 0:
             line = line[:i].strip()
 
-        node_buffer += line
+        node_buffer_stack[-1] += line
+        # note this doesn't get the full class but that's fine for now
+        # as we only need the class name, the important thing is it gets
+        # all lines for a function
         if line.endswith(";"):
-            out_type, lines = process_node(input_file_ident, directive, namespace, node_buffer)
-            node_buffer = ""
-            directive = { "type": "none" }
+            directive = directive_stack[-1]
+            rename = None
+            containing_class = None
+            current_namespace = namespace
+            if "attrs" in directive:
+                rename = directive["attrs"].get("rename")
+                containing_class = directive["attrs"].get("memberof")
+                override_namespace = directive["attrs"].get("namespace")
+                if override_namespace:
+                    current_namespace = override_namespace
+
+            out_type, lines = process_node(
+                input_file_ident,
+                directive,
+                current_namespace,
+                node_buffer_stack[-1],
+                rename,
+                containing_class
+            )
+            node_buffer_stack.pop()
+            directive_stack.pop()
             extern_c_start()
             enter_item_region(out_type)
             output += lines
@@ -183,41 +217,79 @@ def process(input_file_ident: str, input_file: str):
     return output
 
 
-def process_node(input_file: str, directive, namespace: str, node_buffer: str):
+def parse_directive_attrs(directive: str) -> tuple[dict, str]:
+    directive = directive.strip()
+    if not directive.startswith("("):
+        return {}, directive
+    i = directive.find(")")
+    attrs = directive[1:i].strip().split(",")
+    directive = directive[i+1:].strip()
+    parsed_attrs = {}
+    for attr in attrs:
+        i = attr.find("=")
+        attr_name = attr[:i].strip()
+        attr_value = attr[i+1:].strip()
+        parsed_attrs[attr_name] = attr_value
+    return parsed_attrs, directive
+
+def process_node(
+    input_file: str,
+    directive,
+    namespace: str,
+    node_buffer: str,
+    rename: str | None,
+    containing_class: str | None
+):
     out_type = ""
     out = []
     c_namespace = namespace.replace("::", "").strip()
+    symbol_c_namespace = c_namespace
+    cpp_namespace = namespace
+    if containing_class:
+        symbol_c_namespace += containing_class
+        cpp_namespace += "::" + containing_class
     if node_buffer.startswith("struct ") or node_buffer.startswith("class "):
         i = node_buffer.find("{")
         struct_name = node_buffer[6:i].strip()
+        if rename:
+            struct_name = rename
         out_type = f"struct {struct_name}"
         if directive["type"] == "typedef":
             out = [
-                f"typedef {directive["target"]} {c_namespace}{struct_name};"
+                f"typedef {directive["target"]} {symbol_c_namespace}{struct_name};"
             ]
         else:
-            size, align = figure_out_size_and_align(input_file, f"{namespace}::{struct_name}")
+            size, align = figure_out_size_and_align(input_file, f"{cpp_namespace}::{struct_name}")
             if align not in ALIGN_HOLDER:
                 raise RuntimeError(f"alignment {align} is currently not implemented")
             align_type = ALIGN_HOLDER[align]
             out = [
-                f"typedef union {c_namespace}{struct_name} {{ uint8_t buf[{size:#x}]; {align_type} alignment_holder; }} {c_namespace}{struct_name};"
+                f"typedef union {symbol_c_namespace}{struct_name} {{ uint8_t buf[{size:#x}]; {align_type} alignment_holder; }} {symbol_c_namespace}{struct_name};"
             ]
         return out_type, out
 
     if node_buffer.startswith("enum "):
         i = node_buffer.find("{")
         enum_name = node_buffer[len("enum"):i].strip()
+        enumerators_prefix = symbol_c_namespace
+        if enum_name.startswith("class "):
+            enum_name = enum_name[len("class"):].strip()
+            enumerators_prefix += enum_name + "_"
         j = node_buffer.rfind("}")
-        enumerators = ["    " + c_namespace + x.strip() + "," for x in node_buffer[i+1:j].split(",")]
+        enumerators = []
+        for e in node_buffer[i+1:j].split(","):
+            e = e.strip();
+            if not e:
+                continue
+            enumerators.append("    " + enumerators_prefix + e + ",")
         out = [
-            f"enum {c_namespace}{enum_name} {{",
+            f"typedef enum {symbol_c_namespace}{enum_name} {{",
             *enumerators,
-            "};",
+            f"}} {symbol_c_namespace}{enum_name};",
         ]
         return f"enum {enum_name}", out
 
-    return "function", [ parse_function(c_namespace, node_buffer) ]
+    return "function", [ parse_function(c_namespace, node_buffer, rename, containing_class, symbol_c_namespace) ]
 
 
 def figure_out_size_and_align(input_file: str, typename: str):
@@ -251,7 +323,13 @@ def figure_out_size_and_align(input_file: str, typename: str):
     size, align = output.split(" ")
     return int(size), int(align)
 
-def parse_function(c_namespace: str, node_buffer: str) -> str:
+def parse_function(
+    c_namespace: str,
+    node_buffer: str,
+    rename: str | None,
+    containing_class: str | None,
+    symbol_c_namespace: str,
+) -> str:
     if "<" in node_buffer or ">" in node_buffer:
         raise RuntimeError("looks like there are type parameters so this can't be parse as a c function: " + node_buffer)
     if "&" in node_buffer:
@@ -262,17 +340,26 @@ def parse_function(c_namespace: str, node_buffer: str) -> str:
     if len(parts) != 2:
         raise RuntimeError("there are too many spaces in the return type and function name")
     retty, name = parts
+    if rename:
+        name = rename
     j = node_buffer.rfind(")")
     middle = node_buffer[i+1:j].strip().split(",")
     args = []
+    if containing_class:
+        args.append(convert_to_c_type(c_namespace, f"{containing_class}* this_"))
     for arg_type_and_name in middle:
         converted = convert_to_c_type(c_namespace, arg_type_and_name)
+        if not converted:
+            continue
         args.append(converted)
     c_retty = convert_to_c_type(c_namespace, retty)
-    return f"{c_retty} {c_namespace}{name}({", ".join(args)});"
+    return f"{c_retty} {symbol_c_namespace}{name}({", ".join(args)});"
 
 def convert_to_c_type(c_namespace: str, t: str) -> str:
     namespace_segs = t.strip().split("::")
+    # if a fully qualified nn type, concat it already
+    if namespace_segs and namespace_segs[0].strip() == "nn":
+        namespace_segs = [t.strip().replace("::", "")]
     converted_segs = []
     for seg in namespace_segs:
         parts = seg.split(" ")

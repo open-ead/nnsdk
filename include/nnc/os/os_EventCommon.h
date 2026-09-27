@@ -10,10 +10,10 @@
 extern "C" {
 #endif
 
-enum nnosEventClearMode {
+typedef enum nnosEventClearMode {
     nnosEventClearMode_ManualClear,
     nnosEventClearMode_AutoClear,
-};
+} nnosEventClearMode;
 
 #ifdef __cplusplus
 }
