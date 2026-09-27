@@ -45,14 +45,14 @@ directories. The same rules for the SDK header apply to each module.
 ## C Bindings
 
 The SDK exports C bindings for 3rd party libraries such as `curl` to call. These headers
-are at `/include/nnc`. These can either be generated, or hand-written. It looks like
-if external C code needs to access the fields of a type, then Nintendo hand wrote the
+are at `/include/nnc`. These can either be generated, or hand-written. If external C code
+needs to access the fields of a type, then Nintendo hand wrote the
 binding for that type. Otherwise, the type is an opaque type that has the same size and alignment
-as the CPP type.
+as the C++ type.
 
-The C binding files have the same structure as the CPP headers, i.e. one `nnc/foo/foo_Xy.h`
+The C binding files have the same structure as the C++ headers, i.e. one `nnc/foo/foo_Xy.h`
 per `nn/foo/foo_Xy.h`. If a file includes any `@nncbindgen` comment, it will automatically be
-included in the bindgen. If a binding needs to be hand-written, then the corresponding CPP
+included in the bindgen. If a binding needs to be hand-written, then the corresponding C++
 header must not have `@nncbindgen` comments, otherwise the changes would be overriden.
 
 To generate a binding, simply add `// @nncbindgen` above the item:
@@ -62,9 +62,15 @@ namespace nn::foo {
 
 // @nncbindgen
 class FooBar {
-    /* .. */
+    // @nncbindgen(memberof=FooBar)
+    enum class Biz { A, B };
+    // @nncbindgen(memberof=FooBar)
+    nn::Result Create(Biz* b);
 };
-// this generates: typedef union nnfooFooBar { .. } nnfooFooBar;
+// this generates:
+// typedef union nnfooFooBar { .. } nnfooFooBar;
+// typedef enum nnfooFooBarBiz { nnfooFooBarBiz_A, nnfooFooBarBiz_B } nnfooFooBarBiz;
+// nnResult nnfooFooBarCreate(nnfooFooBar* this_, nnfooFooBarBiz b);
 
 // struct/class can also be typedef'd
 // @nncbindgen typedef int;
@@ -75,14 +81,33 @@ class X {
 
 // @nncbindgen
 enum Abc { Abc_A, Abc_B };
-// this generates: enum nnfooAbc { nnfooAbc_A, nnfooAbc_B };
+// this generates: typedef enum nnfooAbc { nnfooAbc_A, nnfooAbc_B } nnfooAbc;
+
+// For enum class, the class name is also added
+// @nncbindgen
+enum class Xyz { A, B };
+// this generates: typedef enum nnfooXyz { nnfooXyz_A, nnfooXyz_B } nnfooXyz;
 
 
 // @nncbindgen
 FooBar* FooTheBar(FooBar* foo, Abc, int);
 // this generates: nnfooFooBar* nnfooFooTheBar(nnfooFooBar* foo, nnfooAbc, int);
+
+// the inferred namespace is the last 'namespace' line seen,
+// if that is incorrect, specify the fully-qualified type name
+// @nncbindgen
+nn::Result FooTheXyz(Xyz);
+// this generates: nnResult nnfooFooTheXyz(nnfooXyz);
+
+// use 'rename' for overloads
+// @nncbindgen(rename=FooTheXyzWithTwo)
+nn::Result FooTheXyz(Xyz, Xyz);
+// this generates: nnResult nnfooFooTheXyzWithTwo(nnfooXyz, nnfooXyz);
+
 }
 ```
+
+See the ssl headers for more examples.
 
 
 ## PR Rules
