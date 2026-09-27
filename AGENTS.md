@@ -9,7 +9,7 @@ Please read @CONTRIBUTING.md in addition to the rules below.
 - Currently we do not decompile the shared SDK library (nnSdk). Only contribute
   cpp source code for modules that are statically linked (in the `lib/` subdirectory).
 
-# Code Style Rules 
+# Code Style Rules
 
 - Do not include any assembly or disassembly as code or comment
 - Do not use inline assembly for matching. Any PR with a substantial amount of 
@@ -31,3 +31,6 @@ Please read @CONTRIBUTING.md in addition to the rules below.
   - One thing per PR
   - If the change spans across a lot of components, batch them into smaller PRs
 - Squash your branch into one commit.
+- Include an explanation or source for member names or why functions must exist,
+  if it isn't straightforward from the binary or their usages.
+

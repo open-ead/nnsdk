@@ -24,7 +24,7 @@ Workflows:
 The headers in `/include/nn` should follow these rules:
 
 - Use `nn/foo.h` and `nn/foo/` for the namespace `nn::foo` and any sub-namespaces.
-  - Put things in the `nn::foo::detail` namespace in one of `nn/foo/detail/foo_Something.h` headers.
+  - Put things that are in the `nn::foo::detail` namespace into one of `nn/foo/detail/foo_Something.h` headers.
   - Put everything that is not `detail` in one of `nn/foo/foo_Something.h` headers even if it has
     a sub-namespace.
   - Put things that don't really fit in any `foo_Something.h` in `nn/foo.h`. This file should also
@@ -90,3 +90,6 @@ FooBar* FooTheBar(FooBar* foo, Abc, int);
 Please use English for PRs and squash your branch into one commit.
 Keep the PR reasonably sized to get them reviewed faster. If there are mutiple
 things in the same PR, considering splitting them into multiple PRs.
+
+If it isn't straightforward from the usage or binary why something must be added,
+please include an explanation or source for member or function names.
