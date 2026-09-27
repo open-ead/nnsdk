@@ -48,5 +48,5 @@ jobs:
         env:
           NNSDK_DIR: ${{ github.workspace }}
         run: |
-          task cmake -- -DNNSDK_DIR=$NNSDK_DIR
+          task configure
           task build
