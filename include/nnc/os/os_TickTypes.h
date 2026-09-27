@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 
-typedef uint64_t nnosTick;
+typedef int64_t nnosTick;
 
 #ifdef __cplusplus
 }

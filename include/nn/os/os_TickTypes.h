@@ -4,11 +4,12 @@
 
 namespace nn::os {
 
-// @nncbindgen typedef uint64_t
+// TODO - change to class and implement
+// @nncbindgen typedef int64_t
 struct Tick {
     Tick(uint64_t val) : m_Tick(val) {}
 
-    uint64_t m_Tick;
+    int64_t m_Tick;
 };
 
 }  // namespace nn::os
