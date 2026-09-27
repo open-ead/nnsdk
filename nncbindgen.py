@@ -187,9 +187,9 @@ def process_node(input_file: str, directive, namespace: str, node_buffer: str):
     out_type = ""
     out = []
     c_namespace = namespace.replace("::", "").strip()
-    if node_buffer.startswith("struct "):
+    if node_buffer.startswith("struct ") or node_buffer.startswith("class "):
         i = node_buffer.find("{")
-        struct_name = node_buffer[len("struct"):i].strip()
+        struct_name = node_buffer[6:i].strip()
         out_type = f"struct {struct_name}"
         if directive["type"] == "typedef":
             out = [
