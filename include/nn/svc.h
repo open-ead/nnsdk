@@ -31,43 +31,57 @@ struct Handle {
     operator uint32_t() const { return handle; }
 };
 
-enum class MemoryPermission { Read = 1 << 0, Write = 1 << 1, Execute = 1 << 2, DontCare = 1 << 28 };
+enum class MemoryPermission {
+    Read = 1u << 0u,
+    Write = 1u << 1u,
+    Execute = 1u << 2u,
+    DontCare = 1u << 28u,
+};
 
 enum class MemoryType {
-    Free,
-    Io,
-    Static,
-    Code,
-    CodeData,
-    Normal,
-    Shared,
-    Alias,
-    AliasCode,
-    AliasCodeData,
-    Ipc,
-    Stack,
-    ThreadLocal,
-    Transferred,
-    SharedTransferred,
-    SharedCode,
-    Inaccessible,
-    NonSecureIpc,
-    NonDeviceIpc,
-    Kernel,
-    GeneratedCode,
-    CodeOut,
-    Coverage,
-    Insecure,
+    Free = 0x00000000,
+    Io = 0x00002001,
+    Static = 0x00042002,
+    Code = 0x00DC7E03,
+#if NN_SDK_VER < NN_MAKE_VER(4, 0, 0)
+    CodeData = 0x01FEBD04,
+    Normal = 0x017EBD05,
+#else
+    CodeData = 0x03FEBD04,
+    Normal = 0x037EBD05,
+#endif
+    Shared = 0x00402006,
+    Alias = 0x00482907,
+    AliasCode = 0x00DD7E08,
+#if NN_SDK_VER < NN_MAKE_VER(4, 0, 0)
+    AliasCodeData = 0x01FFBD09,
+#else
+    AliasCodeData = 0x03FFBD09,
+#endif
+    Ipc = 0x005C3C0A,
+    Stack = 0x005C3C0B,
+    ThreadLocal = 0x0040200C,
+    Transferred = 0x015C3C0D,
+    SharedTransferred = 0x005C380E,
+    SharedCode = 0x0040380F,
+    Inaccessible = 0x00000010,
+    NonSecureIpc = 0x005C3811,
+    NonDeviceIpc = 0x004C2812,
+    Kernel = 0x00002013,
+    GeneratedCode = 0x00402214,
+    CodeOut = 0x00402015,
+    Coverage = 0x00002016,
+    Insecure = 0x05583817,
 };
 
 enum class MemoryAttribute {
-    Locked = 1 << 0,
-    IpcLocked = 1 << 1,
-    DeviceShared = 1 << 2,
-    Uncached = 1 << 3,
-    PermissionLocked = 1 << 4,
-    GpuSharable = 1 << 5,
-    GpuShared = 1 << 6,
+    Locked = 1u << 0u,
+    IpcLocked = 1u << 1u,
+    DeviceShared = 1u << 2u,
+    Uncached = 1u << 3u,
+    PermissionLocked = 1u << 4u,
+    GpuSharable = 1u << 5u,
+    GpuShared = 1u << 6u,
 };
 
 struct PageInfo {};  // TODO
