@@ -32,6 +32,9 @@ tasks:
       # this means we might not catch errors that only happen
       # in one of the versions. This is partially mitigated
       # by building SMO and BOTW in CI
+      # note: we apply the __aarch64__ manually so the checks
+      # can build without cross-compilation. This setup is easier
+      # so the CI doesn't need another toolchain
       - >
         cmake -G Ninja -B build -S .
         -DNN_SDK=1.2.3 
@@ -39,12 +42,16 @@ tasks:
         -DCMAKE_CXX_STANDARD=17
         -DCMAKE_C_COMPILER=clang
         -DCMAKE_CXX_COMPILER=clang++
+        -DCMAKE_C_FLAGS='-D__aarch64__'
+        -DCMAKE_CXX_FLAGS='-D__aarch64__'
       - >
         cmake -G Ninja -B test/header_check/build -S test/header_check
         -DNN_SDK=1.2.3 
         -DCMAKE_CXX_STANDARD=17
         -DCMAKE_C_COMPILER=clang
         -DCMAKE_CXX_COMPILER=clang++
+        -DCMAKE_C_FLAGS='-D__aarch64__'
+        -DCMAKE_CXX_FLAGS='-D__aarch64__'
   build:
     desc: Check the project builds and run tests
     cmds:
