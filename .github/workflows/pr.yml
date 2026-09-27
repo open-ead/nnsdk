@@ -4,7 +4,19 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/open-ead/ubuntu-builder
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          submodules: false
+      - run: task pr-build
+
   check:
     runs-on: ubuntu-latest
     container:
@@ -14,7 +26,7 @@ jobs:
         with:
           persist-credentials: false
           submodules: false
-      - run: task pr
+      - run: task pr-check
 
   check-nnware:
     runs-on: ubuntu-latest

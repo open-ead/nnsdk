@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 
-union nnosMutexType { uint8_t buf[0x20]; void* alignment_holder; };
+typedef union nnosMutexType { uint8_t buf[0x20]; void* alignment_holder; } nnosMutexType;
 
 #ifdef __cplusplus
 }

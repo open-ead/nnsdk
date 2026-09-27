@@ -1,22 +1,12 @@
-set(NVN_HEADERS
-  include/nv.h
-
-  include/nvn/nvn.h
-  include/nvn/nvn_Cpp.h
-  include/nvn/nvn_CppFuncPtrBase.h
-  include/nvn/nvn_CppMethods.h
-  include/nvn/nvn_DeviceConstantsNX.h
-  include/nvn/nvn_FuncPtrBase.h
-  include/nvn/nvn_FuncPtrInline.h
-  include/nvnTool/nvnTool_GlslcInterface.h
-
-  src/nvn/nvn_CppFuncPtrImpl.h
-  src/nvn/nvn_FuncPtrImpl.h
+file(GLOB_RECURSE NVN_HEADERS CONFIGURE_DEPENDS
+  include/*.h
+  src/*.h
+)
+file(GLOB_RECURSE NVN_SOURCES CONFIGURE_DEPENDS
+  src/*.cpp
 )
 
-add_library(nvn OBJECT
-  src/nvn/nvn_Impl.cpp
-)
+add_library(nvn OBJECT ${NVN_SOURCES})
 
 target_sources(nvn PUBLIC
   FILE_SET HEADERS

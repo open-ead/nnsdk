@@ -201,7 +201,7 @@ def process_node(input_file: str, directive, namespace: str, node_buffer: str):
                 raise RuntimeError(f"alignment {align} is currently not implemented")
             align_type = ALIGN_HOLDER[align]
             out = [
-                f"union {c_namespace}{struct_name} {{ uint8_t buf[{size:#x}]; {align_type} alignment_holder; }};"
+                f"typedef union {c_namespace}{struct_name} {{ uint8_t buf[{size:#x}]; {align_type} alignment_holder; }} {c_namespace}{struct_name};"
             ]
         return out_type, out
 

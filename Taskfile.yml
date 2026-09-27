@@ -14,10 +14,24 @@ tasks:
       - task: build
       - task: check
 
+  pr-build:
+    cmds:
+      - task: configure
+      - task: build
+
+  pr-check:
+    cmds:
+      - task: configure
+      - task: check
+
   configure:
     desc: Configure CMake
     cmds:
-      - task: update-sources
+      - task: cbindgen
+      # TODO: Currently, we only build for a stub version 1.2.3
+      # this means we might not catch errors that only happen
+      # in one of the versions. This is partially mitigated
+      # by building SMO and BOTW in CI
       - >
         cmake -G Ninja -B build -S .
         -DNN_SDK=1.2.3 
@@ -25,11 +39,18 @@ tasks:
         -DCMAKE_CXX_STANDARD=17
         -DCMAKE_C_COMPILER=clang
         -DCMAKE_CXX_COMPILER=clang++
+      - >
+        cmake -G Ninja -B test/header_check/build -S test/header_check
+        -DNN_SDK=1.2.3 
+        -DCMAKE_CXX_STANDARD=17
+        -DCMAKE_C_COMPILER=clang
+        -DCMAKE_CXX_COMPILER=clang++
   build:
-    desc: Check the project builds
+    desc: Check the project builds and run tests
     cmds:
       - cmake --build build
       - cmake --build build --target all_verify_header_sets
+      - cmake --build test/header_check/build
 
   check:
     desc: Run clang-format and clang-tidy checks
@@ -49,35 +70,6 @@ tasks:
     cmds:
       - task: clang-format
         vars: { ARGS: -i }
-
-  update-sources:
-    desc: Update sources in CMakeLists.txt
-    env:
-      LC_ALL: C
-    cmds:
-      - task: cbindgen
-      - silent: true
-        cmd: |
-          echo '# SOURCES_START' > out
-          echo '' >> out
-          find include/nn include/nnc -type f | sort >> out
-          echo '' >> out
-          echo '# SOURCES_END' >> out
-          sed -i -e 's/^include/    include/' out
-          sed -i -e '/# SOURCES_START/r out' -e '/# SOURCES_START/,/# SOURCES_END/d' CMakeLists.txt
-          echo 'CMakeLists.txt updated'
-
-          rm out
-
-          if [ -n "$CI" ]; then
-            for f in CMakeLists.txt ; do
-              if ! git diff --quiet -- "$f"; then
-                git diff -- "$f"
-                echo "error: sources in $f are out of date. Run \`task configure\` and commit the changes."
-                exit 1
-              fi
-            done
-          fi
 
   cbindgen:
     aliases: [cbg]
@@ -103,6 +95,7 @@ tasks:
     desc: Remove CMake build files
     cmds:
       - rm -rf build
+      - rm -rf test/*/build
 
   clang-format:
     cmds:
