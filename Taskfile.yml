@@ -80,7 +80,7 @@ tasks:
           cd include/nn
           grep -rl "@nncbindgen" | sort > ../../out
           cd ../..
-          cat out | xargs -P {{numCPU}} -n 1 python nncbindgen.py
+          cat out | xargs -P {{numCPU}} -n 1 python3 nncbindgen.py
 
   cbindgen-check:
     desc: Check nnc bindings are up-to-date

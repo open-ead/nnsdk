@@ -57,6 +57,8 @@ per `nn/foo/foo_Xy.h`. If a file includes any `@nncbindgen` comment, it will aut
 picked up by bindgen. If a binding needs to be hand-written, then the corresponding C++
 header must not have `@nncbindgen` comments; otherwise the hand-written changes would be overwritten.
 
+To regenerate the nnc folder, use `task cbindgen`. If is the first time run `task configure`
+
 To generate a binding, simply add `// @nncbindgen` above the item:
 
 ```cpp
@@ -104,6 +106,12 @@ nn::Result FooTheXyz(Xyz);
 // @nncbindgen(rename=FooTheXyzWithTwo)
 nn::Result FooTheXyz(Xyz, Xyz);
 // This generates: nnResult nnfooFooTheXyzWithTwo(nnfooXyz, nnfooXyz);
+
+// Use 'define' for external type definitions
+// @nncbindgen define struct Xyz*
+// @nncbindgen define enum Abc
+nn::Result FooTheXyz(Xyz*, Abc);
+// This generates: nnResult nnfooFooTheXyzWithTwo(struct Xyz*, enum Abc);
 
 }
 ```

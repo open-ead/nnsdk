@@ -29,6 +29,7 @@ ALIGN_HOLDER = {
     1: "char", # for placeholder types
     8: "void*"
 }
+TYPE_MAP = {}
 
 def main(file: str, check: bool):
     include_root = get_include_root();
@@ -150,6 +151,7 @@ def process(input_file_ident: str, input_file: str):
         if line.startswith("// @nncbindgen"):
             d = line[len("// @nncbindgen"):].strip()
             attrs, d = parse_directive_attrs(d)
+            args = d.split(" ")[1:]
             if not d:
                 directive_stack.append({ "type": "auto", "attrs": attrs })
             elif d.startswith("typedef"):
@@ -164,6 +166,8 @@ def process(input_file_ident: str, input_file: str):
                 directive_stack.pop()
                 node_buffer_stack.pop()
                 is_bulk_skipping = False
+            elif d.startswith("define"):
+                TYPE_MAP[args[1]]=args[0]
             elif d.startswith("skip"):
                 directive_stack.append({ "type": "skip" })
             else:
@@ -382,10 +386,13 @@ def convert_to_c_type(c_namespace: str, t: str) -> str:
         parts = seg.split(" ")
         converted_parts = []
         for p in parts:
+            c_type = ""
+            if p in TYPE_MAP:
+                c_type = TYPE_MAP[p]+" "
             if p and p[0].isupper():
-                converted_parts.append(c_namespace + p)
+                converted_parts.append(c_type + c_namespace + p)
             else:
-                converted_parts.append(p)
+                converted_parts.append(c_type + p)
         converted_segs.append(" ".join(converted_parts))
     output = "".join(converted_segs)
     return output
