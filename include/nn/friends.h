@@ -11,8 +11,11 @@ namespace nn::friends {
 struct Url {
     char m_Buffer[0xA0];
 };
-struct ImageSize {
-    int32_t m_Size;
+
+enum class ImageSize {
+    ImageSize_64 = 64,
+    ImageSize_128 = 128,
+    ImageSize_256 = 256,
 };
 
 class AsyncContext;
