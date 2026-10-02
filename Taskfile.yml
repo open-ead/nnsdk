@@ -64,6 +64,7 @@ tasks:
         vars:
           ARGS: -n -Werror
       - task: clang-tidy
+
   fix:
     desc: Run clang-format to format the code
     cmds:
@@ -101,7 +102,7 @@ tasks:
   clang-format:
     cmds:
       - silent: true
-        cmd: | 
+        cmd: |
           clang=$NX_CLANG
           if [ ! -d "$clang" ]; then
             clang="toolchain/nx-aarch64-$NX_AARCH64"
