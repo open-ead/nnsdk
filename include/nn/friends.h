@@ -5,16 +5,10 @@
 #pragma once
 
 #include <nn/account.h>
+#include <nn/friends/friends_Types.h>
 #include <nn/os.h>
 
 namespace nn::friends {
-struct Url {
-    char m_Buffer[0xA0];
-};
-struct ImageSize {
-    int32_t m_Size;
-};
-
 class AsyncContext;
 class Profile;
 
