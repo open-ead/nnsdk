@@ -18,13 +18,21 @@ else()
     set(NX_MUSL "${CMAKE_CURRENT_LIST_DIR}/musl")
 endif()
 
+if(NOT DEFINED ENV{NN_TARGET})
+    message(WARNING "NN_TARGET is not defined assuming aarch64")
+    set(NN_TARGET "aarch64")
+else()
+    message(STATUS "Using NN_TARGET: $ENV{NN_TARGET}")
+    set(NN_TARGET "$ENV{NN_TARGET}")
+endif()
+
 # no need for optimization or debug info for testing
 # set(NX64_OPT_FLAGS "-O3 -g")
-set(NX64_TRIPLE aarch64-linux-elf)
+set(NX64_TRIPLE ${NN_TARGET}-linux-elf)
 
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_VERSION 1)
-set(CMAKE_SYSTEM_PROCESSOR aarch64)
+set(CMAKE_SYSTEM_PROCESSOR ${NX_TARGET})
 
 set(CMAKE_SYSROOT ${NX_MUSL})
 set(CMAKE_C_COMPILER "${NX_CLANG}/bin/clang")

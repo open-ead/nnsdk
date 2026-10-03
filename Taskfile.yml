@@ -40,8 +40,8 @@ tasks:
             [ -d "$OUTPUT/nx-aarch64-$VERSION" ] || curl -fsSL https://raw.githubusercontent.com/Pistonight/nx-aarch64/main/install.sh | VERSION="$VERSION" OUTPUT="$OUTPUT" sh
           fi
       - task: cbindgen
-      - cmake -G Ninja --toolchain $(pwd)/toolchain/Toolchain.cmake -DNN_SDK=$NN_VER -DNN_SDK_TYPE="Release" -B build
-      - cmake -G Ninja --toolchain $(pwd)/toolchain/Toolchain.cmake -DNN_SDK=$NN_VER -DNN_SDK_TYPE="Release" -B test/header_check/build -S test/header_check
+      - cmake -G Ninja --toolchain $(pwd)/toolchain/Toolchain.cmake -DNN_SDK=$NN_VER -DNN_SDK_TYPE=Release -B build
+      - cmake -G Ninja --toolchain $(pwd)/toolchain/Toolchain.cmake -DNN_SDK=$NN_VER -DNN_SDK_TYPE=Release -B test/header_check/build -S test/header_check
 
   build:
     desc: Check the project builds and run tests

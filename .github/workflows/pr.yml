@@ -12,9 +12,14 @@ jobs:
     strategy:
       matrix:
         NN_VER:
-          - 0.12.14
-          - 3.5.1
-          - 4.4.0
+          - version: 0.12.14 #BOTW 1.0.0
+            target: aarch64
+          - version: 0.12.16 #MK8DX 1.0.0
+            target: arm
+          - version: 3.5.1 #SMO 1.0.0
+            target: aarch64
+          - version: 4.4.0 #BOTW 1.5.0
+            target: aarch64
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/open-ead/ubuntu-builder
@@ -25,7 +30,8 @@ jobs:
           submodules: false
       - run: task pr-build
         env:
-          NN_VER: ${{matrix.NN_VER}}
+          NN_VER: ${{matrix.NN_VER.version}}
+          NN_TARGET: ${{matrix.NN_VER.target}}
 
   check:
     runs-on: ubuntu-latest
