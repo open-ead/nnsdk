@@ -14,8 +14,9 @@ jobs:
         NN_VER:
           - version: 0.12.14 #BOTW 1.0.0
             target: aarch64
-          - version: 0.12.16 #MK8DX 1.0.0
-            target: arm
+          #TODO: botw-lib-musl doesn't seems to supports 32bits so I will comment that for now.
+          #- version: 0.12.16 #MK8DX 1.0.0
+          #  target: arm
           - version: 3.5.1 #SMO 1.0.0
             target: aarch64
           - version: 4.4.0 #BOTW 1.5.0
