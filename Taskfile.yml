@@ -35,25 +35,25 @@ tasks:
         sh: echo $NN_VER
       NN_VER: '{{.NN_VER_FROM_ENV | default "1.0.0" | trim}}'
       CMAKE_ARGS: -G Ninja --toolchain $(pwd)/toolchain/Toolchain.cmake -DNN_SDK={{.NN_VER}} -DNN_SDK_TYPE=Release
-      cmds:
-        - silent: true
-          cmd: |
-            if [ -z "$CI" ]; then
-              [ -d "toolchain/musl" ] || git clone https://github.com/open-ead/botw-lib-musl toolchain/musl
-              VERSION={{.NX_AARCH64}}
-              OUTPUT=toolchain
-              [ -d "$OUTPUT/nx-aarch64-$VERSION" ] || curl -fsSL https://raw.githubusercontent.com/Pistonight/nx-aarch64/main/install.sh | VERSION="$VERSION" OUTPUT="$OUTPUT" sh
-            fi
-        - task: cbindgen
-        - silent: true
-          cmd: |
-            if [ -z "{{.NN_VER_FROM_ENV}}" ]; then
-              echo "-- Using default NN_VER ({{.NN_VER}}). Run 'NN_VER=x.y.z task configure' to configure for a specific SDK version"
-            else
-              echo "-- Using NN_VER: {{.NN_VER}}"
-            fi
-        - cmake {{.CMAKE_ARGS}} -B build
-        - cmake {{.CMAKE_ARGS}} -B test/header_check/build -S test/header_check
+    cmds:
+      - silent: true
+        cmd: |
+          if [ -z "$CI" ]; then
+            [ -d "toolchain/musl" ] || git clone https://github.com/open-ead/botw-lib-musl toolchain/musl
+            VERSION={{.NX_AARCH64}}
+            OUTPUT=toolchain
+            [ -d "$OUTPUT/nx-aarch64-$VERSION" ] || curl -fsSL https://raw.githubusercontent.com/Pistonight/nx-aarch64/main/install.sh | VERSION="$VERSION" OUTPUT="$OUTPUT" sh
+          fi
+      - task: cbindgen
+      - silent: true
+        cmd: |
+          if [ -z "{{.NN_VER_FROM_ENV}}" ]; then
+            echo "-- Using default NN_VER ({{.NN_VER}}). Run 'NN_VER=x.y.z task configure' to configure for a specific SDK version"
+          else
+            echo "-- Using NN_VER: {{.NN_VER}}"
+          fi
+      - cmake {{.CMAKE_ARGS}} -B build
+      - cmake {{.CMAKE_ARGS}} -B test/header_check/build -S test/header_check
 
   build:
     desc: Check the project builds and run tests
