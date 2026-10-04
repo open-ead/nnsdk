@@ -19,7 +19,7 @@ else()
 endif()
 
 if(NOT DEFINED ENV{NN_TARGET})
-    message(WARNING "NN_TARGET is not defined assuming aarch64")
+    message(STATUS "NN_TARGET is not defined assuming aarch64")
     set(NN_TARGET "aarch64")
 else()
     message(STATUS "Using NN_TARGET: $ENV{NN_TARGET}")

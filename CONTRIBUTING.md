@@ -3,12 +3,16 @@
 ## Development
 
 To build and run checks, please install:
+
 - [task](https://taskfile.dev) for running commands.
 - CMake (check the version requirement in CMakeLists.txt) and Ninja.
 
 Please run `task configure` before running the other commands.
+If you want to configure for a specific version you can use the `NN_VER` env variable which is by default set to
+`1.0.0` and `NN_TARGET` to control the target architecture (`arm` or `aarch64`) for now only `aarch64` is supported.
 
 Workflows:
+
 - Run `task configure` to configure the CMake projects.
 - Run `task build` to build and run tests.
 - Run `task check` to check formatting and clang-tidy issues. `task fix` formats the files.
@@ -31,11 +35,11 @@ persists, please ask for help in Discord.
 The headers in `/include/nn` should follow these rules:
 
 - Use `nn/foo.h` and `nn/foo/` for the namespace `nn::foo` and any sub-namespace.
-  - Put things that are in the `nn::foo::detail` namespace into one of the `nn/foo/detail/foo_Something.h` headers.
-  - Put everything that is not `detail` in one of the `nn/foo/foo_Something.h` headers,
-    including things in other sub-namespaces like `nn::foo::subnamespace`.
-  - Put things that don't really fit in any `foo_Something.h` in `nn/foo.h`. This file should also
-    re-export every `nn/foo/foo_Something.h`, but not the `detail` headers.
+    - Put things that are in the `nn::foo::detail` namespace into one of the `nn/foo/detail/foo_Something.h` headers.
+    - Put everything that is not `detail` in one of the `nn/foo/foo_Something.h` headers,
+      including things in other sub-namespaces like `nn::foo::subnamespace`.
+    - Put things that don't really fit in any `foo_Something.h` in `nn/foo.h`. This file should also
+      re-export every `nn/foo/foo_Something.h`, but not the `detail` headers.
 - For inter-module dependencies, prefer including the exact `nn/foo/foo_Something.h` instead of
   the umbrella `nn/foo.h`.
 - If you need to add a "placeholder type" (i.e. a type whose symbol is referenced in something
