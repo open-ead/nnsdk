@@ -9,7 +9,11 @@ To build and run checks, please install:
 
 Please run `task configure` before running the other commands.
 If you want to configure for a specific version you can use the `NN_VER` env variable which is by default set to
-`1.0.0` and `NN_TARGET` to control the target architecture (`arm` or `aarch64`) for now only `aarch64` is supported.
+`1.0.0`:
+
+```shell
+NN_VER=4.4.0 task configure
+```
 
 Workflows:
 
