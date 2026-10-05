@@ -40,7 +40,7 @@ function(nnsdk_ver ID)
   endif()
 
   list(POP_FRONT VER MAJOR MINOR PATCH)
-  
+
   foreach(VAR IN ITEMS MAJOR MINOR PATCH)
       target_compile_definitions(nnSdk INTERFACE ${ID}_${VAR}=${${VAR}})
   endforeach()
