@@ -53,6 +53,10 @@ struct FirmwareVersion {
     }
 };
 
+struct RegionCode {
+    std::int32_t code;
+};
+
 Result GetFirmwareVersion(FirmwareVersion*);
 }  // namespace system
 
