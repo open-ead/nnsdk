@@ -16,5 +16,6 @@ typedef int64_t nnTimeSpan;
 }
 #endif
 
+
 // NOLINTEND
-// clang-format off
+// clang-format on

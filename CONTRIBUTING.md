@@ -69,7 +69,9 @@ per `nn/foo/foo_Xy.h`. If a file includes any `@nncbindgen` comment, it will aut
 picked up by bindgen. If a binding needs to be hand-written, then the corresponding C++
 header must not have `@nncbindgen` comments; otherwise the hand-written changes would be overwritten.
 
-To generate a binding, simply add `// @nncbindgen` above the item:
+Run `task cbindgen` to regenerate the bindings. They are also regenerated when running `task configure`.
+
+To include an item in the generated binding, simply add `// @nncbindgen` above the item:
 
 ```cpp
 namespace nn::foo {
@@ -116,6 +118,33 @@ nn::Result FooTheXyz(Xyz);
 // @nncbindgen(rename=FooTheXyzWithTwo)
 nn::Result FooTheXyz(Xyz, Xyz);
 // This generates: nnResult nnfooFooTheXyzWithTwo(nnfooXyz, nnfooXyz);
+
+// Types from C libraries (e.g. libc sockets) may need the struct/union/enum keyword in C.
+// Use 'explicit_struct', 'explicit_union' or 'explicit_enum' to add it.
+// The value is matched against the C++ spelling of the type (with an optional leading 'const'),
+// so specify each spelling that is used (e.g. both 'sockaddr' and 'sockaddr*').
+// These attributes can be repeated.
+// @nncbindgen(explicit_struct=sockaddr*, explicit_struct=sockaddr_in)
+int FooTheSocket(sockaddr* addr, const sockaddr* addr2, sockaddr_in addr3);
+// This generates: int nnfooFooTheSocket(struct sockaddr* addr, const struct sockaddr* addr2, struct sockaddr_in addr3);
+
+// Currently, nested namespaces don't parse correctly. 
+// The recommended workaround is to avoid nested namespaces and
+// only use c++17 collapsed namespace: `namespace nn::foo::detail { ... }`
+//
+// The namespace directive and attribute also serve as escape hatches:
+
+namespace detail {
+// @nncbindgen namespace nn::foo::detail
+Bar FooTheXyzImp1(Xyz);
+// This generates: nnfoodetailBar nnfoodetailFooTheXyzImp1(nnfoodetailXyz);
+
+// To override namespace just for one item:
+// @nncbindgen(namespace=nn::foo::detail2)
+Bar FooTheXyzImp(Xyz, Xyz);
+// This generates: nnfoodetail2Bar nnfoodetail2FooTheXyzImp(nnfoodetail2Xyz, nnfoodetail2Xyz);
+}
+// namespace here is still nn::foo::detail
 
 }
 ```

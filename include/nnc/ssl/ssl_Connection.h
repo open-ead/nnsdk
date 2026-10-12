@@ -80,5 +80,6 @@ nnResult nnsslConnectionGetOption(nnsslConnection* this_, bool* outValue, nnsslC
 }
 #endif
 
+
 // NOLINTEND
-// clang-format off
+// clang-format on

@@ -18,5 +18,6 @@ typedef int64_t nnosTick;
 }
 #endif
 
+
 // NOLINTEND
-// clang-format off
+// clang-format on

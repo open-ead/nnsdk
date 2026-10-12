@@ -22,5 +22,6 @@ nnResult nnsslFinalize();
 }
 #endif
 
+
 // NOLINTEND
-// clang-format off
+// clang-format on

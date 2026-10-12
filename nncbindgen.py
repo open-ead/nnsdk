@@ -94,7 +94,7 @@ def process(input_file_ident: str, input_file: str):
             "",
             "#ifdef __cplusplus",
             "}",
-            "#endif"
+            "#endif",
             "",
         ]
         last_item_type = None
@@ -143,8 +143,7 @@ def process(input_file_ident: str, input_file: str):
             continue
 
         if line.startswith("namespace "):
-            ns = line[len("namespace "):-1].strip()
-            namespace = ns
+            namespace = line[len("namespace "):-1].strip()
             continue
 
         if line.startswith("// @nncbindgen"):
@@ -164,8 +163,12 @@ def process(input_file_ident: str, input_file: str):
                 directive_stack.pop()
                 node_buffer_stack.pop()
                 is_bulk_skipping = False
+                continue
             elif d.startswith("skip"):
                 directive_stack.append({ "type": "skip" })
+            elif d.startswith("namespace "):
+                namespace = d[len("namespace "):].strip()
+                continue
             else:
                 raise RuntimeError("unknown directive: " + d)
             node_buffer_stack.append("")
@@ -187,6 +190,7 @@ def process(input_file_ident: str, input_file: str):
             rename = None
             containing_class = None
             current_namespace = namespace
+            explicit_c_keyword_type_config = {}
             if "attrs" in directive:
                 rename = directive["attrs"].get("rename")
                 containing_class = directive["attrs"].get("memberof")
@@ -194,13 +198,19 @@ def process(input_file_ident: str, input_file: str):
                 if override_namespace:
                     current_namespace = override_namespace
 
+                for keyword in ["struct", "union", "enum"]:
+                    explicit_config = directive["attrs"].get("explicit_" + keyword)
+                    if explicit_config is not None:
+                        explicit_c_keyword_type_config[keyword] = explicit_config
+
             out_type, lines = process_node(
                 input_file_ident,
                 directive,
                 current_namespace,
                 node_buffer_stack[-1],
                 rename,
-                containing_class
+                containing_class,
+                explicit_c_keyword_type_config
             )
             node_buffer_stack.pop()
             directive_stack.pop()
@@ -212,11 +222,22 @@ def process(input_file_ident: str, input_file: str):
     output += [
         "",
         "// NOLINTEND",
-        "// clang-format off"
+        "// clang-format on"
     ]
 
     return output
 
+
+# allowed directive attributes, and whether they can be specified multiple times (list)
+# or only once (str)
+DIRECTIVE_ATTRS: dict[str, type] = {
+    "rename": str,
+    "memberof": str,
+    "namespace": str,
+    "explicit_struct": list,
+    "explicit_union": list,
+    "explicit_enum": list,
+}
 
 def parse_directive_attrs(directive: str) -> tuple[dict, str]:
     directive = directive.strip()
@@ -228,9 +249,20 @@ def parse_directive_attrs(directive: str) -> tuple[dict, str]:
     parsed_attrs = {}
     for attr in attrs:
         i = attr.find("=")
+        if i < 0:
+            raise RuntimeError(f"directive attribute must be in the form name=value: {attr}")
         attr_name = attr[:i].strip()
         attr_value = attr[i+1:].strip()
-        parsed_attrs[attr_name] = attr_value
+        attr_type = DIRECTIVE_ATTRS.get(attr_name)
+        if attr_type is None:
+            raise RuntimeError(f"unknown directive attribute: {attr_name}")
+        if attr_type is list:
+            parsed_attrs.setdefault(attr_name, []).append(attr_value)
+        elif attr_name in parsed_attrs:
+            raise RuntimeError(f"directive attribute cannot be specified multiple times: {attr_name}")
+        else:
+            parsed_attrs[attr_name] = attr_value
+
     return parsed_attrs, directive
 
 def process_node(
@@ -239,7 +271,8 @@ def process_node(
     namespace: str,
     node_buffer: str,
     rename: str | None,
-    containing_class: str | None
+    containing_class: str | None,
+    explicit_c_keyword_type_config: dict[str, list[str]],
 ):
     out_type = ""
     out = []
@@ -290,7 +323,7 @@ def process_node(
         ]
         return f"enum {enum_name}", out
 
-    return "function", [ parse_function(c_namespace, node_buffer, rename, containing_class, symbol_c_namespace) ]
+    return "function", [ parse_function(c_namespace, node_buffer, rename, containing_class, symbol_c_namespace, explicit_c_keyword_type_config) ]
 
 
 def figure_out_size_and_align(input_file: str, typename: str):
@@ -346,6 +379,7 @@ def parse_function(
     rename: str | None,
     containing_class: str | None,
     symbol_c_namespace: str,
+    explicit_c_keyword_type_config: dict[str, list[str]],
 ) -> str:
     if "<" in node_buffer or ">" in node_buffer:
         raise RuntimeError("looks like there are type parameters so this can't be parse as a c function: " + node_buffer)
@@ -353,26 +387,44 @@ def parse_function(
         raise RuntimeError("looks like there are reference types so this can't be parse as a c function: " + node_buffer)
     i = node_buffer.find("(")
     retty_and_name = node_buffer[:i].strip()
-    parts = retty_and_name.split(" ")
-    if len(parts) != 2:
-        raise RuntimeError("there are too many spaces in the return type and function name")
-    retty, name = parts
+    # the name is the last word, everything before it is the return type
+    # (e.g. `const Foo* Bar` or `const Foo *Bar`)
+    k = max(retty_and_name.rfind(" "), retty_and_name.rfind("*"))
+    retty = retty_and_name[:k+1].strip()
+    name = retty_and_name[k+1:].strip()
+    if not retty or not name:
+        raise RuntimeError("cannot parse the return type and function name: " + retty_and_name)
     if rename:
         name = rename
     j = node_buffer.rfind(")")
     middle = node_buffer[i+1:j].strip().split(",")
     args = []
+
+    def get_c_keyword_for_type(t: str) -> tuple[str, str|None]:
+        t = t.strip()
+        for keyword in explicit_c_keyword_type_config:
+            for prefix in explicit_c_keyword_type_config[keyword]:
+                if t == prefix or t.startswith(prefix + " "):
+                    return t, keyword
+                if t == "const " + prefix or t.startswith("const " + prefix + " "):
+                    return t[len("const "):].strip(), "const " + keyword
+        return t, None
+
+
     if containing_class:
-        args.append(convert_to_c_type(c_namespace, f"{containing_class}* this_"))
+        this_arg, c_keyword = get_c_keyword_for_type(f"{containing_class}* this_")
+        args.append(convert_to_c_type(c_namespace, this_arg, c_keyword))
     for arg_type_and_name in middle:
-        converted = convert_to_c_type(c_namespace, arg_type_and_name)
+        arg_type_and_name, c_keyword = get_c_keyword_for_type(arg_type_and_name)
+        converted = convert_to_c_type(c_namespace, arg_type_and_name, c_keyword)
         if not converted:
             continue
         args.append(converted)
-    c_retty = convert_to_c_type(c_namespace, retty)
+    retty, c_keyword = get_c_keyword_for_type(retty)
+    c_retty = convert_to_c_type(c_namespace, retty, c_keyword)
     return f"{c_retty} {symbol_c_namespace}{name}({", ".join(args)});"
 
-def convert_to_c_type(c_namespace: str, t: str) -> str:
+def convert_to_c_type(c_namespace: str, t: str, c_keyword: str | None) -> str:
     namespace_segs = t.strip().split("::")
     # if a fully qualified nn type, concat it already
     if namespace_segs and namespace_segs[0].strip() == "nn":
@@ -388,6 +440,8 @@ def convert_to_c_type(c_namespace: str, t: str) -> str:
                 converted_parts.append(p)
         converted_segs.append(" ".join(converted_parts))
     output = "".join(converted_segs)
+    if c_keyword:
+        return f"{c_keyword} {output}"
     return output
 
 def get_nx_clang():

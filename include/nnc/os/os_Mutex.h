@@ -22,5 +22,6 @@ void nnosUnlockMutex(nnosMutexType*);
 }
 #endif
 
+
 // NOLINTEND
-// clang-format off
+// clang-format on

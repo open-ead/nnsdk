@@ -31,5 +31,6 @@ nnResult nnsslContextGetContextId(nnsslContext* this_, uint64_t* outId);
 }
 #endif
 
+
 // NOLINTEND
-// clang-format off
+// clang-format on

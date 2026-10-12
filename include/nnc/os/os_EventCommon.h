@@ -19,5 +19,6 @@ typedef enum nnosEventClearMode {
 }
 #endif
 
+
 // NOLINTEND
-// clang-format off
+// clang-format on

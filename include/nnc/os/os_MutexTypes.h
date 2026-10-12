@@ -16,5 +16,6 @@ typedef union nnosMutexType { uint8_t buf[0x20]; void* alignment_holder; } nnosM
 }
 #endif
 
+
 // NOLINTEND
-// clang-format off
+// clang-format on
