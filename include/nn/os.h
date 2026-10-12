@@ -5,6 +5,7 @@
 
 #pragma once
 
+// @nncbindgen skip-start
 #include <type_traits>
 
 #include <nn/time.h>
@@ -12,15 +13,15 @@
 #include <nn/os/detail/os_InternalCriticalSection.h>
 #include <nn/os/os_Event.h>
 #include <nn/os/os_MessageQueue.h>
+// @nncbindgen skip-end
+
 #include <nn/os/os_Mutex.h>
 #include <nn/os/os_MutexTypes.h>
 #include <nn/os/os_ThreadCommon.h>
 #include <nn/os/os_ThreadTypes.h>
 #include <nn/os/os_TickTypes.h>
 
-namespace nn::os {
-
-namespace detail {
+namespace nn::os::detail {
 
 struct InterProcessEventType {
     enum State {
@@ -37,7 +38,12 @@ struct InterProcessEventType {
     uint32_t readableHandle;
     uint32_t writableHandle;
 };
-}  // namespace detail
+
+extern int32_t g_CommandLineParameter;
+extern char** g_CommandLineParameterArgv;
+}  // namespace nn::os::detail
+
+namespace nn::os {
 
 struct LightEventType {
     std::aligned_storage_t<0xc, 4> storage;
@@ -74,9 +80,9 @@ char** GetHostArgv();
 
 // MEMORY
 void InitializeVirtualAddressMemory();
-Result AllocateAddressRegion(uint64_t*, uint64_t);
-Result AllocateMemory(uint64_t*, uint64_t);
-Result AllocateMemoryPages(uint64_t, uint64_t);
+nn::Result AllocateAddressRegion(uint64_t*, uint64_t);
+nn::Result AllocateMemory(uint64_t*, uint64_t);
+nn::Result AllocateMemoryPages(uint64_t, uint64_t);
 void AllocateMemoryBlock(uint64_t*, uint64_t);
 void FreeMemoryBlock(uint64_t, uint64_t);
 void SetMemoryHeapSize(uint64_t);
@@ -91,11 +97,14 @@ void WaitConditionVariable(ConditionVariableType*);
 uint8_t TimedWaitConditionVariable(ConditionVariableType*, nn::os::MutexType*, nn::TimeSpan);
 
 // THREAD
-Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack,
-                    uint64_t stackSize, int32_t priority, int32_t coreNum);
-Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack,
-                    uint64_t stackSize, int32_t priority);
+nn::Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack,
+                        uint64_t stackSize, int32_t priority, int32_t coreNum);
+// @nncbindgen
+nn::Result CreateThread(nn::os::ThreadType*, void (*)(void*), void* arg, void* srcStack,
+                        uint64_t stackSize, int32_t priority);
+// @nncbindgen
 void DestroyThread(nn::os::ThreadType*);
+// @nncbindgen
 void StartThread(nn::os::ThreadType*);
 void SetThreadName(nn::os::ThreadType*, char const* threadName);
 void SetThreadNamePointer(nn::os::ThreadType*, char const*);
@@ -108,7 +117,9 @@ uint64_t GetThreadId(const nn::os::ThreadType* thread);
 void YieldThread();
 void SuspendThread(nn::os::ThreadType*);
 void ResumeThread(nn::os::ThreadType*);
+// @nncbindgen
 void SleepThread(nn::TimeSpan);
+// @nncbindgen
 void WaitThread(nn::os::ThreadType*);
 void SetThreadCoreMask(nn::os::ThreadType*, int, uint64_t mask);
 
@@ -172,14 +183,10 @@ uint64_t GetThreadAvailableCoreMask();
 struct TlsSlot {
     uint32_t slot;
 };
-Result AllocateTlsSlot(TlsSlot* slot_out, void (*)(uint64_t));
+nn::Result AllocateTlsSlot(TlsSlot* slot_out, void (*)(uint64_t));
 void FreeTlsSlot(TlsSlot slot);
 uint64_t GetTlsValue(TlsSlot slot);
 void SetTlsValue(TlsSlot slot, uint64_t value);
 uint32_t GetCurrentCoreNumber();
 
-namespace detail {
-extern int32_t g_CommandLineParameter;
-extern char** g_CommandLineParameterArgv;
-}  // namespace detail
 }  // namespace nn::os
