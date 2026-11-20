@@ -79,7 +79,7 @@ void RemoveAux(nn::audio::AudioRendererConfig* config, nn::audio::AuxType* aux,
 void SetAuxEnabled(nn::audio::AuxType* aux, bool enable);
 void SetAuxInputOutput(nn::audio::AuxType* aux, int8_t const* input, int8_t const* output,
                        int32_t count);
-bool IsAuxRemovable(nn::audio::AuxType* aux);
+bool IsAuxRemovable(const nn::audio::AuxType* aux);
 int32_t GetAuxSampleCount(nn::audio::AuxType const* aux);
 int32_t GetAuxSampleRate(nn::audio::AuxType const* aux);
 int32_t ReadAuxSendBuffer(nn::audio::AuxType* aux, int32_t* buffer, int32_t count);
@@ -120,10 +120,12 @@ bool AcquireFinalMix(nn::audio::AudioRendererConfig* config, nn::audio::FinalMix
 bool AcquireSubMix(nn::audio::AudioRendererConfig* config, nn::audio::SubMixType* mix,
                    int32_t sampleRate, int32_t bufferCount);
 void ReleaseSubMix(nn::audio::AudioRendererConfig* config, nn::audio::SubMixType* mix);
+void ReleaseFinalMix(nn::audio::AudioRendererConfig* config, nn::audio::FinalMixType* mix);
 void SetSubMixDestination(nn::audio::AudioRendererConfig* config, nn::audio::SubMixType* source,
                           nn::audio::FinalMixType* destination);
 void SetSubMixDestination(nn::audio::AudioRendererConfig* config, nn::audio::SubMixType* source,
                           nn::audio::SubMixType* destination);
+void SetSubMixVolume(nn::audio::SubMixType* source, float volume);
 void SetSubMixMixVolume(nn::audio::SubMixType* source, nn::audio::FinalMixType* destination,
                         float volume, int32_t sourceIndex, int32_t destinationIndex);
 void SetSubMixMixVolume(nn::audio::SubMixType* source, nn::audio::SubMixType* destination,
@@ -131,10 +133,10 @@ void SetSubMixMixVolume(nn::audio::SubMixType* source, nn::audio::SubMixType* de
 uint32_t GetSubMixNodeId(nn::audio::SubMixType const* mix);
 
 // Audio Renderer Voice APIs
-Result AcquireVoiceSlot(nn::audio::AudioRendererConfig* config, nn::audio::VoiceType* voice,
-                        int32_t sampleRate, int32_t channelCount,
-                        nn::audio::SampleFormat sampleFormat, int32_t priority, void const* buffer,
-                        size_t bufferSize);
+bool AcquireVoiceSlot(nn::audio::AudioRendererConfig* config, nn::audio::VoiceType* voice,
+                      int32_t sampleRate, int32_t channelCount,
+                      nn::audio::SampleFormat sampleFormat, int32_t priority, void const* buffer,
+                      size_t bufferSize);
 void ReleaseVoiceSlot(nn::audio::AudioRendererConfig* config, nn::audio::VoiceType* voice);
 bool IsVoiceValid(nn::audio::VoiceType const* voice);
 bool IsVoiceDroppedFlagOn(nn::audio::VoiceType const* voice);
